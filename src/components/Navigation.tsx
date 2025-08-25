@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Music, Calendar, Users, Mic } from 'lucide-react';
+import { Menu, X, Music, Calendar, Users, Mic, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function Navigation() {
@@ -13,6 +13,7 @@ export function Navigation() {
     { name: 'Events', href: '/events', icon: Calendar },
     { name: 'Artists', href: '/artists', icon: Users },
     { name: 'Auditions', href: '/auditions', icon: Mic },
+    { name: 'About', href: '/about', icon: Info },
   ];
 
   return (
