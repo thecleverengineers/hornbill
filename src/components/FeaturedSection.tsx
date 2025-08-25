@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -6,10 +5,10 @@ import { ArrowRight, Music, Camera, Users } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const FeaturedSection = () => {
-  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
-  const { elementRef: cardsRef, isVisible: cardsVisible } = useScrollAnimation();
-  const { elementRef: documentaryRef, isVisible: documentaryVisible } = useScrollAnimation();
-  const { elementRef: socialRef, isVisible: socialVisible } = useScrollAnimation();
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: cardsRef, isVisible: cardsVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: documentaryRef, isVisible: documentaryVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: socialRef, isVisible: socialVisible } = useScrollAnimation<HTMLDivElement>();
 
   const featuredCards = [
     {

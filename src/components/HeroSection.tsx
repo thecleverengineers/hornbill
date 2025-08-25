@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, Pause, Calendar, Mic } from 'lucide-react';
@@ -6,7 +5,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const HeroSection = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const { elementRef: statsRef, isVisible: statsVisible } = useScrollAnimation();
+  const { elementRef: statsRef, isVisible: statsVisible } = useScrollAnimation<HTMLDivElement>();
 
   const toggleVideo = () => {
     setIsVideoPlaying(!isVideoPlaying);
