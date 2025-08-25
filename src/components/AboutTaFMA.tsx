@@ -1,8 +1,9 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Music, Users, Award, Heart } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Music, Users, Award, Heart, ArrowRight } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { Link } from 'react-router-dom';
 
 const AboutTaFMA = () => {
   const { elementRef: sectionRef, isVisible: sectionVisible } = useScrollAnimation<HTMLElement>({ threshold: 0.2 });
@@ -31,9 +32,15 @@ const AboutTaFMA = () => {
             <p className="text-muted-foreground text-lg leading-relaxed mb-6">
               The Task Force for Music & Arts (TaFMA) is dedicated to preserving and promoting the rich musical traditions of Nagaland while supporting contemporary artists in their creative journey.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed mb-8">
               Through partnerships with institutions and festivals, we help Naga musicians share their unique sound with the world while documenting traditional songs for future generations.
             </p>
+            <Link to="/about">
+              <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                Learn More about TaFMA
+                <ArrowRight className="ml-2" size={18} />
+              </Button>
+            </Link>
           </div>
           <div className="relative">
             <div className="aspect-video rounded-2xl overflow-hidden border border-gray-700/50">
