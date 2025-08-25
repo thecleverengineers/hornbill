@@ -26,13 +26,6 @@
     --input: 240 3.7% 15.9%;
     --ring: 320 100% 50%;
     --radius: 0.75rem;
-    
-    /* Festival theme colors */
-    --neon-pink: 320 100% 50%;
-    --neon-purple: 280 100% 60%;
-    --electric-orange: 25 100% 55%;
-    --cyber-teal: 180 100% 50%;
-    --tribal-gold: 45 100% 60%;
   }
 }
 
@@ -47,13 +40,11 @@
     overflow-x: hidden;
   }
 
-  /* Mobile-first responsive design */
   html {
     @apply text-base;
     overflow-x: hidden;
   }
   
-  /* Safe area support for mobile devices */
   .safe-area-inset-bottom {
     padding-bottom: env(safe-area-inset-bottom);
   }
@@ -62,12 +53,10 @@
     padding-top: env(safe-area-inset-top);
   }
 
-  /* Mobile touch improvements */
   button, a {
     @apply touch-manipulation;
   }
   
-  /* Prevent zoom on input focus on iOS */
   input, select, textarea {
     font-size: 16px;
   }
@@ -80,173 +69,15 @@
 }
 
 @layer components {
-  /* Enhanced funky button styles */
-  .btn-festival {
-    @apply bg-gradient-to-r from-pink-500 via-purple-600 to-pink-500 
-           text-white font-bold px-8 py-3 rounded-full 
-           shadow-[0_0_20px_rgba(236,72,153,0.5)] hover:shadow-[0_0_30px_rgba(236,72,153,0.8)] 
-           transform hover:scale-110 active:scale-95
-           transition-all duration-300 border-0 relative overflow-hidden;
+  .text-gradient {
+    background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0);
     background-size: 200% 200%;
-    animation: gradient-shift 3s ease infinite, funky-bounce 2s ease-in-out infinite;
-  }
-
-  .btn-stage {
-    @apply bg-gradient-to-r from-orange-500 via-teal-500 to-orange-500 
-           text-white font-bold px-8 py-3 rounded-full 
-           shadow-[0_0_20px_rgba(249,115,22,0.5)] hover:shadow-[0_0_30px_rgba(249,115,22,0.8)]
-           transform hover:scale-110 hover:rotate-2 active:scale-95
-           transition-all duration-300 border-0 relative overflow-hidden;
-    background-size: 200% 200%;
-    animation: gradient-shift 4s ease infinite reverse, wiggle 3s ease-in-out infinite;
-  }
-
-  .btn-tribal {
-    @apply bg-gradient-to-r from-purple-600 via-yellow-500 to-purple-600 
-           text-white font-bold px-8 py-3 rounded-full 
-           shadow-[0_0_20px_rgba(147,51,234,0.5)] hover:shadow-[0_0_30px_rgba(147,51,234,0.8)]
-           transform hover:scale-110 hover:-rotate-2 active:scale-95
-           transition-all duration-300 border-0 relative overflow-hidden;
-    background-size: 200% 200%;
-    animation: gradient-shift 2.5s ease infinite, funky-shake 4s ease-in-out infinite;
-  }
-
-  /* Funky festival effects */
-  .festival-title {
-    background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
-    background-size: 400% 400%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: rainbow-text 3s ease infinite, text-glow 2s ease-in-out infinite alternate;
-    filter: drop-shadow(0 0 10px rgba(255, 0, 128, 0.5));
+    animation: gradient-flow 4s ease infinite;
   }
 
-  .neon-text {
-    text-shadow: 
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px #ff0080,
-      0 0 80px #ff0080;
-    animation: neon-flicker 4s ease-in-out infinite alternate;
-  }
-
-  .festival-bg {
-    background: 
-      radial-gradient(circle at 20% 30%, rgba(255, 0, 128, 0.3) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(64, 224, 208, 0.3) 0%, transparent 50%),
-      radial-gradient(circle at 40% 80%, rgba(255, 140, 0, 0.2) 0%, transparent 50%),
-      linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
-    animation: bg-dance 8s ease-in-out infinite;
-  }
-
-  .festival-card {
-    @apply bg-gray-900/80 backdrop-blur-md border border-gray-700/50 
-           rounded-3xl p-6 shadow-xl hover:shadow-2xl
-           transform hover:scale-105 hover:-translate-y-2 active:scale-95
-           transition-all duration-300 relative overflow-hidden;
-    background: 
-      linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(20, 20, 30, 0.9) 100%);
-  }
-
-  .festival-card::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0, #ff0080);
-    border-radius: inherit;
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    animation: border-dance 3s linear infinite;
-  }
-
-  .festival-card:hover::before {
-    opacity: 1;
-  }
-
-  .artist-card {
-    @apply bg-gray-900/90 backdrop-blur-md border border-gray-700/50 
-           rounded-2xl shadow-lg hover:shadow-2xl
-           transform hover:scale-105 hover:rotate-1 active:scale-95
-           transition-all duration-300 relative overflow-hidden;
-  }
-
-  .artist-card::after {
-    content: '✨';
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem;
-    opacity: 0;
-    transform: scale(0) rotate(180deg);
-    transition: all 0.3s ease;
-  }
-
-  .artist-card:hover::after {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-
-  /* Neon glow effects */
-  .neon-glow-pink {
-    box-shadow: 
-      0 0 20px rgba(236, 72, 153, 0.5),
-      0 0 40px rgba(236, 72, 153, 0.3),
-      0 0 80px rgba(236, 72, 153, 0.1);
-    animation: neon-pulse-pink 2s ease-in-out infinite alternate;
-  }
-
-  .neon-glow-purple {
-    box-shadow: 
-      0 0 20px rgba(147, 51, 234, 0.5),
-      0 0 40px rgba(147, 51, 234, 0.3),
-      0 0 80px rgba(147, 51, 234, 0.1);
-    animation: neon-pulse-purple 2.5s ease-in-out infinite alternate;
-  }
-
-  /* Tribal pattern overlay */
-  .tribal-pattern::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
-      radial-gradient(circle at 75% 75%, rgba(255, 140, 0, 0.1) 3px, transparent 3px);
-    background-size: 50px 50px, 80px 80px;
-    animation: pattern-float 10s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  /* Mobile-optimized card styles */
-  .mobile-card {
-    @apply bg-card/50 backdrop-blur-md border border-gray-700/50 
-           rounded-2xl p-6 shadow-lg 
-           active:scale-[0.98] transition-transform duration-150;
-  }
-
-  /* Native-like mobile interactions */
-  .mobile-touch {
-    @apply active:scale-95 transition-transform duration-150 touch-manipulation;
-  }
-
-  /* Mobile navigation styles */
-  .mobile-nav-item {
-    @apply flex flex-col items-center justify-center py-2 px-3 
-           rounded-lg min-w-[60px] transition-all duration-200 
-           active:scale-95 touch-manipulation;
-  }
-}
-
-@layer utilities {
-  /* Mobile-specific spacing */
   .mobile-container {
     @apply px-4 mx-auto max-w-7xl;
   }
@@ -255,7 +86,6 @@
     @apply py-8 px-4;
   }
   
-  /* Mobile typography */
   .mobile-heading {
     @apply text-2xl md:text-4xl font-bold leading-tight;
   }
@@ -264,7 +94,6 @@
     @apply text-lg md:text-xl text-muted-foreground leading-relaxed;
   }
   
-  /* Hide scrollbar but keep functionality */
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -274,7 +103,6 @@
     display: none;
   }
 
-  /* Safe area utilities */
   .h-safe-area-inset-bottom {
     height: env(safe-area-inset-bottom);
   }
@@ -283,18 +111,39 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 
-  /* Floating animations */
-  .float-animation {
-    animation: float 3s ease-in-out infinite;
+  .mobile-card {
+    @apply bg-card/50 backdrop-blur-md border border-gray-700/50 
+           rounded-2xl p-6 shadow-lg 
+           active:scale-[0.98] transition-transform duration-150;
   }
 
-  .bounce-animation {
-    animation: funky-bounce 2s ease-in-out infinite;
+  .mobile-touch {
+    @apply active:scale-95 transition-transform duration-150 touch-manipulation;
+  }
+
+  .mobile-nav-item {
+    @apply flex flex-col items-center justify-center py-2 px-3 
+           rounded-lg min-w-[60px] transition-all duration-200 
+           active:scale-95 touch-manipulation;
   }
 }
 
-/* Funky animations */
-@keyframes gradient-shift {
+@layer utilities {
+  .mobile-page-content {
+    @apply pt-16 pb-20 md:pb-8;
+  }
+
+  .mobile-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6;
+  }
+
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+}
+
+/* Subtle animations */
+@keyframes gradient-flow {
   0%, 100% {
     background-position: 0% 50%;
   }
@@ -303,197 +152,103 @@
   }
 }
 
-@keyframes rainbow-text {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes text-glow {
-  0% {
-    filter: drop-shadow(0 0 10px rgba(255, 0, 128, 0.5));
-  }
-  100% {
-    filter: drop-shadow(0 0 20px rgba(255, 0, 128, 0.8)) drop-shadow(0 0 30px rgba(64, 224, 208, 0.3));
-  }
-}
-
-@keyframes neon-flicker {
-  0%, 100% {
-    text-shadow: 
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px #ff0080,
-      0 0 80px #ff0080;
-  }
-  50% {
-    text-shadow: 
-      0 0 2px currentColor,
-      0 0 5px currentColor,
-      0 0 10px currentColor,
-      0 0 20px #ff0080,
-      0 0 40px #ff0080;
-  }
-}
-
-@keyframes festival-pulse {
-  0%, 100% {
-    box-shadow: 0 0 20px hsl(320 100% 50% / 0.5);
-  }
-  50% {
-    box-shadow: 0 0 40px hsl(320 100% 50% / 0.8), 0 0 60px hsl(280 100% 60% / 0.6);
-  }
-}
-
-@keyframes neon-pulse-pink {
-  0% {
-    box-shadow: 
-      0 0 20px rgba(236, 72, 153, 0.5),
-      0 0 40px rgba(236, 72, 153, 0.3),
-      0 0 80px rgba(236, 72, 153, 0.1);
-  }
-  100% {
-    box-shadow: 
-      0 0 30px rgba(236, 72, 153, 0.8),
-      0 0 60px rgba(236, 72, 153, 0.5),
-      0 0 100px rgba(236, 72, 153, 0.3);
-  }
-}
-
-@keyframes neon-pulse-purple {
-  0% {
-    box-shadow: 
-      0 0 20px rgba(147, 51, 234, 0.5),
-      0 0 40px rgba(147, 51, 234, 0.3),
-      0 0 80px rgba(147, 51, 234, 0.1);
-  }
-  100% {
-    box-shadow: 
-      0 0 30px rgba(147, 51, 234, 0.8),
-      0 0 60px rgba(147, 51, 234, 0.5),
-      0 0 100px rgba(147, 51, 234, 0.3);
-  }
-}
-
-@keyframes border-dance {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes bg-dance {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-  }
-  25% {
-    transform: scale(1.05) rotate(1deg);
-  }
-  50% {
-    transform: scale(1.02) rotate(0deg);
-  }
-  75% {
-    transform: scale(1.05) rotate(-1deg);
-  }
-}
-
-@keyframes funky-bounce {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-10px) scale(1.05);
-  }
-}
-
-@keyframes wiggle {
-  0%, 100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(2deg);
-  }
-  75% {
-    transform: rotate(-2deg);
-  }
-}
-
-@keyframes funky-shake {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-2px);
-  }
-  75% {
-    transform: translateX(2px);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes pattern-float {
-  0%, 100% {
-    transform: translate(0, 0);
-  }
-  50% {
-    transform: translate(10px, -10px);
-  }
-}
-
-/* Mobile-specific animations */
-@keyframes mobile-slide-up {
+@keyframes fade-in-up {
   from {
-    transform: translateY(100%);
     opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.animate-mobile-slide-up {
-  animation: mobile-slide-up 0.3s ease-out;
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* Ensure proper spacing for mobile with fixed navigation */
-.mobile-page-content {
-  @apply pt-16 pb-20 md:pb-8;
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-/* Mobile-optimized grid layouts */
-.mobile-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6;
+/* On-scroll animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fade-in-up 0.8s ease-out forwards;
 }
 
-/* Touch-friendly interactive elements */
-.touch-target {
-  @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+.animate-on-scroll-delay-100 {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fade-in-up 0.8s ease-out 0.1s forwards;
 }
 
-/* Fun emoji animations */
-.emoji-float {
-  animation: float 4s ease-in-out infinite;
+.animate-on-scroll-delay-200 {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fade-in-up 0.8s ease-out 0.2s forwards;
 }
 
-.emoji-bounce {
-  animation: funky-bounce 3s ease-in-out infinite;
+.animate-on-scroll-delay-300 {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fade-in-up 0.8s ease-out 0.3s forwards;
 }
 
-.emoji-wiggle {
-  animation: wiggle 2s ease-in-out infinite;
+.animate-on-scroll-delay-400 {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fade-in-up 0.8s ease-out 0.4s forwards;
+}
+
+.animate-on-scroll-delay-500 {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fade-in-up 0.8s ease-out 0.5s forwards;
+}
+
+.animate-on-scroll-delay-600 {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fade-in-up 0.8s ease-out 0.6s forwards;
+}
+
+.animate-on-scroll-delay-700 {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fade-in-up 0.8s ease-out 0.7s forwards;
+}
+
+.animate-on-scroll-delay-800 {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fade-in-up 0.8s ease-out 0.8s forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out;
+}
+
+/* Minimal hover effects */
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
 }
