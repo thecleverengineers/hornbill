@@ -1,13 +1,12 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Play, Calendar, Mic } from 'lucide-react';
+import { Play, Pause, Calendar, Mic } from 'lucide-react';
 
 const HeroSection = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  const handlePlayVideo = () => {
-    setIsVideoPlaying(true);
+  const toggleVideo = () => {
+    setIsVideoPlaying(!isVideoPlaying);
   };
 
   return (
@@ -98,17 +97,21 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Play Button for Festival Video */}
-        {!isVideoPlaying && (
-          <div className="mt-16">
-            <button className="group relative" onClick={handlePlayVideo}>
-              <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center neon-glow-pink group-hover:scale-110 transition-all duration-300 animate-festival-pulse">
+        {/* Play/Pause Button for Festival Video */}
+        <div className="mt-16">
+          <button className="group relative" onClick={toggleVideo}>
+            <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center neon-glow-pink group-hover:scale-110 transition-all duration-300 animate-festival-pulse">
+              {isVideoPlaying ? (
+                <Pause className="text-white" size={32} fill="currentColor" />
+              ) : (
                 <Play className="text-white ml-1" size={32} fill="currentColor" />
-              </div>
-              <p className="text-gray-300 mt-4 text-sm font-medium">Watch Festival Highlights</p>
-            </button>
-          </div>
-        )}
+              )}
+            </div>
+            <p className="text-gray-300 mt-4 text-sm font-medium">
+              {isVideoPlaying ? 'Pause Festival Video' : 'Watch Festival Highlights'}
+            </p>
+          </button>
+        </div>
       </div>
 
       {/* Scroll Indicator */}
