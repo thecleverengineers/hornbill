@@ -3,8 +3,14 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Music, Camera, Users } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const FeaturedSection = () => {
+  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { elementRef: cardsRef, isVisible: cardsVisible } = useScrollAnimation();
+  const { elementRef: documentaryRef, isVisible: documentaryVisible } = useScrollAnimation();
+  const { elementRef: socialRef, isVisible: socialVisible } = useScrollAnimation();
+
   const featuredCards = [
     {
       title: '🎤 Pre-Ticket Auditions',
@@ -38,7 +44,14 @@ const FeaturedSection = () => {
   return (
     <section className="py-20 px-4">
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16">
+        <div 
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-800 ${
+            headerVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className="font-righteous text-4xl md:text-5xl mb-4">
             <span className="festival-title">Festival Experience</span>
           </h2>
@@ -47,9 +60,24 @@ const FeaturedSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div 
+          ref={cardsRef}
+          className={`grid md:grid-cols-3 gap-8 mb-16 transition-all duration-1000 ${
+            cardsVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-16'
+          }`}
+        >
           {featuredCards.map((card, index) => (
-            <Card key={index} className={`festival-card ${card.gradient} ${card.border} group cursor-pointer`}>
+            <Card 
+              key={index} 
+              className={`festival-card ${card.gradient} ${card.border} group cursor-pointer transition-all duration-500 ${
+                cardsVisible ? 'animate-fade-in' : ''
+              }`}
+              style={{
+                animationDelay: cardsVisible ? `${index * 200}ms` : '0ms'
+              }}
+            >
               <CardContent className="p-8">
                 <div className="flex items-center justify-between mb-6">
                   <card.icon className="text-4xl text-pink-400" size={48} />
@@ -73,9 +101,20 @@ const FeaturedSection = () => {
         </div>
 
         {/* Mini Documentary Section */}
-        <div className="festival-card">
+        <div 
+          ref={documentaryRef}
+          className={`festival-card transition-all duration-800 ${
+            documentaryVisible 
+              ? 'opacity-100 translate-y-0 scale-100' 
+              : 'opacity-0 translate-y-12 scale-95'
+          }`}
+        >
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
+            <div className={`transition-all duration-1000 delay-200 ${
+              documentaryVisible 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-8'
+            }`}>
               <h3 className="font-righteous text-3xl mb-4">
                 <span className="festival-title">"Sounds of Nagaland"</span>
               </h3>
@@ -90,7 +129,11 @@ const FeaturedSection = () => {
               </Button>
             </div>
             
-            <div className="relative">
+            <div className={`relative transition-all duration-1000 delay-400 ${
+              documentaryVisible 
+                ? 'opacity-100 translate-x-0 scale-100' 
+                : 'opacity-0 translate-x-8 scale-95'
+            }`}>
               <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl flex items-center justify-center neon-glow-purple">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center mb-4 mx-auto neon-glow-pink">
@@ -105,14 +148,33 @@ const FeaturedSection = () => {
         </div>
 
         {/* Social Media Wall Preview */}
-        <div className="mt-16">
-          <h3 className="font-righteous text-3xl text-center mb-8">
+        <div 
+          ref={socialRef}
+          className={`mt-16 transition-all duration-800 ${
+            socialVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-16'
+          }`}
+        >
+          <h3 className={`font-righteous text-3xl text-center mb-8 transition-all duration-1000 delay-200 ${
+            socialVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}>
             <span className="festival-title">Live from the Festival</span>
           </h3>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {Array.from({ length: 8 }).map((_, index) => (
-              <div key={index} className="aspect-square bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center hover:scale-105 transition-transform duration-300 cursor-pointer border border-gray-700/50 hover:border-pink-500/50">
+              <div 
+                key={index} 
+                className={`aspect-square bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center hover:scale-105 transition-all duration-500 cursor-pointer border border-gray-700/50 hover:border-pink-500/50 ${
+                  socialVisible ? 'animate-scale-in' : 'opacity-0 scale-75'
+                }`}
+                style={{
+                  animationDelay: socialVisible ? `${index * 100}ms` : '0ms'
+                }}
+              >
                 <div className="text-center">
                   <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center mb-2 mx-auto">
                     <span className="text-white text-xs">📸</span>

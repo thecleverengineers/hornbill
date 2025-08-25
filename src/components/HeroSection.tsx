@@ -1,9 +1,12 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, Pause, Calendar, Mic } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const HeroSection = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const { elementRef: statsRef, isVisible: statsVisible } = useScrollAnimation();
 
   const toggleVideo = () => {
     setIsVideoPlaying(!isVideoPlaying);
@@ -78,20 +81,35 @@ const HeroSection = () => {
         </div>
 
         {/* Festival Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 animate-fade-in">
-          <div className="festival-card text-center">
+        <div 
+          ref={statsRef}
+          className={`grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 transition-all duration-1000 ${
+            statsVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className={`festival-card text-center transition-all duration-700 ${
+            statsVisible ? 'animate-scale-in' : ''
+          }`} style={{ animationDelay: statsVisible ? '0ms' : '0ms' }}>
             <div className="text-3xl md:text-4xl font-bold text-neon-pink mb-2">200+</div>
             <div className="text-gray-400">Musicians</div>
           </div>
-          <div className="festival-card text-center">
+          <div className={`festival-card text-center transition-all duration-700 ${
+            statsVisible ? 'animate-scale-in' : ''
+          }`} style={{ animationDelay: statsVisible ? '150ms' : '0ms' }}>
             <div className="text-3xl md:text-4xl font-bold text-neon-purple mb-2">16</div>
             <div className="text-gray-400">Tribes</div>
           </div>
-          <div className="festival-card text-center">
+          <div className={`festival-card text-center transition-all duration-700 ${
+            statsVisible ? 'animate-scale-in' : ''
+          }`} style={{ animationDelay: statsVisible ? '300ms' : '0ms' }}>
             <div className="text-3xl md:text-4xl font-bold text-electric-orange mb-2">5</div>
             <div className="text-gray-400">Days</div>
           </div>
-          <div className="festival-card text-center">
+          <div className={`festival-card text-center transition-all duration-700 ${
+            statsVisible ? 'animate-scale-in' : ''
+          }`} style={{ animationDelay: statsVisible ? '450ms' : '0ms' }}>
             <div className="text-3xl md:text-4xl font-bold text-cyber-teal mb-2">50K+</div>
             <div className="text-gray-400">Fans</div>
           </div>
