@@ -142,6 +142,21 @@
     100% { background-position: 0% 50%; }
   }
 
+  @keyframes festival-pulse {
+    0%, 100% { 
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% { 
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+  }
+
+  .animate-festival-pulse {
+    animation: festival-pulse 3s ease-in-out infinite;
+  }
+
   /* Text effects */
   .neon-text {
     text-shadow: 0 0 10px hsl(var(--neon-pink)), 0 0 20px hsl(var(--neon-pink)), 0 0 30px hsl(var(--neon-pink));
