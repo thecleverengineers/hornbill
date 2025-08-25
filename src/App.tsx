@@ -22,14 +22,16 @@ const App = () => (
       <BrowserRouter>
         <div className="min-h-screen bg-background">
           <Navigation />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/artists" element={<Artists />} />
-            <Route path="/auditions" element={<Auditions />} />
-            <Route path="/about" element={<About />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <main className="mobile-page-content">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/artists" element={<Artists />} />
+              <Route path="/auditions" element={<Auditions />} />
+              <Route path="/about" element={<About />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
         </div>
       </BrowserRouter>
     </TooltipProvider>
