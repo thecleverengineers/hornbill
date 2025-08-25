@@ -124,7 +124,7 @@ const HeroSection = () => {
         {/* Play/Pause Button for Festival Video */}
         <div className="mt-16">
           <button className="group relative" onClick={toggleVideo}>
-            <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center neon-glow-pink group-hover:scale-110 transition-all duration-500 animate-festival-pulse">
+            <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center neon-glow-pink group-hover:scale-110 transition-all duration-300 animate-festival-pulse">
               {isVideoPlaying ? (
                 <Pause className="text-white" size={32} fill="currentColor" />
               ) : (
@@ -137,13 +137,7 @@ const HeroSection = () => {
           </button>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-gradient-to-b from-pink-500 to-purple-600 rounded-full mt-2"></div>
-        </div>
-      </div>
+      
     </section>
   );
 };
