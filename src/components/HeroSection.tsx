@@ -131,7 +131,7 @@ const HeroSection = () => {
                 <Play className="text-white ml-1" size={32} fill="currentColor" />
               )}
             </div>
-            <p className="text-gray-300 mt-4 text-sm font-medium">
+            <p className="text-center text-gray-300 mt-4 text-sm font-medium">
               {isVideoPlaying ? 'Pause Festival Video' : 'Watch Festival Highlights'}
             </p>
           </button>
@@ -139,11 +139,11 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll Indicator */}
-      {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
         <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-gradient-to-b from-pink-500 to-purple-600 rounded-full mt-2"></div>
         </div>
-      </div> */}
+      </div>
     </section>
   );
 };
