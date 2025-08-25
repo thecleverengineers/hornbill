@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, Pause, Calendar, Mic } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
@@ -65,17 +66,23 @@ const HeroSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button className="btn-festival text-lg px-8 py-4">
-              <Mic className="mr-2" size={20} />
-              Register Band
-            </Button>
-            <Button className="btn-stage text-lg px-8 py-4">
-              🎟️ Book Tickets
-            </Button>
-            <Button className="btn-tribal text-lg px-8 py-4">
-              <Calendar className="mr-2" size={20} />
-              Festival Schedule
-            </Button>
+            <Link to="/auditions">
+              <Button className="btn-festival text-lg px-8 py-4">
+                <Mic className="mr-2" size={20} />
+                Register Band
+              </Button>
+            </Link>
+            <Link to="/events">
+              <Button className="btn-stage text-lg px-8 py-4">
+                🎟️ Book Tickets
+              </Button>
+            </Link>
+            <Link to="/schedule">
+              <Button className="btn-tribal text-lg px-8 py-4">
+                <Calendar className="mr-2" size={20} />
+                Festival Schedule
+              </Button>
+            </Link>
           </div>
         </div>
 

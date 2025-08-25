@@ -11,6 +11,7 @@ import Events from "./pages/Events";
 import Artists from "./pages/Artists";
 import Auditions from "./pages/Auditions";
 import About from "./pages/About";
+import Schedule from "./pages/Schedule";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
               <Route path="/artists" element={<Artists />} />
               <Route path="/auditions" element={<Auditions />} />
               <Route path="/about" element={<About />} />
+              <Route path="/schedule" element={<Schedule />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
