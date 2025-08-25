@@ -1,32 +1,40 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Calendar, Mic } from 'lucide-react';
+import { Play, Calendar, Mic } from 'lucide-react';
 
 const HeroSection = () => {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  const handlePlayVideo = () => {
+    setIsVideoPlaying(true);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Video */}
+      {/* Background Video or Image */}
       <div className="absolute inset-0 w-full h-full">
-        <video
-          className="w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source
-            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-            type="video/mp4"
-          />
-          {/* Fallback image if video doesn't load */}
+        {isVideoPlaying ? (
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source
+              src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              type="video/mp4"
+            />
+          </video>
+        ) : (
           <div 
             className="w-full h-full bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage: `url("https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")`
             }}
           />
-        </video>
+        )}
       </div>
       
       {/* Animated Background Overlay */}
@@ -89,6 +97,18 @@ const HeroSection = () => {
             <div className="text-gray-400">Fans</div>
           </div>
         </div>
+
+        {/* Play Button for Festival Video */}
+        {!isVideoPlaying && (
+          <div className="mt-16">
+            <button className="group relative" onClick={handlePlayVideo}>
+              <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center neon-glow-pink group-hover:scale-110 transition-all duration-300 animate-festival-pulse">
+                <Play className="text-white ml-1" size={32} fill="currentColor" />
+              </div>
+              <p className="text-gray-300 mt-4 text-sm font-medium">Watch Festival Highlights</p>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Scroll Indicator */}
