@@ -1,11 +1,16 @@
+
 import React, { useState } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Calendar, MapPin, Clock, Users } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Events = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: filtersRef, isVisible: filtersVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: eventsGridRef, isVisible: eventsGridVisible } = useScrollAnimation<HTMLDivElement>();
   
   const filters = ['All', 'Music', 'Workshops', 'Culture', 'Talks'];
   
@@ -88,7 +93,14 @@ const Events = () => {
       <main className="pt-20 pb-20 px-4">
         <div className="container mx-auto max-w-6xl">
           {/* Hero Banner */}
-          <div className="festival-bg rounded-3xl p-8 md:p-16 text-center mb-12 tribal-pattern">
+          <div 
+            ref={heroRef}
+            className={`festival-bg rounded-3xl p-8 md:p-16 text-center mb-12 tribal-pattern transition-all duration-800 ${
+              heroVisible 
+                ? 'opacity-100 translate-y-0 scale-100' 
+                : 'opacity-0 translate-y-12 scale-95'
+            }`}
+          >
             <h1 className="font-righteous text-4xl md:text-6xl mb-4">
               <span className="festival-title neon-text">Festival Events</span>
             </h1>
@@ -101,8 +113,15 @@ const Events = () => {
           </div>
 
           {/* Filters */}
-          <div className="flex flex-wrap gap-4 justify-center mb-12">
-            {filters.map((filter) => (
+          <div 
+            ref={filtersRef}
+            className={`flex flex-wrap gap-4 justify-center mb-12 transition-all duration-800 ${
+              filtersVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
+            {filters.map((filter, index) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
@@ -110,7 +129,10 @@ const Events = () => {
                   activeFilter === filter
                     ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white neon-glow-pink'
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
-                }`}
+                } ${filtersVisible ? 'animate-fade-in' : ''}`}
+                style={{
+                  animationDelay: filtersVisible ? `${index * 100}ms` : '0ms'
+                }}
               >
                 {filter}
               </button>
@@ -118,9 +140,24 @@ const Events = () => {
           </div>
 
           {/* Events Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredEvents.map((event) => (
-              <Card key={event.id} className="artist-card overflow-hidden group">
+          <div 
+            ref={eventsGridRef}
+            className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 ${
+              eventsGridVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-16'
+            }`}
+          >
+            {filteredEvents.map((event, index) => (
+              <Card 
+                key={event.id} 
+                className={`artist-card overflow-hidden group transition-all duration-700 ${
+                  eventsGridVisible ? 'animate-scale-in' : 'opacity-0 scale-75'
+                }`}
+                style={{
+                  animationDelay: eventsGridVisible ? `${index * 150}ms` : '0ms'
+                }}
+              >
                 <CardContent className="p-0">
                   {/* Event Image */}
                   <div className="h-48 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-6xl group-hover:scale-105 transition-transform duration-300">
