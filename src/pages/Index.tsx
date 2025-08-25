@@ -12,7 +12,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <main className="pt-16 md:pt-20">
+      <main className="">
         <section 
           ref={heroRef}
           className={`transition-all duration-1000 ${
