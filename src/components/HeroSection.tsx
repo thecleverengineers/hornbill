@@ -1,34 +1,39 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Play, Calendar, Users, Mic, X } from 'lucide-react';
+import { Calendar, Mic } from 'lucide-react';
 
 const HeroSection = () => {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-
-  const handlePlayVideo = () => {
-    setIsVideoPlaying(true);
-  };
-
-  const handleCloseVideo = () => {
-    setIsVideoPlaying(false);
-  };
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Hero Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url("https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")`
-        }}
-      />
+      {/* Background Video */}
+      <div className="absolute inset-0 w-full h-full">
+        <video
+          className="w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source
+            src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            type="video/mp4"
+          />
+          {/* Fallback image if video doesn't load */}
+          <div 
+            className="w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url("https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")`
+            }}
+          />
+        </video>
+      </div>
       
       {/* Animated Background Overlay */}
       <div className="absolute inset-0 festival-bg opacity-60"></div>
       
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70">
+      {/* Dark Overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80">
         <div className="absolute inset-0 opacity-30" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
         }}></div>
@@ -84,39 +89,7 @@ const HeroSection = () => {
             <div className="text-gray-400">Fans</div>
           </div>
         </div>
-
-        {/* Play Button for Festival Video */}
-        <div className="mt-16">
-          <button className="group relative" onClick={handlePlayVideo}>
-            <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center neon-glow-pink group-hover:scale-110 transition-all duration-300 animate-festival-pulse">
-              <Play className="text-white ml-1" size={32} fill="currentColor" />
-            </div>
-            <p className="text-gray-300 mt-4 text-sm font-medium">Watch Festival Highlights</p>
-          </button>
-        </div>
       </div>
-
-      {/* Video Modal */}
-      {isVideoPlaying && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
-          <div className="relative w-full max-w-4xl aspect-video">
-            <button
-              onClick={handleCloseVideo}
-              className="absolute -top-12 right-0 text-white hover:text-pink-500 transition-colors z-10"
-            >
-              <X size={32} />
-            </button>
-            <iframe
-              className="w-full h-full rounded-lg"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-              title="Hornbill Music Festival Highlights"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </div>
-      )}
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
