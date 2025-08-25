@@ -1,13 +1,21 @@
+
 import React, { useState } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Search, Play, Instagram, Youtube } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Artists = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');
+  
+  // Animation refs
+  const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
+  const { elementRef: filtersRef, isVisible: filtersVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  const { elementRef: gridRef, isVisible: gridVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.1 });
+  const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   
   const filters = ['All', 'Rock', 'Folk', 'Electronic', 'Traditional', 'Fusion'];
   
@@ -88,7 +96,12 @@ const Artists = () => {
       <main className="pt-20 pb-20 px-4">
         <div className="container mx-auto max-w-6xl">
           {/* Hero Section */}
-          <div className="festival-bg rounded-3xl p-8 md:p-16 text-center mb-12 tribal-pattern">
+          <div 
+            ref={heroRef}
+            className={`festival-bg rounded-3xl p-8 md:p-16 text-center mb-12 tribal-pattern transition-all duration-1000 ${
+              heroVisible ? 'scroll-fade-in visible' : 'scroll-fade-in'
+            }`}
+          >
             <h1 className="font-righteous text-4xl md:text-6xl mb-4">
               <span className="festival-title neon-text">Featured Artists</span>
             </h1>
@@ -107,7 +120,12 @@ const Artists = () => {
           </div>
 
           {/* Filters */}
-          <div className="flex flex-wrap gap-4 justify-center mb-12">
+          <div 
+            ref={filtersRef}
+            className={`flex flex-wrap gap-4 justify-center mb-12 transition-all duration-1000 ${
+              filtersVisible ? 'scroll-scale visible' : 'scroll-scale'
+            }`}
+          >
             {filters.map((filter) => (
               <button
                 key={filter}
@@ -124,9 +142,20 @@ const Artists = () => {
           </div>
 
           {/* Artists Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredArtists.map((artist) => (
-              <Card key={artist.id} className="artist-card overflow-hidden group cursor-pointer">
+          <div 
+            ref={gridRef}
+            className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 ${
+              gridVisible ? 'scroll-fade-in visible' : 'scroll-fade-in'
+            }`}
+          >
+            {filteredArtists.map((artist, index) => (
+              <Card 
+                key={artist.id} 
+                className={`artist-card overflow-hidden group cursor-pointer transition-all duration-700 ${
+                  gridVisible ? 'animate-stagger-fade-in' : 'opacity-0 translate-y-8'
+                }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <CardContent className="p-0">
                   {/* Artist Image */}
                   <div className="relative h-64 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-8xl group-hover:scale-105 transition-transform duration-300">
@@ -186,7 +215,12 @@ const Artists = () => {
           </div>
 
           {/* Collaboration CTA */}
-          <div className="festival-card mt-16 text-center">
+          <div 
+            ref={ctaRef}
+            className={`festival-card mt-16 text-center transition-all duration-1000 ${
+              ctaVisible ? 'scroll-scale visible' : 'scroll-scale'
+            }`}
+          >
             <h3 className="font-righteous text-3xl mb-4">
               <span className="festival-title">Bring Nagaland's Sound to Your Stage</span>
             </h3>

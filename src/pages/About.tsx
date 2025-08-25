@@ -2,12 +2,28 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Music, Users, Award, Heart, Mountain, Mic } from 'lucide-react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const About = () => {
+  // Animation refs
+  const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLElement>({ threshold: 0.2 });
+  const { elementRef: festivalSectionRef, isVisible: festivalSectionVisible } = useScrollAnimation<HTMLElement>({ threshold: 0.2 });
+  const { elementRef: tafmaSectionRef, isVisible: tafmaSectionVisible } = useScrollAnimation<HTMLElement>({ threshold: 0.2 });
+  const { elementRef: missionRef, isVisible: missionVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  const { elementRef: statsRef, isVisible: statsVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  const { elementRef: descriptionRef, isVisible: descriptionVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  const { elementRef: initiativesRef, isVisible: initiativesVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
+  const { elementRef: culminationRef, isVisible: culminationVisible } = useScrollAnimation<HTMLElement>({ threshold: 0.3 });
+
   return (
     <div className="min-h-screen bg-background pt-20 pb-16">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
+      <section 
+        ref={heroRef}
+        className={`relative py-20 overflow-hidden transition-all duration-1000 ${
+          heroVisible ? 'scroll-fade-in visible' : 'scroll-fade-in'
+        }`}
+      >
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
           style={{
@@ -26,7 +42,12 @@ const About = () => {
       </section>
 
       {/* About Hornbill Music Festival */}
-      <section className="py-16">
+      <section 
+        ref={festivalSectionRef}
+        className={`py-16 transition-all duration-1000 ${
+          festivalSectionVisible ? 'scroll-slide-left visible' : 'scroll-slide-left'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -62,7 +83,12 @@ const About = () => {
       </section>
 
       {/* About TaFMA */}
-      <section className="py-16 bg-gradient-to-r from-gray-900/50 to-gray-800/50">
+      <section 
+        ref={tafmaSectionRef}
+        className={`py-16 bg-gradient-to-r from-gray-900/50 to-gray-800/50 transition-all duration-1000 ${
+          tafmaSectionVisible ? 'scroll-fade-in visible' : 'scroll-fade-in'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-righteous festival-title mb-6">
@@ -74,7 +100,12 @@ const About = () => {
           </div>
 
           {/* Mission */}
-          <div className="mb-16">
+          <div 
+            ref={missionRef}
+            className={`mb-16 transition-all duration-800 ${
+              missionVisible ? 'scroll-scale visible' : 'scroll-scale'
+            }`}
+          >
             <Card className="festival-card">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3 text-2xl">
@@ -91,22 +122,33 @@ const About = () => {
           </div>
 
           {/* Impact Stats */}
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <Card className="festival-card text-center">
+          <div 
+            ref={statsRef}
+            className={`grid md:grid-cols-3 gap-8 mb-16 transition-all duration-1000 ${
+              statsVisible ? 'scroll-fade-in visible' : 'scroll-fade-in'
+            }`}
+          >
+            <Card className={`festival-card text-center transition-all duration-700 ${
+              statsVisible ? 'animate-stagger-fade-in' : 'opacity-0 translate-y-8'
+            }`} style={{ animationDelay: '0.1s' }}>
               <CardContent className="pt-8">
                 <Users className="mx-auto text-pink-500 mb-4" size={40} />
                 <h3 className="text-3xl font-righteous text-white mb-2">200+</h3>
                 <p className="text-gray-300">Local Musicians Empowered</p>
               </CardContent>
             </Card>
-            <Card className="festival-card text-center">
+            <Card className={`festival-card text-center transition-all duration-700 ${
+              statsVisible ? 'animate-stagger-fade-in' : 'opacity-0 translate-y-8'
+            }`} style={{ animationDelay: '0.2s' }}>
               <CardContent className="pt-8">
                 <Music className="mx-auto text-purple-500 mb-4" size={40} />
                 <h3 className="text-3xl font-righteous text-white mb-2">16</h3>
                 <p className="text-gray-300">Naga Tribes Documented</p>
               </CardContent>
             </Card>
-            <Card className="festival-card text-center">
+            <Card className={`festival-card text-center transition-all duration-700 ${
+              statsVisible ? 'animate-stagger-fade-in' : 'opacity-0 translate-y-8'
+            }`} style={{ animationDelay: '0.3s' }}>
               <CardContent className="pt-8">
                 <Award className="mx-auto text-orange-500 mb-4" size={40} />
                 <h3 className="text-3xl font-righteous text-white mb-2">∞</h3>
@@ -116,7 +158,12 @@ const About = () => {
           </div>
 
           {/* About TaFMA Description */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div 
+            ref={descriptionRef}
+            className={`grid lg:grid-cols-2 gap-12 items-center mb-16 transition-all duration-1000 ${
+              descriptionVisible ? 'scroll-slide-right visible' : 'scroll-slide-right'
+            }`}
+          >
             <div>
               <p className="text-gray-300 text-lg leading-relaxed mb-6">
                 TaFMA was established with the vision of creating a sustainable ecosystem for music and arts in Nagaland. We work closely with tribal elders to document and preserve traditional songs, while also providing modern recording facilities and training for young artists.
@@ -137,33 +184,46 @@ const About = () => {
           </div>
 
           {/* Our Initiatives */}
-          <div>
+          <div 
+            ref={initiativesRef}
+            className={`transition-all duration-1000 ${
+              initiativesVisible ? 'scroll-fade-in visible' : 'scroll-fade-in'
+            }`}
+          >
             <h3 className="text-3xl font-righteous festival-title mb-8 text-center">
               Our Initiatives
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card className="festival-card">
+              <Card className={`festival-card transition-all duration-700 ${
+                initiativesVisible ? 'animate-stagger-fade-in' : 'opacity-0 translate-y-8'
+              }`} style={{ animationDelay: '0.1s' }}>
                 <CardContent className="pt-6">
                   <Mic className="text-pink-500 mb-4" size={32} />
                   <h4 className="text-lg font-semibold text-white mb-2">Artist Residency Programs</h4>
                   <p className="text-gray-400 text-sm">Providing space and resources for artists to create and collaborate</p>
                 </CardContent>
               </Card>
-              <Card className="festival-card">
+              <Card className={`festival-card transition-all duration-700 ${
+                initiativesVisible ? 'animate-stagger-fade-in' : 'opacity-0 translate-y-8'
+              }`} style={{ animationDelay: '0.2s' }}>
                 <CardContent className="pt-6">
                   <Music className="text-purple-500 mb-4" size={32} />
                   <h4 className="text-lg font-semibold text-white mb-2">Cultural Documentation</h4>
                   <p className="text-gray-400 text-sm">Preserving traditional songs and musical heritage for future generations</p>
                 </CardContent>
               </Card>
-              <Card className="festival-card">
+              <Card className={`festival-card transition-all duration-700 ${
+                initiativesVisible ? 'animate-stagger-fade-in' : 'opacity-0 translate-y-8'
+              }`} style={{ animationDelay: '0.3s' }}>
                 <CardContent className="pt-6">
                   <Award className="text-orange-500 mb-4" size={32} />
                   <h4 className="text-lg font-semibold text-white mb-2">Production Workshops</h4>
                   <p className="text-gray-400 text-sm">Modern music production training and state-of-the-art facilities</p>
                 </CardContent>
               </Card>
-              <Card className="festival-card">
+              <Card className={`festival-card transition-all duration-700 ${
+                initiativesVisible ? 'animate-stagger-fade-in' : 'opacity-0 translate-y-8'
+              }`} style={{ animationDelay: '0.4s' }}>
                 <CardContent className="pt-6">
                   <Heart className="text-teal-500 mb-4" size={32} />
                   <h4 className="text-lg font-semibold text-white mb-2">Community Outreach</h4>
@@ -176,7 +236,12 @@ const About = () => {
       </section>
 
       {/* Festival Culmination */}
-      <section className="py-16">
+      <section 
+        ref={culminationRef}
+        className={`py-16 transition-all duration-1000 ${
+          culminationVisible ? 'scroll-scale visible' : 'scroll-scale'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-4xl mx-auto">
             <h3 className="text-4xl font-righteous festival-title mb-8">
