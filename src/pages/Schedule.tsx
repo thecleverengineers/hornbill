@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
@@ -29,7 +28,12 @@ const Schedule = () => {
     { id: 2, date: 'Dec 2, 2024', day: 'Day 2' },
     { id: 3, date: 'Dec 3, 2024', day: 'Day 3' },
     { id: 4, date: 'Dec 4, 2024', day: 'Day 4' },
-    { id: 5, date: 'Dec 5, 2024', day: 'Day 5' }
+    { id: 5, date: 'Dec 5, 2024', day: 'Day 5' },
+    { id: 6, date: 'Dec 6, 2024', day: 'Day 6' },
+    { id: 7, date: 'Dec 7, 2024', day: 'Day 7' },
+    { id: 8, date: 'Dec 8, 2024', day: 'Day 8' },
+    { id: 9, date: 'Dec 9, 2024', day: 'Day 9' },
+    { id: 10, date: 'Dec 10, 2024', day: 'Day 10' }
   ];
 
   const scheduleData = {
@@ -62,11 +66,46 @@ const Schedule = () => {
       { id: 20, time: '9:30 PM', title: 'Silent Disco Under the Stars', venue: 'Open Field', type: 'music', status: 'upcoming' }
     ],
     5: [
-      { id: 21, time: '11:00 AM', title: 'Final Rehearsals', venue: 'All Stages', type: 'info', status: 'upcoming' },
-      { id: 22, time: '3:00 PM', title: 'Unity Concert - All Tribes Together', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 23, time: '6:00 PM', title: 'Award Ceremony', venue: 'Main Stage', type: 'ceremony', status: 'upcoming' },
-      { id: 24, time: '8:00 PM', title: 'Grand Finale Celebration', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 25, time: '10:30 PM', title: 'Closing Ceremony & Fireworks', venue: 'Main Stage', type: 'ceremony', status: 'upcoming', featured: true }
+      { id: 21, time: '11:00 AM', title: 'Poetry & Spoken Word', venue: 'Literary Stage', type: 'culture', status: 'upcoming' },
+      { id: 22, time: '3:00 PM', title: 'Electronic Music Showcase', venue: 'Electronic Stage', type: 'music', status: 'upcoming', featured: true },
+      { id: 23, time: '6:00 PM', title: 'Traditional Craft Workshop', venue: 'Craft Hall', type: 'workshop', status: 'upcoming' },
+      { id: 24, time: '8:00 PM', title: 'Jazz & Blues Night', venue: 'Jazz Lounge', type: 'music', status: 'upcoming', featured: true },
+      { id: 25, time: '10:30 PM', title: 'Midnight Jam Session', venue: 'Open Mic Stage', type: 'music', status: 'upcoming' }
+    ],
+    6: [
+      { id: 26, time: '9:00 AM', title: 'Sunrise Yoga Session', venue: 'Wellness Area', type: 'wellness', status: 'upcoming' },
+      { id: 27, time: '1:00 PM', title: 'Hip Hop & Urban Music', venue: 'Urban Stage', type: 'music', status: 'upcoming', featured: true },
+      { id: 28, time: '4:00 PM', title: 'Children\'s Cultural Program', venue: 'Kids Zone', type: 'culture', status: 'upcoming' },
+      { id: 29, time: '7:00 PM', title: 'International Dance Festival', venue: 'Main Stage', type: 'culture', status: 'upcoming', featured: true },
+      { id: 30, time: '9:45 PM', title: 'Late Night Comedy Show', venue: 'Comedy Tent', type: 'entertainment', status: 'upcoming' }
+    ],
+    7: [
+      { id: 31, time: '10:00 AM', title: 'Photography Workshop', venue: 'Media Center', type: 'workshop', status: 'upcoming' },
+      { id: 32, time: '2:30 PM', title: 'Classical Music Concert', venue: 'Concert Hall', type: 'music', status: 'upcoming', featured: true },
+      { id: 33, time: '5:30 PM', title: 'Fashion & Cultural Dress Show', venue: 'Fashion Stage', type: 'culture', status: 'upcoming' },
+      { id: 34, time: '8:00 PM', title: 'Rock Legends Tribute Night', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
+      { id: 35, time: '11:00 PM', title: 'Bonfire Stories & Songs', venue: 'Bonfire Area', type: 'culture', status: 'upcoming' }
+    ],
+    8: [
+      { id: 36, time: '11:30 AM', title: 'Wellness & Meditation Workshop', venue: 'Zen Garden', type: 'wellness', status: 'upcoming' },
+      { id: 37, time: '3:00 PM', title: 'Folk Music Marathon', venue: 'Folk Stage', type: 'music', status: 'upcoming', featured: true },
+      { id: 38, time: '6:30 PM', title: 'Cultural Exchange Program', venue: 'Cultural Center', type: 'culture', status: 'upcoming' },
+      { id: 39, time: '8:30 PM', title: 'World Music Fusion Night', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
+      { id: 40, time: '10:15 PM', title: 'Acoustic Singer-Songwriter Circle', venue: 'Intimate Stage', type: 'music', status: 'upcoming' }
+    ],
+    9: [
+      { id: 41, time: '12:00 PM', title: 'Art & Craft Exhibition Opening', venue: 'Art Gallery', type: 'culture', status: 'upcoming' },
+      { id: 42, time: '3:30 PM', title: 'Battle of Genres Music Competition', venue: 'Competition Stage', type: 'competition', status: 'upcoming', featured: true },
+      { id: 43, time: '6:00 PM', title: 'Community Feast Preparation', venue: 'Community Kitchen', type: 'food', status: 'upcoming' },
+      { id: 44, time: '8:00 PM', title: 'Grand Musical Collaboration', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
+      { id: 45, time: '10:30 PM', title: 'Night Market Extended Hours', venue: 'Market Area', type: 'food', status: 'upcoming' }
+    ],
+    10: [
+      { id: 46, time: '11:00 AM', title: 'Final Rehearsals', venue: 'All Stages', type: 'info', status: 'upcoming' },
+      { id: 47, time: '3:00 PM', title: 'Unity Concert - All Tribes Together', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
+      { id: 48, time: '6:00 PM', title: 'Award Ceremony', venue: 'Main Stage', type: 'ceremony', status: 'upcoming' },
+      { id: 49, time: '8:00 PM', title: 'Grand Finale Celebration', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
+      { id: 50, time: '10:30 PM', title: 'Closing Ceremony & Fireworks', venue: 'Main Stage', type: 'ceremony', status: 'upcoming', featured: true }
     ]
   };
 
@@ -97,6 +136,7 @@ const Schedule = () => {
       case 'wellness': return 'bg-teal-500/20 text-teal-400';
       case 'film': return 'bg-indigo-500/20 text-indigo-400';
       case 'ceremony': return 'bg-red-500/20 text-red-400';
+      case 'entertainment': return 'bg-cyan-500/20 text-cyan-400';
       default: return 'bg-gray-500/20 text-gray-400';
     }
   };
@@ -109,7 +149,7 @@ const Schedule = () => {
           {/* Hero Section */}
           <div 
             ref={heroRef}
-            className={`festival-bg rounded-3xl p-8 md:p-16 text-center mb-12 tribal-pattern transition-all duration-800 ${
+            className={`festival-bg rounded-3xl p-8 md:p-16 text-center mb-12 tribal-pattern transition-all duration-700 ${
               heroVisible 
                 ? 'opacity-100 translate-y-0 scale-100' 
                 : 'opacity-0 translate-y-12 scale-95'
@@ -129,7 +169,7 @@ const Schedule = () => {
           {/* Live Status Banner */}
           <div 
             ref={liveRef}
-            className={`festival-card mb-8 transition-all duration-800 ${
+            className={`festival-card mb-8 transition-all duration-700 ${
               liveVisible 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-8'
@@ -153,7 +193,7 @@ const Schedule = () => {
           {/* Day Filter */}
           <div 
             ref={filtersRef}
-            className={`flex flex-wrap gap-4 justify-center mb-12 transition-all duration-800 ${
+            className={`flex flex-wrap gap-4 justify-center mb-12 transition-all duration-700 ${
               filtersVisible 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-8'
