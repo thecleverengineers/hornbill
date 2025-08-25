@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&display=swap');
 @tailwind base;
 @tailwind components;
@@ -148,7 +149,7 @@
 
   /* Scroll animation utilities */
   .scroll-fade-in {
-    @apply transition-all duration-800 opacity-0 translate-y-8;
+    @apply transition-all duration-700 opacity-0 translate-y-8;
   }
   
   .scroll-fade-in.visible {
@@ -172,7 +173,7 @@
   }
   
   .scroll-scale {
-    @apply transition-all duration-800 opacity-0 scale-95;
+    @apply transition-all duration-700 opacity-0 scale-95;
   }
   
   .scroll-scale.visible {
