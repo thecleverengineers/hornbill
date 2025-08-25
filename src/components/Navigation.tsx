@@ -1,129 +1,119 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Calendar, Users, Mic, MapPin, Menu, X } from 'lucide-react';
+import { Menu, X, Music, Calendar, Users, Mic } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const Navigation = () => {
+export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  const navItems = [
-    { name: 'Home', href: '/', icon: Home },
+  const navigation = [
+    { name: 'Home', href: '/', icon: Music },
     { name: 'Events', href: '/events', icon: Calendar },
     { name: 'Artists', href: '/artists', icon: Users },
-    { name: 'Pre-Ticket', href: '/audition', icon: Mic },
-    { name: 'About', href: '/about', icon: MapPin },
+    { name: 'Auditions', href: '/auditions', icon: Mic },
   ];
 
   return (
-    <>
-      {/* Desktop Navigation */}
-      <nav className="hidden md:flex fixed top-0 left-0 right-0 z-50 bg-gray-900/90 backdrop-blur-md border-b border-gray-700/50">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">T</span>
-              </div>
-              <div>
-                <h1 className="font-righteous text-xl festival-title">TaFMA</h1>
-                <p className="text-xs text-gray-400">Hornbill Music Festival</p>
-              </div>
-            </Link>
+    <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-700/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <Music className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xl font-righteous text-white">TaFMA</span>
+          </Link>
 
-            <div className="flex items-center space-x-8">
-              {navItems.map((item) => (
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navigation.map((item) => {
+              const Icon = item.icon;
+              return (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 hover:bg-pink-500/10 hover:text-pink-400 ${
+                  className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     location.pathname === item.href
-                      ? 'text-pink-400 bg-pink-500/10'
-                      : 'text-gray-300'
+                      ? 'bg-primary/20 text-primary'
+                      : 'text-gray-300 hover:text-white hover:bg-gray-800'
                   }`}
                 >
-                  <item.icon size={18} />
-                  <span className="font-medium">{item.name}</span>
+                  <Icon className="w-4 h-4" />
+                  <span>{item.name}</span>
                 </Link>
-              ))}
-            </div>
+              );
+            })}
+            <Button className="btn-festival ml-4">
+              Book Tickets
+            </Button>
+          </div>
 
-            <div className="flex items-center space-x-4">
-              <Button className="btn-festival">
-                🎟️ Book Tickets
-              </Button>
-            </div>
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-gray-300 hover:text-white p-2"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
-      </nav>
+      </div>
 
       {/* Mobile Navigation */}
-      <nav className="md:hidden fixed top-0 left-0 right-0 z-50 bg-gray-900/90 backdrop-blur-md border-b border-gray-700/50">
-        <div className="flex items-center justify-between px-4 py-3">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold">T</span>
-            </div>
-            <h1 className="font-righteous text-lg festival-title">TaFMA</h1>
-          </Link>
-
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2 text-gray-300 hover:text-pink-400 transition-colors"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className="absolute top-full left-0 right-0 bg-gray-900/95 backdrop-blur-md border-b border-gray-700/50">
-            <div className="px-4 py-4 space-y-2">
-              {navItems.map((item) => (
+      {isOpen && (
+        <div className="md:hidden bg-black/95 backdrop-blur-md border-b border-gray-700/50">
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            {navigation.map((item) => {
+              const Icon = item.icon;
+              return (
                 <Link
                   key={item.name}
                   to={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-300 ${
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-base font-medium ${
                     location.pathname === item.href
-                      ? 'text-pink-400 bg-pink-500/10'
-                      : 'text-gray-300 hover:bg-gray-800/50'
+                      ? 'bg-primary/20 text-primary'
+                      : 'text-gray-300 hover:text-white hover:bg-gray-800'
                   }`}
                 >
-                  <item.icon size={20} />
-                  <span className="font-medium">{item.name}</span>
+                  <Icon className="w-5 h-5" />
+                  <span>{item.name}</span>
                 </Link>
-              ))}
-              <div className="pt-4">
-                <Button className="btn-festival w-full">
-                  🎟️ Book Tickets
-                </Button>
-              </div>
+              );
+            })}
+            <div className="px-3 py-2">
+              <Button className="btn-festival w-full">
+                Book Tickets
+              </Button>
             </div>
           </div>
-        )}
-      </nav>
+        </div>
+      )}
 
-      {/* Mobile Bottom Navigation */}
-      <div className="mobile-nav md:hidden">
-        {navItems.slice(0, 5).map((item) => (
-          <Link
-            key={item.name}
-            to={item.href}
-            className={`flex flex-col items-center space-y-1 p-2 rounded-lg transition-all duration-300 ${
-              location.pathname === item.href
-                ? 'text-pink-400'
-                : 'text-gray-400 hover:text-gray-200'
-            }`}
-          >
-            <item.icon size={20} />
-            <span className="text-xs font-medium">{item.name}</span>
-          </Link>
-        ))}
+      {/* Bottom Mobile Navigation */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-md border-t border-gray-700/50 mobile-nav">
+        {navigation.map((item) => {
+          const Icon = item.icon;
+          return (
+            <Link
+              key={item.name}
+              to={item.href}
+              className={`flex flex-col items-center py-2 px-1 text-xs ${
+                location.pathname === item.href
+                  ? 'text-primary'
+                  : 'text-gray-400 hover:text-white'
+              }`}
+            >
+              <Icon className="w-5 h-5 mb-1" />
+              <span>{item.name}</span>
+            </Link>
+          );
+        })}
       </div>
-    </>
+    </nav>
   );
-};
-
-export default Navigation;
+}
