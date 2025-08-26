@@ -89,7 +89,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="text-center justify-start ">
+          <div className="text-start">
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <div className="space-y-2">
               <a href="/events" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
