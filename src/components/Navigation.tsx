@@ -12,7 +12,7 @@ export function Navigation() {
     { name: 'Home', href: '/', icon: Music },
     { name: 'Events', href: '/events', icon: Calendar },
     { name: 'Artists', href: '/artists', icon: Users },
-    { name: 'Auditions', href: '/auditions', icon: Mic },
+    { name: 'Pre-Ticket to Hornbill', href: '/auditions', icon: Mic },
     { name: 'About', href: '/about', icon: Info },
   ];
 
