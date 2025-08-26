@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="bg-background/95 backdrop-blur-md border-t border-border/50 mt-auto">
       <div className="mobile-container py-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           {/* Festival Info */}
           <div className="text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
@@ -89,22 +89,22 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="text-center lg:text-left md:col-span-2 lg:col-span-1">
+          <div className="text-start">
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <div className="grid grid-cols-2 md:grid-cols-1 gap-2">
-              <a href="/events" className="block text-muted-foreground hover:text-foreground transition-colors text-sm py-1">
+            <div className="space-y-2">
+              <a href="/events" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 Events
               </a>
-              <a href="/artists" className="block text-muted-foreground hover:text-foreground transition-colors text-sm py-1">
+              <a href="/artists" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 Artists
               </a>
-              <a href="/auditions" className="block text-muted-foreground hover:text-foreground transition-colors text-sm py-1">
+              <a href="/auditions" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 Auditions
               </a>
-              <a href="/about" className="block text-muted-foreground hover:text-foreground transition-colors text-sm py-1">
+              <a href="/about" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 About
               </a>
-              <a href="/schedule" className="block text-muted-foreground hover:text-foreground transition-colors text-sm py-1">
+              <a href="/schedule" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 Schedule
               </a>
             </div>
