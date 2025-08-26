@@ -1,22 +1,105 @@
 
-import React from 'react';
-import { Heart, Music } from 'lucide-react';
+import React, { useState } from 'react';
+import { Heart, Music, Mail, Phone, MapPin, Calendar, ExternalLink } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 const Footer = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', { firstName, lastName });
+    // Here you would typically handle the form submission
+    setFirstName('');
+    setLastName('');
+  };
+
   return (
     <footer className="bg-background/95 backdrop-blur-md border-t border-border/50 mt-auto">
-      <div className="mobile-container py-8">
+      <div className="mobile-container py-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
           {/* Festival Info */}
-          <div className="text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
+          <div className="text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
               <Music className="h-6 w-6 text-neon-pink" />
               <h3 className="text-lg font-semibold">Hornbill Music Festival</h3>
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed">
+            <p className="text-muted-foreground text-sm leading-relaxed mb-6">
               Celebrating Nagaland's rich musical heritage and empowering local artists since the grand Hornbill Festival.
             </p>
+            
+            {/* Festival Dates */}
+            <div className="mb-6">
+              <h4 className="font-semibold mb-2 flex items-center justify-center lg:justify-start gap-2">
+                <Calendar className="h-4 w-4 text-neon-pink" />
+                Festival Dates
+              </h4>
+              <p className="text-sm text-muted-foreground">December 3-8, 2024</p>
+              <p className="text-xs text-muted-foreground">Daily events: 2:00 PM - 11:00 PM</p>
+            </div>
+
+            {/* Book Tickets */}
+            <div className="bg-gradient-to-r from-neon-pink/10 to-neon-purple/10 p-4 rounded-lg border border-neon-pink/20">
+              <h4 className="font-semibold mb-2">Ready to Experience the Festival?</h4>
+              <p className="text-sm text-muted-foreground mb-3">Book your tickets now and secure your spot at Nagaland's premier music celebration.</p>
+              <a 
+                href="https://ahibi.in" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-neon-pink hover:text-neon-purple transition-colors text-sm font-medium"
+              >
+                Book Tickets <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          {/* Contact Information */}
+          <div className="text-center lg:text-left">
+            <h3 className="text-lg font-semibold mb-4">Get in Touch</h3>
+            <p className="text-muted-foreground text-sm mb-6">
+              Have questions about the festival or want to collaborate with TaFMA? We'd love to hear from you.
+            </p>
+
+            {/* Email */}
+            <div className="mb-4">
+              <h4 className="font-semibold mb-2 flex items-center justify-center lg:justify-start gap-2">
+                <Mail className="h-4 w-4 text-neon-pink" />
+                Email
+              </h4>
+              <div className="space-y-1 text-sm text-muted-foreground">
+                <p>info@hornbillmusicfestival.com</p>
+                <p>press@tafma.org</p>
+              </div>
+            </div>
+
+            {/* Phone */}
+            <div className="mb-4">
+              <h4 className="font-semibold mb-2 flex items-center justify-center lg:justify-start gap-2">
+                <Phone className="h-4 w-4 text-neon-pink" />
+                Phone
+              </h4>
+              <div className="space-y-1 text-sm text-muted-foreground">
+                <p>+91 9876 543 210</p>
+                <p>+91 8765 432 109</p>
+              </div>
+            </div>
+
+            {/* Location */}
+            <div>
+              <h4 className="font-semibold mb-2 flex items-center justify-center lg:justify-start gap-2">
+                <MapPin className="h-4 w-4 text-neon-pink" />
+                Location
+              </h4>
+              <div className="text-sm text-muted-foreground">
+                <p>Naga Heritage Village</p>
+                <p>Kisama, Nagaland 797001</p>
+                <p>India</p>
+              </div>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -35,19 +118,45 @@ const Footer = () => {
               <a href="/about" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 About
               </a>
+              <a href="/schedule" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
+                Schedule
+              </a>
             </div>
           </div>
 
-          {/* Contact Info */}
-          <div className="text-center md:text-right">
-            <h3 className="text-lg font-semibold mb-4">Connect</h3>
-            <div className="space-y-2 text-sm text-muted-foreground">
-              <p>Nagaland, India</p>
-              <p>info@hornbillmusicfest.com</p>
-              <p className="text-xs mt-4">
-                Follow us for updates and announcements
-              </p>
-            </div>
+          {/* Contact Form */}
+          <div className="text-center lg:text-left">
+            <h3 className="text-lg font-semibold mb-4">Send us a Message</h3>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <Label htmlFor="firstName" className="text-sm font-medium">First Name</Label>
+                <Input
+                  id="firstName"
+                  type="text"
+                  placeholder="Your first name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="mt-1"
+                />
+              </div>
+              <div>
+                <Label htmlFor="lastName" className="text-sm font-medium">Last Name</Label>
+                <Input
+                  id="lastName"
+                  type="text"
+                  placeholder="Your last name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="mt-1"
+                />
+              </div>
+              <Button 
+                type="submit" 
+                className="w-full bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-pink/90 hover:to-neon-purple/90"
+              >
+                Send Message
+              </Button>
+            </form>
           </div>
         </div>
 
