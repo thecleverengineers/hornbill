@@ -1,27 +1,13 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Heart, Music, Mail, Phone, MapPin, Calendar, ExternalLink } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 
 const Footer = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', { firstName, lastName });
-    // Here you would typically handle the form submission
-    setFirstName('');
-    setLastName('');
-  };
-
   return (
     <footer className="bg-background/95 backdrop-blur-md border-t border-border/50 mt-auto">
       <div className="mobile-container py-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           {/* Festival Info */}
           <div className="text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
@@ -122,41 +108,6 @@ const Footer = () => {
                 Schedule
               </a>
             </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="text-center lg:text-left">
-            <h3 className="text-lg font-semibold mb-4">Send us a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Label htmlFor="firstName" className="text-sm font-medium">First Name</Label>
-                <Input
-                  id="firstName"
-                  type="text"
-                  placeholder="Your first name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  className="mt-1"
-                />
-              </div>
-              <div>
-                <Label htmlFor="lastName" className="text-sm font-medium">Last Name</Label>
-                <Input
-                  id="lastName"
-                  type="text"
-                  placeholder="Your last name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  className="mt-1"
-                />
-              </div>
-              <Button 
-                type="submit" 
-                className="w-full bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-pink/90 hover:to-neon-purple/90"
-              >
-                Send Message
-              </Button>
-            </form>
           </div>
         </div>
 
