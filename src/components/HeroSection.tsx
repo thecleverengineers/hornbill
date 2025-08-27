@@ -1,7 +1,7 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Play, Pause, Calendar, Mic, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, Mic } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
 import {
@@ -13,12 +13,7 @@ import {
 } from "@/components/ui/carousel";
 
 const HeroSection = () => {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const { elementRef: statsRef, isVisible: statsVisible } = useScrollAnimation<HTMLDivElement>();
-
-  const toggleVideo = () => {
-    setIsVideoPlaying(!isVideoPlaying);
-  };
 
   const carouselSlides = [
     {
@@ -65,27 +60,12 @@ const HeroSection = () => {
               <div className="relative min-h-screen p-8 flex items-center justify-center">
                 {/* Background Image */}
                 <div className="absolute inset-0 w-full h-full">
-                  {isVideoPlaying && slide.id === 1 ? (
-                    <video
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    >
-                      <source
-                        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                        type="video/mp4"
-                      />
-                    </video>
-                  ) : (
-                    <div 
-                      className="w-full h-full bg-cover bg-center bg-no-repeat"
-                      style={{
-                        backgroundImage: `url("${slide.backgroundImage}")`
-                      }}
-                    />
-                  )}
+                  <div 
+                    className="w-full h-full bg-cover bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage: `url("${slide.backgroundImage}")`
+                    }}
+                  />
                 </div>
                 
                 {/* Animated Background Overlay */}
@@ -133,24 +113,6 @@ const HeroSection = () => {
                         </Button>
                       </Link>
                     </div>
-
-                    {/* Play/Pause Button for Festival Video - Only on first slide */}
-                    {slide.id === 1 && (
-                      <div className="mt-8">
-                        <button className="group relative" onClick={toggleVideo}>
-                          <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center neon-glow-pink group-hover:scale-110 transition-all duration-300 animate-festival-pulse">
-                            {isVideoPlaying ? (
-                              <Pause className="text-white" size={32} fill="currentColor" />
-                            ) : (
-                              <Play className="text-white ml-1" size={32} fill="currentColor" />
-                            )}
-                          </div>
-                          <p className="text-gray-300 mt-4 text-sm font-medium">
-                            {isVideoPlaying ? 'Pause Festival Video' : 'Watch Festival Highlights'}
-                          </p>
-                        </button>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
