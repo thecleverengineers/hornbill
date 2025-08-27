@@ -11,6 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const HeroSection = () => {
   const { elementRef: statsRef, isVisible: statsVisible } = useScrollAnimation<HTMLDivElement>();
@@ -53,11 +54,23 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen overflow-hidden">
-      <Carousel className="w-full h-screen">
+      <Carousel 
+        className="w-full h-screen"
+        plugins={[
+          Autoplay({
+            delay: 4000,
+            stopOnInteraction: true,
+          }),
+        ]}
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+      >
         <CarouselContent>
           {carouselSlides.map((slide) => (
             <CarouselItem key={slide.id}>
-              <div className="relative min-h-screen px-4 py-8 md:p-8 flex items-center justify-center">
+              <div className="relative min-h-screen px-4 py-8 md:p-8 flex items-center justify-center pb-32 md:pb-24">
                 {/* Background Image */}
                 <div className="absolute inset-0 w-full h-full">
                   <div 
@@ -125,38 +138,38 @@ const HeroSection = () => {
         <CarouselNext className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 border-white/20 hover:bg-black/70 text-white" />
       </Carousel>
 
-      {/* Festival Stats - Outside carousel to avoid duplication */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 pb-4 md:pb-8 px-4">
+      {/* Festival Stats - Outside carousel to avoid duplication, positioned to avoid overlap */}
+      <div className="absolute bottom-4 md:bottom-8 left-0 right-0 z-20 px-4">
         <div 
           ref={statsRef}
-          className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-6xl mx-auto transition-all duration-1000 ${
+          className={`grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 md:gap-6 max-w-6xl mx-auto transition-all duration-1000 ${
             statsVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-12'
           }`}
         >
-          <div className={`festival-card text-center transition-all duration-700 py-3 md:py-4 ${
+          <div className={`festival-card text-center transition-all duration-700 py-2 px-1 sm:py-3 md:py-4 ${
             statsVisible ? 'animate-scale-in' : ''
           }`} style={{ animationDelay: statsVisible ? '0ms' : '0ms' }}>
-            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-neon-pink mb-1 md:mb-2">200+</div>
+            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-neon-pink mb-1">200+</div>
             <div className="text-gray-400 text-xs sm:text-sm md:text-base">Musicians</div>
           </div>
-          <div className={`festival-card text-center transition-all duration-700 py-3 md:py-4 ${
+          <div className={`festival-card text-center transition-all duration-700 py-2 px-1 sm:py-3 md:py-4 ${
             statsVisible ? 'animate-scale-in' : ''
           }`} style={{ animationDelay: statsVisible ? '150ms' : '0ms' }}>
-            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-neon-purple mb-1 md:mb-2">16</div>
+            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-neon-purple mb-1">16</div>
             <div className="text-gray-400 text-xs sm:text-sm md:text-base">Tribes</div>
           </div>
-          <div className={`festival-card text-center transition-all duration-700 py-3 md:py-4 ${
+          <div className={`festival-card text-center transition-all duration-700 py-2 px-1 sm:py-3 md:py-4 ${
             statsVisible ? 'animate-scale-in' : ''
           }`} style={{ animationDelay: statsVisible ? '300ms' : '0ms' }}>
-            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-electric-orange mb-1 md:mb-2">5</div>
+            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-electric-orange mb-1">5</div>
             <div className="text-gray-400 text-xs sm:text-sm md:text-base">Days</div>
           </div>
-          <div className={`festival-card text-center transition-all duration-700 py-3 md:py-4 ${
+          <div className={`festival-card text-center transition-all duration-700 py-2 px-1 sm:py-3 md:py-4 ${
             statsVisible ? 'animate-scale-in' : ''
           }`} style={{ animationDelay: statsVisible ? '450ms' : '0ms' }}>
-            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-cyber-teal mb-1 md:mb-2">50K+</div>
+            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-cyber-teal mb-1">50K+</div>
             <div className="text-gray-400 text-xs sm:text-sm md:text-base">Fans</div>
           </div>
         </div>
