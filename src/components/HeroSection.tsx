@@ -57,7 +57,7 @@ const HeroSection = () => {
         <CarouselContent>
           {carouselSlides.map((slide) => (
             <CarouselItem key={slide.id}>
-              <div className="relative min-h-screen p-8 flex items-center justify-center">
+              <div className="relative min-h-screen px-4 py-8 md:p-8 flex items-center justify-center">
                 {/* Background Image */}
                 <div className="absolute inset-0 w-full h-full">
                   <div 
@@ -79,36 +79,36 @@ const HeroSection = () => {
                 </div>
 
                 {/* Content */}
-                <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
+                <div className="relative z-10 text-center px-4 max-w-6xl mx-auto w-full">
                   <div className="animate-fade-in">
-                    <h1 className="font-righteous text-4xl md:text-7xl lg:text-8xl mb-4 leading-tight">
+                    <h1 className="font-righteous text-3xl sm:text-4xl md:text-6xl lg:text-8xl mb-4 leading-tight">
                       <span className="block festival-title neon-text">{slide.title}</span>
                       <span className="block text-white">{slide.subtitle}</span>
                     </h1>
                     
-                    <p className="text-xl md:text-2xl text-gray-300 mb-2 font-light">
+                    <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-2 font-light">
                       {slide.description}
                     </p>
                     
-                    <p className="text-lg md:text-xl text-neon-purple mb-8 font-medium">
+                    <p className="text-base sm:text-lg md:text-xl text-neon-purple mb-6 md:mb-8 font-medium px-2">
                       {slide.tagline}
                     </p>
                     
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                      <Link to={slide.primaryAction.link}>
-                        <Button className="btn-festival text-lg px-8 py-4">
-                          {slide.primaryAction.icon && <slide.primaryAction.icon className="mr-2" size={20} />}
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 md:mb-12 px-2">
+                      <Link to={slide.primaryAction.link} className="w-full sm:w-auto">
+                        <Button className="btn-festival text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
+                          {slide.primaryAction.icon && <slide.primaryAction.icon className="mr-2" size={18} />}
                           {slide.primaryAction.text}
                         </Button>
                       </Link>
-                      <Link to={slide.secondaryAction.link}>
-                        <Button className="btn-stage text-lg px-8 py-4">
+                      <Link to={slide.secondaryAction.link} className="w-full sm:w-auto">
+                        <Button className="btn-stage text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
                           {slide.secondaryAction.text}
                         </Button>
                       </Link>
-                      <Link to={slide.tertiaryAction.link}>
-                        <Button className="btn-tribal text-lg px-8 py-4">
-                          {slide.tertiaryAction.icon && <slide.tertiaryAction.icon className="mr-2" size={20} />}
+                      <Link to={slide.tertiaryAction.link} className="w-full sm:w-auto">
+                        <Button className="btn-tribal text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
+                          {slide.tertiaryAction.icon && <slide.tertiaryAction.icon className="mr-2" size={18} />}
                           {slide.tertiaryAction.text}
                         </Button>
                       </Link>
@@ -120,44 +120,44 @@ const HeroSection = () => {
           ))}
         </CarouselContent>
         
-        {/* Custom Navigation Buttons */}
-        <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 border-white/20 hover:bg-black/70 text-white" />
-        <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 border-white/20 hover:bg-black/70 text-white" />
+        {/* Custom Navigation Buttons - Hidden on mobile */}
+        <CarouselPrevious className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 border-white/20 hover:bg-black/70 text-white" />
+        <CarouselNext className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 border-white/20 hover:bg-black/70 text-white" />
       </Carousel>
 
       {/* Festival Stats - Outside carousel to avoid duplication */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 pb-8">
+      <div className="absolute bottom-0 left-0 right-0 z-20 pb-4 md:pb-8 px-4">
         <div 
           ref={statsRef}
-          className={`grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-8 transition-all duration-1000 ${
+          className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-6xl mx-auto transition-all duration-1000 ${
             statsVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-12'
           }`}
         >
-          <div className={`festival-card text-center transition-all duration-700 ${
+          <div className={`festival-card text-center transition-all duration-700 py-3 md:py-4 ${
             statsVisible ? 'animate-scale-in' : ''
           }`} style={{ animationDelay: statsVisible ? '0ms' : '0ms' }}>
-            <div className="text-3xl md:text-4xl font-bold text-neon-pink mb-2">200+</div>
-            <div className="text-gray-400">Musicians</div>
+            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-neon-pink mb-1 md:mb-2">200+</div>
+            <div className="text-gray-400 text-xs sm:text-sm md:text-base">Musicians</div>
           </div>
-          <div className={`festival-card text-center transition-all duration-700 ${
+          <div className={`festival-card text-center transition-all duration-700 py-3 md:py-4 ${
             statsVisible ? 'animate-scale-in' : ''
           }`} style={{ animationDelay: statsVisible ? '150ms' : '0ms' }}>
-            <div className="text-3xl md:text-4xl font-bold text-neon-purple mb-2">16</div>
-            <div className="text-gray-400">Tribes</div>
+            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-neon-purple mb-1 md:mb-2">16</div>
+            <div className="text-gray-400 text-xs sm:text-sm md:text-base">Tribes</div>
           </div>
-          <div className={`festival-card text-center transition-all duration-700 ${
+          <div className={`festival-card text-center transition-all duration-700 py-3 md:py-4 ${
             statsVisible ? 'animate-scale-in' : ''
           }`} style={{ animationDelay: statsVisible ? '300ms' : '0ms' }}>
-            <div className="text-3xl md:text-4xl font-bold text-electric-orange mb-2">5</div>
-            <div className="text-gray-400">Days</div>
+            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-electric-orange mb-1 md:mb-2">5</div>
+            <div className="text-gray-400 text-xs sm:text-sm md:text-base">Days</div>
           </div>
-          <div className={`festival-card text-center transition-all duration-700 ${
+          <div className={`festival-card text-center transition-all duration-700 py-3 md:py-4 ${
             statsVisible ? 'animate-scale-in' : ''
           }`} style={{ animationDelay: statsVisible ? '450ms' : '0ms' }}>
-            <div className="text-3xl md:text-4xl font-bold text-cyber-teal mb-2">50K+</div>
-            <div className="text-gray-400">Fans</div>
+            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-cyber-teal mb-1 md:mb-2">50K+</div>
+            <div className="text-gray-400 text-xs sm:text-sm md:text-base">Fans</div>
           </div>
         </div>
       </div>
