@@ -23,7 +23,7 @@ export function Navigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2 touch-target">
               <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <Music className="w-5 h-5 text-white" />
               </div>
@@ -58,7 +58,7 @@ export function Navigation() {
             <div className="md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-gray-300 hover:text-white p-2 rounded-lg active:bg-gray-800/50 transition-colors"
+                className="text-gray-300 hover:text-white p-3 rounded-xl active:bg-gray-800/50 transition-all duration-200 touch-target active:scale-95"
               >
                 {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -69,7 +69,7 @@ export function Navigation() {
         {/* Mobile Slide-out Menu */}
         {isOpen && (
           <div className="md:hidden fixed inset-0 top-16 bg-black/98 backdrop-blur-md z-40 animate-fade-in">
-            <div className="px-4 pt-6 pb-20 space-y-2 h-full overflow-y-auto">
+            <div className="px-6 pt-8 pb-24 space-y-3 h-full overflow-y-auto">
               {navigation.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -77,19 +77,19 @@ export function Navigation() {
                     key={item.name}
                     to={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center space-x-4 px-4 py-4 rounded-xl text-lg font-medium transition-all duration-200 active:scale-95 ${
+                    className={`flex items-center space-x-4 px-6 py-5 rounded-2xl text-lg font-medium transition-all duration-200 active:scale-[0.98] touch-target ${
                       location.pathname === item.href
-                        ? 'bg-primary/20 text-primary shadow-lg'
-                        : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
+                        ? 'bg-primary/20 text-primary shadow-lg border border-primary/10'
+                        : 'text-gray-300 hover:text-white hover:bg-gray-800/50 active:bg-gray-800/70'
                     }`}
                   >
-                    <Icon className="w-6 h-6" />
-                    <span>{item.name}</span>
+                    <Icon className="w-6 h-6 flex-shrink-0" />
+                    <span className="flex-1">{item.name}</span>
                   </Link>
                 );
               })}
-              <div className="px-4 py-4">
-                <Button className="btn-festival w-full py-4 text-lg font-semibold">
+              <div className="px-6 py-6">
+                <Button className="btn-festival w-full py-5 text-lg font-semibold rounded-2xl touch-target">
                   Book Tickets
                 </Button>
               </div>
@@ -108,15 +108,15 @@ export function Navigation() {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`flex flex-col items-center justify-center py-2 px-3 rounded-lg min-w-[60px] transition-all duration-200 active:scale-95 ${
+                className={`flex flex-col items-center justify-center py-3 px-4 rounded-xl min-w-[64px] transition-all duration-200 active:scale-95 touch-target ${
                   isActive
-                    ? 'text-primary bg-primary/10'
+                    ? 'text-primary bg-primary/10 shadow-lg'
                     : 'text-gray-400 hover:text-white active:bg-gray-800/50'
                 }`}
               >
                 <Icon className={`w-5 h-5 mb-1 ${isActive ? 'text-primary' : ''}`} />
-                <span className={`text-xs font-medium ${isActive ? 'text-primary' : ''}`}>
-                  {item.name}
+                <span className={`text-xs font-medium leading-tight ${isActive ? 'text-primary' : ''}`}>
+                  {item.name === 'Pre-Ticket to Hornbill' ? 'Auditions' : item.name}
                 </span>
               </Link>
             );
