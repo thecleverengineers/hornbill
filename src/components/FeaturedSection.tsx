@@ -1,14 +1,15 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Music, Camera, Users } from 'lucide-react';
+import { ArrowRight, Music, Camera, Users, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const FeaturedSection = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: cardsRef, isVisible: cardsVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: documentaryRef, isVisible: documentaryVisible } = useScrollAnimation<HTMLDivElement>();
-  const { elementRef: socialRef, isVisible: socialVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: galleryRef, isVisible: galleryVisible } = useScrollAnimation<HTMLDivElement>();
 
   const featuredCards = [
     {
@@ -39,6 +40,76 @@ const FeaturedSection = () => {
       border: 'border-purple-500/30'
     }
   ];
+
+  const galleryImages = [
+    {
+      id: 1,
+      title: 'Main Stage Performance',
+      description: 'Traditional Naga folk performance at sunset',
+      category: 'Performance',
+      gradient: 'from-orange-500/80 to-pink-500/80'
+    },
+    {
+      id: 2,
+      title: 'Tribal Dance',
+      description: 'Colorful traditional costumes and rhythmic movements',
+      category: 'Culture',
+      gradient: 'from-purple-500/80 to-blue-500/80'
+    },
+    {
+      id: 3,
+      title: 'Festival Crowd',
+      description: 'Thousands gathered to celebrate music and culture',
+      category: 'Atmosphere',
+      gradient: 'from-teal-500/80 to-green-500/80'
+    },
+    {
+      id: 4,
+      title: 'Night Concert',
+      description: 'Electric atmosphere under the stars',
+      category: 'Performance',
+      gradient: 'from-indigo-500/80 to-purple-500/80'
+    },
+    {
+      id: 5,
+      title: 'Traditional Instruments',
+      description: 'Ancient instruments creating modern magic',
+      category: 'Music',
+      gradient: 'from-yellow-500/80 to-orange-500/80'
+    },
+    {
+      id: 6,
+      title: 'Cultural Exchange',
+      description: 'Artists from different tribes collaborating',
+      category: 'Culture',
+      gradient: 'from-pink-500/80 to-red-500/80'
+    },
+    {
+      id: 7,
+      title: 'Backstage Moments',
+      description: 'Behind the scenes with performing artists',
+      category: 'Behind Scenes',
+      gradient: 'from-emerald-500/80 to-cyan-500/80'
+    },
+    {
+      id: 8,
+      title: 'Festival Food',
+      description: 'Traditional Naga cuisine and festival treats',
+      category: 'Food',
+      gradient: 'from-amber-500/80 to-yellow-500/80'
+    }
+  ];
+
+  const scrollGallery = (direction: 'left' | 'right') => {
+    const gallery = document.getElementById('festival-gallery');
+    if (gallery) {
+      const scrollAmount = 320; // Width of one card plus gap
+      gallery.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <section className="py-20 px-4">
@@ -146,42 +217,90 @@ const FeaturedSection = () => {
           </div>
         </div>
 
-        {/* Social Media Wall Preview */}
+        {/* Festival Highlights Gallery */}
         <div 
-          ref={socialRef}
+          ref={galleryRef}
           className={`mt-16 transition-all duration-800 ${
-            socialVisible 
+            galleryVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-16'
           }`}
         >
-          <h3 className={`font-righteous text-3xl text-center mb-8 transition-all duration-1000 delay-200 ${
-            socialVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-8'
-          }`}>
-            <span className="festival-title">Live from the Festival</span>
-          </h3>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {Array.from({ length: 8 }).map((_, index) => (
-              <div 
-                key={index} 
-                className={`aspect-square bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl flex items-center justify-center hover:scale-105 transition-all duration-500 cursor-pointer border border-gray-700/50 hover:border-pink-500/50 ${
-                  socialVisible ? 'animate-scale-in' : 'opacity-0 scale-75'
-                }`}
-                style={{
-                  animationDelay: socialVisible ? `${index * 100}ms` : '0ms'
-                }}
+          <div className="flex items-center justify-between mb-8">
+            <h3 className={`font-righteous text-3xl transition-all duration-1000 delay-200 ${
+              galleryVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}>
+              <span className="festival-title">Live from the Festival</span>
+            </h3>
+            
+            <div className="flex gap-2">
+              <button
+                onClick={() => scrollGallery('left')}
+                className="p-2 bg-gray-800/50 border border-gray-700/50 rounded-full hover:bg-gray-700/50 hover:border-pink-500/50 transition-all duration-300"
               >
-                <div className="text-center">
-                  <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center mb-2 mx-auto">
-                    <span className="text-white text-xs">📸</span>
+                <ChevronLeft className="text-gray-400 hover:text-pink-400" size={20} />
+              </button>
+              <button
+                onClick={() => scrollGallery('right')}
+                className="p-2 bg-gray-800/50 border border-gray-700/50 rounded-full hover:bg-gray-700/50 hover:border-pink-500/50 transition-all duration-300"
+              >
+                <ChevronRight className="text-gray-400 hover:text-pink-400" size={20} />
+              </button>
+            </div>
+          </div>
+          
+          <div className="relative overflow-hidden">
+            <div 
+              id="festival-gallery"
+              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
+              {galleryImages.map((image, index) => (
+                <div 
+                  key={image.id}
+                  className={`flex-shrink-0 w-80 h-64 relative rounded-2xl overflow-hidden cursor-pointer group transition-all duration-500 hover:scale-105 ${
+                    galleryVisible ? 'animate-scale-in' : 'opacity-0 scale-75'
+                  }`}
+                  style={{
+                    animationDelay: galleryVisible ? `${index * 100}ms` : '0ms'
+                  }}
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${image.gradient} opacity-90`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  
+                  <div className="absolute inset-0 flex flex-col justify-between p-6">
+                    <div className="flex justify-between items-start">
+                      <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/30">
+                        {image.category}
+                      </span>
+                      <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-pink-500/50 transition-all duration-300">
+                        <Camera className="text-white" size={16} />
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-righteous text-xl text-white mb-2 group-hover:text-pink-200 transition-colors duration-300">
+                        {image.title}
+                      </h4>
+                      <p className="text-gray-200 text-sm opacity-90">
+                        {image.description}
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-gray-400 text-xs">Instagram</p>
+                  
+                  <div className="absolute inset-0 border-2 border-transparent group-hover:border-pink-400/50 rounded-2xl transition-all duration-300" />
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+          
+          <div className="text-center mt-8">
+            <Button className="btn-festival">
+              <Camera className="mr-2" size={20} />
+              View Full Gallery
+            </Button>
           </div>
         </div>
       </div>
