@@ -138,7 +138,7 @@ const HeroSection = () => {
       </Carousel>
 
       {/* Native-style Festival Stats with better mobile positioning */}
-      <div className="absolute bottom-4 md:bottom-12 left-0 right-0 z-20 px-4">
+      <div className="absolute bottom-8 md:bottom-12 left-0 right-0 z-20 px-4 mt-8">
         <div 
           ref={statsRef}
           className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-5xl mx-auto transition-all duration-1000 ${
