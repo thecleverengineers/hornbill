@@ -107,6 +107,29 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
           </div>
         </div>
 
+        {/* Navigation Buttons - Only show if more than 1 image */}
+        {images.length > 1 && (
+          <>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/10 w-10 h-10 md:w-12 md:h-12 z-30 bg-black/20 backdrop-blur-sm border border-white/20"
+              onClick={goToPrevious}
+            >
+              <ChevronLeft size={20} className="md:w-6 md:h-6" />
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/10 w-10 h-10 md:w-12 md:h-12 z-30 bg-black/20 backdrop-blur-sm border border-white/20"
+              onClick={goToNext}
+            >
+              <ChevronRight size={20} className="md:w-6 md:h-6" />
+            </Button>
+          </>
+        )}
+
         {/* Main Image with Touch Support */}
         <div 
           className="relative w-full h-full flex items-center justify-center p-0 md:p-16"
@@ -164,29 +187,6 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
             </div>
           </div>
         </div>
-
-        {/* Navigation Buttons - Only show if more than 1 image */}
-        {images.length > 1 && (
-          <>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/10 w-10 h-10 md:w-12 md:h-12 z-30 bg-black/20 backdrop-blur-sm border border-white/20"
-              onClick={goToPrevious}
-            >
-              <ChevronLeft size={20} className="md:w-6 md:h-6" />
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/10 w-10 h-10 md:w-12 md:h-12 z-30 bg-black/20 backdrop-blur-sm border border-white/20"
-              onClick={goToNext}
-            >
-              <ChevronRight size={20} className="md:w-6 md:h-6" />
-            </Button>
-          </>
-        )}
 
         {/* Thumbnail Strip - Hidden on mobile to save space */}
         {images.length > 1 && (
