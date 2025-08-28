@@ -70,7 +70,7 @@ const HeroSection = () => {
         <CarouselContent>
           {carouselSlides.map((slide, index) => (
             <CarouselItem key={slide.id}>
-              <div className="relative min-h-screen px-4 py-8 md:p-8 flex items-center justify-center pb-48 md:pb-32">
+              <div className="relative min-h-screen px-4 py-8 md:p-8 flex items-center justify-center pb-64 md:pb-48">
                 {/* Background Image with native parallax effect */}
                 <div className="absolute inset-0 w-full h-full">
                   <div 
@@ -91,13 +91,13 @@ const HeroSection = () => {
 
                 {/* Content with native animations */}
                 <div className="relative z-10 text-center px-4 max-w-6xl mx-auto w-full">
-                  <div className="animate-native-fade-in space-y-4 md:space-y-6" style={{ animationDelay: `${index * 100}ms` }}>
+                  <div className="animate-native-fade-in space-y-6 md:space-y-8" style={{ animationDelay: `${index * 100}ms` }}>
                     <h1 className="font-righteous text-3xl sm:text-5xl md:text-6xl lg:text-8xl leading-tight no-select">
-                      <span className="block festival-title mb-2">{slide.title}</span>
+                      <span className="block festival-title mb-4">{slide.title}</span>
                       <span className="block text-white drop-shadow-md">{slide.subtitle}</span>
                     </h1>
                     
-                    <div className="space-y-3 md:space-y-4">
+                    <div className="space-y-4 md:space-y-6">
                       <p className="text-lg sm:text-xl md:text-2xl text-gray-200 font-light no-select drop-shadow-sm">
                         {slide.description}
                       </p>
@@ -107,8 +107,8 @@ const HeroSection = () => {
                       </p>
                     </div>
                     
-                    {/* Native-style button group with improved spacing */}
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-6 md:pt-8 px-2">
+                    {/* Native-style button group with improved spacing and visibility */}
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center pt-8 md:pt-12 px-2 relative z-20">
                       <Link to={slide.primaryAction.link} className="w-full sm:w-auto">
                         <Button className="btn-festival text-base sm:text-lg px-8 py-4 w-full sm:w-auto haptic-heavy elevation-2">
                           {slide.primaryAction.icon && <slide.primaryAction.icon className="mr-3" size={20} />}
