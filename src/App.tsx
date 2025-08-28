@@ -22,9 +22,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <div className="min-h-screen bg-background flex flex-col">
+        <div className="min-h-screen native-bg flex flex-col status-bar-dark">
           <Navigation />
-          <main className="mobile-page-content flex-1">
+          <main className="native-page-content flex-1">
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/events" element={<Events />} />
