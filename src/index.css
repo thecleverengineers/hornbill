@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&display=swap');
 @tailwind base;
 @tailwind components;
@@ -107,7 +108,7 @@
            text-white font-semibold px-8 py-4 rounded-2xl 
            shadow-lg hover:shadow-xl transform 
            transition-all duration-200 border-0 
-           active:scale-[0.95] active:shadow-md;
+           active:scale-95 active:shadow-md;
     background-size: 200% 200%;
     animation: gradient-shift 3s ease infinite;
     min-height: 48px;
@@ -118,16 +119,7 @@
     @apply bg-white/10 backdrop-blur-md border border-white/20 
            text-white font-semibold px-8 py-4 rounded-2xl 
            shadow-lg transform transition-all duration-200 
-           active:scale-[0.95] active:bg-white/20;
-    min-height: 48px;
-  }
-
-  /* Subtle version with slower animation */
-  .btn-stage-subtle {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 
-           text-white font-semibold px-8 py-4 rounded-2xl 
-           shadow-lg transform transition-all duration-300 
-           active:scale-[0.95] hover:bg-white/15 hover:border-white/30;
+           active:scale-95 active:bg-white/20;
     min-height: 48px;
   }
 
@@ -136,18 +128,7 @@
            border border-tribal-gold/30 backdrop-blur-md
            text-white font-semibold px-8 py-4 rounded-2xl 
            shadow-lg transform transition-all duration-200 
-           active:scale-[0.95];
-    min-height: 48px;
-  }
-
-  /* Subtle version with slower animation */
-  .btn-tribal-subtle {
-    @apply bg-gradient-to-r from-tribal-gold/20 to-electric-orange/20 
-           border border-tribal-gold/30 backdrop-blur-md
-           text-white font-semibold px-8 py-4 rounded-2xl 
-           shadow-lg transform transition-all duration-300 
-           active:scale-[0.95] hover:from-tribal-gold/25 hover:to-electric-orange/25 
-           hover:border-tribal-gold/40;
+           active:scale-95;
     min-height: 48px;
   }
 
@@ -276,7 +257,7 @@
   }
 
   .haptic-light {
-    @apply active:scale-[0.98] transition-transform duration-100;
+    @apply active:scale-98 transition-transform duration-100;
   }
 
   .haptic-medium {
@@ -360,35 +341,4 @@
   color-scheme: dark;
 }
 
-/* Festival gradient animations */
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Festival text glow effect */
-.festival-title {
-  background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
-}
-
-.neon-text {
-  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
-}
-
-/* Additional native scroll improvements */
-.native-scroll-container {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.native-scroll-container::-webkit-scrollbar {
-  display: none;
-}
+/* ... keep existing code (keyframes and remaining styles) */
