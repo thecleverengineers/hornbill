@@ -114,12 +114,12 @@ const FeaturedSection = () => {
 
   // Featured artist for spotlight
   const spotlightArtist = {
-    name: 'The Hornbill Collective',
-    genre: 'Traditional Folk Fusion',
-    tribe: 'Angami',
-    description: 'Blending ancient Angami melodies with contemporary arrangements, The Hornbill Collective represents the perfect harmony between tradition and innovation.',
-    achievements: ['Winner: Best Traditional Act 2023', 'Featured in BBC World Music', '50K+ Monthly Listeners'],
-    image: '🎵'
+    name: 'Tribal Harmony Collective',
+    genre: 'Folk Rock Fusion',
+    tribe: 'Konyak',
+    description: 'Rising from the valleys of Mon district, this innovative group seamlessly weaves traditional Konyak war chants with contemporary rock elements, creating a sound that bridges generations and captures the warrior spirit of their ancestors.',
+    achievements: ['Best Emerging Artist 2024', 'Viral Hit: 2M+ Views', 'International Folk Award Nominee'],
+    image: '🥁'
   };
 
   const scrollGallery = (direction: 'left' | 'right') => {
@@ -238,7 +238,7 @@ const FeaturedSection = () => {
               <div className="flex items-center gap-3 mb-4">
                 <Star className="text-yellow-400" size={24} />
                 <h3 className="font-righteous text-3xl">
-                  <span className="festival-title">Artist Spotlight</span>
+                  <span className="festival-title">Rising Stars Showcase</span>
                 </h3>
               </div>
               <h4 className="font-righteous text-2xl text-pink-400 mb-2">
@@ -256,7 +256,7 @@ const FeaturedSection = () => {
                 {spotlightArtist.description}
               </p>
               <div className="mb-6">
-                <h5 className="font-medium text-white mb-2">Achievements:</h5>
+                <h5 className="font-medium text-white mb-2">Recent Highlights:</h5>
                 <ul className="space-y-1">
                   {spotlightArtist.achievements.map((achievement, index) => (
                     <li key={index} className="text-gray-400 text-sm flex items-center gap-2">
