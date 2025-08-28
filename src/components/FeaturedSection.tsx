@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Music, Camera, Users, ChevronLeft, ChevronRight, Eye, ExternalLink, Star, Play } from 'lucide-react';
+import { ArrowRight, Music, Camera, Users, ChevronLeft, ChevronRight, Eye, ExternalLink } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
 import GalleryModal from './GalleryModal';
@@ -111,16 +111,6 @@ const FeaturedSection = () => {
       gradient: 'from-amber-500/80 to-yellow-500/80'
     }
   ];
-
-  // Featured artist for spotlight
-  const spotlightArtist = {
-    name: 'Tribal Harmony Collective',
-    genre: 'Folk Rock Fusion',
-    tribe: 'Konyak',
-    description: 'Rising from the valleys of Mon district, this innovative group seamlessly weaves traditional Konyak war chants with contemporary rock elements, creating a sound that bridges generations and captures the warrior spirit of their ancestors.',
-    achievements: ['Best Emerging Artist 2024', 'Viral Hit: 2M+ Views', 'International Folk Award Nominee'],
-    image: '🥁'
-  };
 
   const scrollGallery = (direction: 'left' | 'right') => {
     const gallery = document.getElementById('festival-gallery');
@@ -235,48 +225,18 @@ const FeaturedSection = () => {
                 ? 'opacity-100 translate-x-0' 
                 : 'opacity-0 -translate-x-8'
             }`}>
-              <div className="flex items-center gap-3 mb-4">
-                <Star className="text-yellow-400" size={24} />
-                <h3 className="font-righteous text-3xl">
-                  <span className="festival-title">Rising Stars Showcase</span>
-                </h3>
-              </div>
-              <h4 className="font-righteous text-2xl text-pink-400 mb-2">
-                {spotlightArtist.name}
-              </h4>
-              <div className="flex gap-2 mb-4">
-                <span className="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-sm font-medium">
-                  {spotlightArtist.genre}
-                </span>
-                <span className="px-3 py-1 bg-teal-500/20 text-teal-400 rounded-full text-sm font-medium">
-                  {spotlightArtist.tribe} Tribe
-                </span>
-              </div>
-              <p className="text-gray-400 text-lg mb-4 leading-relaxed">
-                {spotlightArtist.description}
+              <h3 className="font-righteous text-3xl mb-4">
+                <span className="festival-title">"Sounds of Nagaland"</span>
+              </h3>
+              <p className="text-gray-400 text-lg mb-6 leading-relaxed">
+                Dive deep into the musical heritage of the 16 tribes of Nagaland. 
+                Watch our exclusive documentary showcasing the traditional instruments, 
+                songs, and stories that make this festival unique.
               </p>
-              <div className="mb-6">
-                <h5 className="font-medium text-white mb-2">Recent Highlights:</h5>
-                <ul className="space-y-1">
-                  {spotlightArtist.achievements.map((achievement, index) => (
-                    <li key={index} className="text-gray-400 text-sm flex items-center gap-2">
-                      <Star className="text-yellow-400" size={12} />
-                      {achievement}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="flex gap-3">
-                <Button className="btn-festival">
-                  <Play className="mr-2" size={20} />
-                  Listen Now
-                </Button>
-                <Link to="/artists/1">
-                  <Button variant="outline" className="border-pink-500/50 text-pink-400 hover:bg-pink-500/10">
-                    View Profile
-                  </Button>
-                </Link>
-              </div>
+              <Button className="btn-festival">
+                <Camera className="mr-2" size={20} />
+                Watch Documentary
+              </Button>
             </div>
             
             <div className={`relative transition-all duration-1000 delay-400 ${
@@ -284,22 +244,13 @@ const FeaturedSection = () => {
                 ? 'opacity-100 translate-x-0 scale-100' 
                 : 'opacity-0 translate-x-8 scale-95'
             }`}>
-              <div className="aspect-square bg-gradient-to-br from-pink-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center text-8xl neon-glow-purple relative overflow-hidden">
-                <div className="text-center z-10">
-                  {spotlightArtist.image}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                </div>
-                
-                {/* Floating music notes animation */}
-                <div className="absolute top-4 right-4 text-2xl animate-bounce">🎵</div>
-                <div className="absolute bottom-6 left-6 text-xl animate-pulse">🎶</div>
-                <div className="absolute top-1/2 right-8 text-lg animate-bounce delay-300">♪</div>
-                
-                {/* Play button overlay */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer">
-                  <div className="w-20 h-20 bg-pink-500/80 rounded-full flex items-center justify-center">
-                    <Play className="text-white ml-1" size={32} fill="currentColor" />
+              <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl flex items-center justify-center neon-glow-purple">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center mb-4 mx-auto neon-glow-pink">
+                    <Camera className="text-white" size={32} />
                   </div>
+                  <p className="text-gray-300 font-medium">Mini Documentary</p>
+                  <p className="text-gray-500 text-sm">Coming Soon</p>
                 </div>
               </div>
             </div>
