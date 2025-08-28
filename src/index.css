@@ -84,62 +84,9 @@
            text-white font-semibold px-8 py-3 rounded-full 
            shadow-lg hover:shadow-xl transform hover:scale-105 
            transition-all duration-300 border-0 
-           active:scale-95 touch-manipulation;
+           active:scale-95;
     background-size: 200% 200%;
     animation: gradient-shift 3s ease infinite;
-  }
-
-  .btn-stage {
-    @apply bg-gradient-to-r from-purple-600 to-indigo-600
-           text-white font-semibold px-8 py-3 rounded-full
-           shadow-lg hover:shadow-xl transform hover:scale-105
-           transition-all duration-300 border-0
-           active:scale-95 touch-manipulation;
-  }
-
-  .btn-tribal {
-    @apply bg-gradient-to-r from-orange-500 to-red-500
-           text-white font-semibold px-8 py-3 rounded-full
-           shadow-lg hover:shadow-xl transform hover:scale-105
-           transition-all duration-300 border-0
-           active:scale-95 touch-manipulation;
-  }
-
-  /* Festival-themed card styles */
-  .festival-card {
-    @apply bg-black/40 backdrop-blur-md border border-gray-700/30 
-           shadow-lg hover:shadow-xl transition-all duration-300
-           hover:bg-black/50 hover:border-gray-600/50;
-  }
-
-  /* Festival title with neon effect */
-  .festival-title {
-    background: linear-gradient(135deg, hsl(320 100% 60%), hsl(280 100% 70%), hsl(320 100% 60%));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 0 30px hsl(320 100% 50% / 0.5);
-  }
-
-  .neon-text {
-    text-shadow: 
-      0 0 5px hsl(320 100% 50% / 0.8),
-      0 0 10px hsl(320 100% 50% / 0.6),
-      0 0 15px hsl(320 100% 50% / 0.4),
-      0 0 20px hsl(320 100% 50% / 0.2);
-  }
-
-  /* Festival background animation */
-  .festival-bg {
-    background: linear-gradient(
-      45deg,
-      hsl(320 100% 50% / 0.1),
-      hsl(280 100% 60% / 0.1),
-      hsl(25 100% 55% / 0.1),
-      hsl(180 100% 50% / 0.1)
-    );
-    background-size: 400% 400%;
-    animation: festival-gradient 8s ease infinite;
   }
 
   /* Mobile-optimized card styles */
@@ -232,22 +179,6 @@
   .scroll-scale.visible {
     @apply opacity-100 scale-100;
   }
-
-  /* Enhanced touch targets for mobile */
-  .touch-target {
-    @apply min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation;
-  }
-
-  /* Native app-like smooth scrolling */
-  .smooth-scroll {
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Mobile pull-to-refresh style indicator */
-  .pull-indicator {
-    @apply h-1 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full transition-all duration-300;
-  }
 }
 
 /* Custom animations */
@@ -257,21 +188,6 @@
   }
   50% {
     background-position: 100% 50%;
-  }
-}
-
-@keyframes festival-gradient {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  25% {
-    background-position: 100% 50%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  75% {
-    background-position: 0% 100%;
   }
 }
 
@@ -319,27 +235,8 @@
   }
 }
 
-@keyframes mobile-bounce {
-  0%, 20%, 53%, 80%, 100% {
-    transform: translate3d(0, 0, 0);
-  }
-  40%, 43% {
-    transform: translate3d(0, -8px, 0);
-  }
-  70% {
-    transform: translate3d(0, -4px, 0);
-  }
-  90% {
-    transform: translate3d(0, -2px, 0);
-  }
-}
-
 .animate-mobile-slide-up {
   animation: mobile-slide-up 0.3s ease-out;
-}
-
-.animate-mobile-bounce {
-  animation: mobile-bounce 1s ease-in-out;
 }
 
 .animate-scroll-reveal {
@@ -352,7 +249,7 @@
 
 /* Ensure proper spacing for mobile with fixed navigation */
 .mobile-page-content {
-  @apply pt-16 pb-24 md:pb-8;
+  @apply pt-16 pb-20 md:pb-8;
 }
 
 /* Mobile-optimized grid layouts */
@@ -360,47 +257,7 @@
   @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6;
 }
 
-/* Enhanced mobile interactions */
-@media (max-width: 768px) {
-  /* Improve tap targets */
-  button, a, [role="button"] {
-    @apply min-h-[44px] min-w-[44px] touch-manipulation;
-  }
-  
-  /* Better form controls */
-  input, select, textarea {
-    @apply text-base rounded-xl border-2 focus:border-primary/50 transition-colors;
-  }
-  
-  /* Enhanced mobile typography */
-  .mobile-heading {
-    @apply text-3xl leading-tight;
-  }
-  
-  /* Smoother animations on mobile */
-  * {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000;
-  }
-}
-
-/* iOS specific improvements */
-@supports (-webkit-touch-callout: none) {
-  .ios-bounce {
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  /* Remove iOS button styling */
-  button, input[type="submit"], input[type="button"] {
-    -webkit-appearance: none;
-    border-radius: 0;
-  }
-}
-
-/* Android specific improvements */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  .android-smooth {
-    transform: translate3d(0, 0, 0);
-  }
+/* Touch-friendly interactive elements */
+.touch-target {
+  @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
 }

@@ -12,9 +12,9 @@ const Index = () => {
   const { elementRef: aboutRef, isVisible: aboutVisible } = useScrollAnimation<HTMLElement>();
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background">
       <Navigation />
-      <main className="mobile-page-content">
+      <main>
         <section 
           ref={heroRef}
           className={`transition-all duration-1000 ${
@@ -28,7 +28,7 @@ const Index = () => {
         
         <section 
           ref={featuredRef}
-          className={`transition-all duration-1000 px-4 md:px-0 ${
+          className={`transition-all duration-1000 ${
             featuredVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-12'
@@ -39,7 +39,7 @@ const Index = () => {
 
         <section 
           ref={aboutRef}
-          className={`transition-all duration-1000 px-4 md:px-0 ${
+          className={`transition-all duration-1000 ${
             aboutVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-12'
