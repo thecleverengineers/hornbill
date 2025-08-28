@@ -44,11 +44,17 @@
   body {
     @apply bg-background text-foreground font-inter;
     font-feature-settings: "rlig" 1, "calt" 1;
+    /* Prevent overscroll on mobile */
+    overscroll-behavior: none;
+    /* Smooth scrolling */
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Mobile-first responsive design */
   html {
     @apply text-base;
+    /* Prevent zoom on double tap */
+    touch-action: manipulation;
   }
   
   /* Safe area support for mobile devices */
@@ -61,18 +67,35 @@
   }
 
   /* Mobile touch improvements */
-  button, a {
+  button, a, [role="button"] {
     @apply touch-manipulation;
+    /* Prevent highlight on tap */
+    -webkit-tap-highlight-color: transparent;
+    /* Remove default focus outline on mobile */
+    outline: none;
   }
   
   /* Prevent zoom on input focus on iOS */
   input, select, textarea {
     font-size: 16px;
+    /* Remove iOS styling */
+    -webkit-appearance: none;
+    border-radius: 0;
   }
   
   @media (max-width: 768px) {
     input, select, textarea {
       font-size: 16px;
+    }
+    
+    /* Improved mobile scrolling */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Native-like selection */
+    ::selection {
+      background-color: hsl(var(--primary) / 0.2);
     }
   }
 }
@@ -83,29 +106,74 @@
     @apply bg-gradient-to-r from-pink-500 via-purple-600 to-pink-500 
            text-white font-semibold px-8 py-3 rounded-full 
            shadow-lg hover:shadow-xl transform hover:scale-105 
-           transition-all duration-300 border-0 
-           active:scale-95;
+           transition-all duration-300 border-0;
     background-size: 200% 200%;
     animation: gradient-shift 3s ease infinite;
+    /* Mobile enhancements */
+    @apply md:hover:scale-105 active:scale-[0.97] md:active:scale-95;
+    /* Subtle haptic feedback simulation */
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-stage {
+    @apply bg-gradient-to-r from-purple-600 to-blue-600 
+           text-white font-semibold px-8 py-3 rounded-full 
+           shadow-lg hover:shadow-xl transform hover:scale-105 
+           transition-all duration-300 border-0;
+    @apply md:hover:scale-105 active:scale-[0.97] md:active:scale-95;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-tribal {
+    @apply bg-gradient-to-r from-orange-500 to-yellow-500 
+           text-white font-semibold px-8 py-3 rounded-full 
+           shadow-lg hover:shadow-xl transform hover:scale-105 
+           transition-all duration-300 border-0;
+    @apply md:hover:scale-105 active:scale-[0.97] md:active:scale-95;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Mobile-optimized card styles */
   .mobile-card {
     @apply bg-card/50 backdrop-blur-md border border-gray-700/50 
-           rounded-2xl p-6 shadow-lg 
-           active:scale-[0.98] transition-transform duration-150;
+           rounded-2xl p-6 shadow-lg transition-all duration-200;
+    @apply md:hover:shadow-xl active:scale-[0.98] md:active:scale-[0.98];
   }
 
   /* Native-like mobile interactions */
   .mobile-touch {
-    @apply active:scale-95 transition-transform duration-150 touch-manipulation;
+    @apply transition-all duration-150 touch-manipulation;
+    @apply active:scale-[0.97] active:bg-gray-800/20;
   }
 
   /* Mobile navigation styles */
   .mobile-nav-item {
     @apply flex flex-col items-center justify-center py-2 px-3 
-           rounded-lg min-w-[60px] transition-all duration-200 
-           active:scale-95 touch-manipulation;
+           rounded-lg min-w-[60px] transition-all duration-150 
+           touch-manipulation;
+    @apply active:scale-[0.95] active:bg-gray-800/30;
+  }
+
+  /* Festival-specific mobile cards */
+  .festival-card {
+    @apply bg-gray-800/30 backdrop-blur-sm border border-gray-700/30 
+           rounded-xl transition-all duration-200;
+    @apply active:scale-[0.98] active:bg-gray-800/50;
+  }
+
+  /* Native app-like list items */
+  .native-list-item {
+    @apply bg-card/30 border-b border-gray-700/30 
+           px-4 py-3 transition-all duration-150
+           active:bg-gray-800/30 active:scale-[0.99];
+  }
+
+  /* Mobile-first button sizing */
+  @media (max-width: 768px) {
+    .btn-festival, .btn-stage, .btn-tribal {
+      @apply py-4 px-6 text-lg font-semibold;
+      min-height: 48px; /* Minimum touch target */
+    }
   }
 }
 
@@ -147,6 +215,31 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 
+  /* Native mobile feel utilities */
+  .native-scroll {
+    @apply hide-scrollbar;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  .native-bounce {
+    @apply transition-transform duration-150 ease-out;
+  }
+
+  .native-press {
+    @apply active:scale-[0.97] transition-transform duration-100;
+  }
+
+  /* iOS-like spring animations */
+  .ios-spring {
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  /* Android-like material feedback */
+  .material-press {
+    @apply active:bg-white/10 transition-all duration-150;
+  }
+
   /* Scroll animation utilities */
   .scroll-fade-in {
     @apply transition-all duration-700 opacity-0 translate-y-8;
@@ -178,6 +271,16 @@
   
   .scroll-scale.visible {
     @apply opacity-100 scale-100;
+  }
+
+  /* Mobile-specific grid and layout utilities */
+  .mobile-grid-safe {
+    @apply grid gap-4 px-4;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .mobile-stack {
+    @apply flex flex-col gap-4 md:flex-row md:gap-6;
   }
 }
 
@@ -235,6 +338,29 @@
   }
 }
 
+@keyframes native-bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
 .animate-mobile-slide-up {
   animation: mobile-slide-up 0.3s ease-out;
 }
@@ -247,9 +373,19 @@
   animation: stagger-fade-in 0.6s ease-out;
 }
 
+.animate-native-bounce {
+  animation: native-bounce 0.2s ease-out;
+}
+
+.animate-scale-in {
+  animation: stagger-fade-in 0.6s ease-out;
+}
+
 /* Ensure proper spacing for mobile with fixed navigation */
 .mobile-page-content {
   @apply pt-16 pb-20 md:pb-8;
+  /* Add padding for status bar on mobile */
+  padding-top: max(env(safe-area-inset-top), 4rem);
 }
 
 /* Mobile-optimized grid layouts */
@@ -260,4 +396,59 @@
 /* Touch-friendly interactive elements */
 .touch-target {
   @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+}
+
+/* Mobile-specific festival styles */
+@media (max-width: 768px) {
+  .festival-bg {
+    background: linear-gradient(
+      45deg,
+      hsl(320, 100%, 50%),
+      hsl(280, 100%, 60%),
+      hsl(25, 100%, 55%),
+      hsl(180, 100%, 50%)
+    );
+    background-size: 400% 400%;
+    animation: festival-gradient 8s ease infinite;
+  }
+
+  .neon-text {
+    text-shadow: 0 0 10px hsl(320, 100%, 50%), 
+                 0 0 20px hsl(320, 100%, 50%), 
+                 0 0 30px hsl(320, 100%, 50%);
+  }
+
+  .festival-title {
+    background: linear-gradient(45deg, 
+      hsl(320, 100%, 50%), 
+      hsl(280, 100%, 60%), 
+      hsl(25, 100%, 55%)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@keyframes festival-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Native mobile scrolling improvements */
+@media (max-width: 768px) {
+  .mobile-scroll-container {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+
+  /* Improve touch responsiveness */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
 }

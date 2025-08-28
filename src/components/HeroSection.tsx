@@ -94,33 +94,33 @@ const HeroSection = () => {
                 {/* Content */}
                 <div className="relative z-10 text-center px-4 max-w-6xl mx-auto w-full">
                   <div className="animate-fade-in">
-                    <h1 className="font-righteous text-3xl sm:text-4xl md:text-6xl lg:text-8xl mb-4 leading-tight">
+                    <h1 className="font-righteous text-3xl sm:text-4xl md:text-6xl lg:text-8xl mb-6 leading-tight">
                       <span className="block festival-title neon-text">{slide.title}</span>
                       <span className="block text-white">{slide.subtitle}</span>
                     </h1>
                     
-                    <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-2 font-light">
+                    <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-3 font-light">
                       {slide.description}
                     </p>
                     
-                    <p className="text-base sm:text-lg md:text-xl text-neon-purple mb-6 md:mb-8 font-medium px-2">
+                    <p className="text-base sm:text-lg md:text-xl text-neon-purple mb-8 md:mb-10 font-medium px-2">
                       {slide.tagline}
                     </p>
                     
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 md:mb-12 px-2">
+                    <div className="mobile-stack justify-center items-center mb-12 md:mb-16 px-2 gap-3 sm:gap-4">
                       <Link to={slide.primaryAction.link} className="w-full sm:w-auto">
-                        <Button className="btn-festival text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
+                        <Button className="btn-festival text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-4 w-full sm:w-auto native-press ios-spring">
                           {slide.primaryAction.icon && <slide.primaryAction.icon className="mr-2" size={18} />}
                           {slide.primaryAction.text}
                         </Button>
                       </Link>
                       <Link to={slide.secondaryAction.link} className="w-full sm:w-auto">
-                        <Button className="btn-stage text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
+                        <Button className="btn-stage text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-4 w-full sm:w-auto native-press ios-spring">
                           {slide.secondaryAction.text}
                         </Button>
                       </Link>
                       <Link to={slide.tertiaryAction.link} className="w-full sm:w-auto">
-                        <Button className="btn-tribal text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
+                        <Button className="btn-tribal text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-4 w-full sm:w-auto native-press ios-spring">
                           {slide.tertiaryAction.icon && <slide.tertiaryAction.icon className="mr-2" size={18} />}
                           {slide.tertiaryAction.text}
                         </Button>
@@ -139,34 +139,35 @@ const HeroSection = () => {
       </Carousel>
 
       {/* Festival Stats - Outside carousel to avoid duplication, positioned to avoid overlap */}
-      <div className="absolute bottom-4 md:bottom-8 left-0 right-0 z-20 px-4">
+      <div className="absolute bottom-6 md:bottom-8 left-0 right-0 z-20 px-4 pb-safe-area-inset-bottom">
         <div 
           ref={statsRef}
-          className={`grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 md:gap-6 max-w-6xl mx-auto transition-all duration-1000 ${
+          className={`mobile-grid-safe max-w-6xl mx-auto transition-all duration-1000 ${
             statsVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-12'
           }`}
+          style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}
         >
-          <div className={`festival-card text-center transition-all duration-700 py-2 px-1 sm:py-3 md:py-4 ${
+          <div className={`festival-card text-center transition-all duration-700 py-3 px-2 sm:py-4 rounded-xl native-press ${
             statsVisible ? 'animate-scale-in' : ''
           }`} style={{ animationDelay: statsVisible ? '0ms' : '0ms' }}>
             <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-neon-pink mb-1">200+</div>
             <div className="text-gray-400 text-xs sm:text-sm md:text-base">Musicians</div>
           </div>
-          <div className={`festival-card text-center transition-all duration-700 py-2 px-1 sm:py-3 md:py-4 ${
+          <div className={`festival-card text-center transition-all duration-700 py-3 px-2 sm:py-4 rounded-xl native-press ${
             statsVisible ? 'animate-scale-in' : ''
           }`} style={{ animationDelay: statsVisible ? '150ms' : '0ms' }}>
             <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-neon-purple mb-1">16</div>
             <div className="text-gray-400 text-xs sm:text-sm md:text-base">Tribes</div>
           </div>
-          <div className={`festival-card text-center transition-all duration-700 py-2 px-1 sm:py-3 md:py-4 ${
+          <div className={`festival-card text-center transition-all duration-700 py-3 px-2 sm:py-4 rounded-xl native-press ${
             statsVisible ? 'animate-scale-in' : ''
           }`} style={{ animationDelay: statsVisible ? '300ms' : '0ms' }}>
             <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-electric-orange mb-1">5</div>
             <div className="text-gray-400 text-xs sm:text-sm md:text-base">Days</div>
           </div>
-          <div className={`festival-card text-center transition-all duration-700 py-2 px-1 sm:py-3 md:py-4 ${
+          <div className={`festival-card text-center transition-all duration-700 py-3 px-2 sm:py-4 rounded-xl native-press ${
             statsVisible ? 'animate-scale-in' : ''
           }`} style={{ animationDelay: statsVisible ? '450ms' : '0ms' }}>
             <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-cyber-teal mb-1">50K+</div>
