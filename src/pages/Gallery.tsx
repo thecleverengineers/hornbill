@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -120,8 +121,11 @@ const Gallery = () => {
     ? allGalleryImages 
     : allGalleryImages.filter(image => image.category === selectedCategory);
 
-  const openModal = (index: number) => {
-    setSelectedImageIndex(index);
+  const openModal = (filteredIndex: number) => {
+    // Find the actual index in the full array
+    const clickedImage = filteredImages[filteredIndex];
+    const actualIndex = allGalleryImages.findIndex(img => img.id === clickedImage.id);
+    setSelectedImageIndex(actualIndex);
     setIsModalOpen(true);
   };
 
@@ -253,7 +257,7 @@ const Gallery = () => {
       <GalleryModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        images={filteredImages}
+        images={allGalleryImages}
         initialIndex={selectedImageIndex}
       />
     </div>
