@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Navigation } from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -149,68 +149,69 @@ const Artists = () => {
             }`}
           >
             {filteredArtists.map((artist, index) => (
-              <Card 
-                key={artist.id} 
-                className={`artist-card overflow-hidden group cursor-pointer transition-all duration-700 ${
-                  gridVisible ? 'animate-stagger-fade-in' : 'opacity-0 translate-y-8'
-                }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardContent className="p-0">
-                  {/* Artist Image */}
-                  <div className="relative h-64 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-8xl group-hover:scale-105 transition-transform duration-300">
-                    {artist.image}
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="w-16 h-16 bg-pink-500/80 rounded-full flex items-center justify-center">
-                        <Play className="text-white ml-1" size={24} fill="currentColor" />
+              <Link to={`/artists/${artist.id}`} key={artist.id}>
+                <Card 
+                  className={`artist-card overflow-hidden group cursor-pointer transition-all duration-700 hover:scale-105 ${
+                    gridVisible ? 'animate-stagger-fade-in' : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <CardContent className="p-0">
+                    {/* Artist Image */}
+                    <div className="relative h-64 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-8xl group-hover:scale-105 transition-transform duration-300">
+                      {artist.image}
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div className="w-16 h-16 bg-pink-500/80 rounded-full flex items-center justify-center">
+                          <Play className="text-white ml-1" size={24} fill="currentColor" />
+                        </div>
+                      </div>
+                      <div className="absolute top-4 right-4 flex space-x-2">
+                        <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs">🎵</span>
+                        </div>
                       </div>
                     </div>
-                    <div className="absolute top-4 right-4 flex space-x-2">
-                      <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center">
-                        <span className="text-white text-xs">🎵</span>
+                    
+                    <div className="p-6">
+                      <h3 className="font-righteous text-xl mb-2 text-white group-hover:text-pink-400 transition-colors">
+                        {artist.name}
+                      </h3>
+                      
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          artist.genre === 'Rock' ? 'bg-pink-500/20 text-pink-400' :
+                          artist.genre === 'Folk' ? 'bg-purple-500/20 text-purple-400' :
+                          artist.genre === 'Electronic' ? 'bg-orange-500/20 text-orange-400' :
+                          artist.genre === 'Traditional' ? 'bg-teal-500/20 text-teal-400' :
+                          'bg-yellow-500/20 text-yellow-400'
+                        }`}>
+                          {artist.genre}
+                        </span>
+                        <span className="px-2 py-1 bg-gray-800 rounded-full text-xs text-gray-300">
+                          {artist.district}
+                        </span>
+                        <span className="px-2 py-1 bg-gray-800 rounded-full text-xs text-gray-300">
+                          {artist.language}
+                        </span>
+                      </div>
+                      
+                      <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                        {artist.bio}
+                      </p>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex space-x-3">
+                          <Instagram size={20} className="text-gray-400 hover:text-pink-400 cursor-pointer transition-colors" />
+                          <Youtube size={20} className="text-gray-400 hover:text-red-400 cursor-pointer transition-colors" />
+                        </div>
+                        <Button className="btn-festival" onClick={(e) => e.preventDefault()}>
+                          View Details
+                        </Button>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <h3 className="font-righteous text-xl mb-2 text-white group-hover:text-pink-400 transition-colors">
-                      {artist.name}
-                    </h3>
-                    
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        artist.genre === 'Rock' ? 'bg-pink-500/20 text-pink-400' :
-                        artist.genre === 'Folk' ? 'bg-purple-500/20 text-purple-400' :
-                        artist.genre === 'Electronic' ? 'bg-orange-500/20 text-orange-400' :
-                        artist.genre === 'Traditional' ? 'bg-teal-500/20 text-teal-400' :
-                        'bg-yellow-500/20 text-yellow-400'
-                      }`}>
-                        {artist.genre}
-                      </span>
-                      <span className="px-2 py-1 bg-gray-800 rounded-full text-xs text-gray-300">
-                        {artist.district}
-                      </span>
-                      <span className="px-2 py-1 bg-gray-800 rounded-full text-xs text-gray-300">
-                        {artist.language}
-                      </span>
-                    </div>
-                    
-                    <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                      {artist.bio}
-                    </p>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex space-x-3">
-                        <Instagram size={20} className="text-gray-400 hover:text-pink-400 cursor-pointer transition-colors" />
-                        <Youtube size={20} className="text-gray-400 hover:text-red-400 cursor-pointer transition-colors" />
-                      </div>
-                      <Button className="btn-festival">
-                        Listen Now
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
 
