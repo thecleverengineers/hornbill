@@ -59,7 +59,7 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
       <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-0 bg-black/95 border-gray-800">
         <DialogHeader className="absolute top-4 left-4 right-4 z-10">
           <div className="flex items-center justify-between text-white">
-            <DialogTitle className="font-righteous text-xl">
+            <DialogTitle className="font-righteous text-lg md:text-xl">
               {currentImage.title}
             </DialogTitle>
             <div className="flex items-center gap-2">
@@ -79,24 +79,24 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
         </DialogHeader>
 
         {/* Main Image */}
-        <div className="relative w-full h-full flex items-center justify-center p-4 md:p-16">
+        <div className="relative w-full h-full flex items-center justify-center p-2 md:p-16">
           <div 
             className={`relative rounded-lg overflow-hidden transition-all duration-300 cursor-pointer ${
               isZoomed 
                 ? 'w-full h-full' 
-                : 'w-full h-[70vh] md:w-4/5 md:h-4/5 max-w-4xl'
+                : 'w-full aspect-[4/3] md:w-4/5 md:h-4/5 md:aspect-auto max-w-4xl'
             }`}
             onClick={() => setIsZoomed(!isZoomed)}
           >
             <div className={`w-full h-full bg-gradient-to-br ${currentImage.gradient} opacity-90`} />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             
-            <div className="absolute bottom-4 left-4 right-4 text-white">
+            <div className="absolute bottom-2 md:bottom-4 left-2 md:left-4 right-2 md:right-4 text-white">
               <div className="flex items-center justify-between mb-2">
-                <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium border border-white/30">
+                <span className="px-2 md:px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs md:text-sm font-medium border border-white/30">
                   {currentImage.category}
                 </span>
-                <div className="flex gap-2">
+                <div className="flex gap-1 md:gap-2">
                   <Button
                     variant="ghost"
                     size="sm"
@@ -104,27 +104,27 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
                       e.stopPropagation();
                       setIsZoomed(!isZoomed);
                     }}
-                    className="text-white hover:bg-white/10"
+                    className="text-white hover:bg-white/10 p-1 md:p-2"
                   >
-                    {isZoomed ? <ZoomOut size={16} /> : <ZoomIn size={16} />}
+                    {isZoomed ? <ZoomOut size={14} className="md:w-4 md:h-4" /> : <ZoomIn size={14} className="md:w-4 md:h-4" />}
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-white hover:bg-white/10"
+                    className="text-white hover:bg-white/10 p-1 md:p-2"
                   >
-                    <Share2 size={16} />
+                    <Share2 size={14} className="md:w-4 md:h-4" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-white hover:bg-white/10"
+                    className="text-white hover:bg-white/10 p-1 md:p-2"
                   >
-                    <Download size={16} />
+                    <Download size={14} className="md:w-4 md:h-4" />
                   </Button>
                 </div>
               </div>
-              <p className="text-gray-200 text-sm leading-relaxed">
+              <p className="text-gray-200 text-xs md:text-sm leading-relaxed">
                 {currentImage.description}
               </p>
             </div>
