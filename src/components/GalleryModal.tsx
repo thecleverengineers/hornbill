@@ -66,20 +66,22 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
               <span className="text-sm text-gray-300">
                 {currentIndex + 1} / {images.length}
               </span>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={onClose}
-                className="text-white hover:bg-white/10"
-              >
-                <X size={20} />
-              </Button>
             </div>
           </div>
         </DialogHeader>
 
+        {/* Close button - single instance in top right */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onClose}
+          className="absolute top-4 right-4 text-white hover:bg-white/10 z-20"
+        >
+          <X size={20} />
+        </Button>
+
         {/* Main Image */}
-        <div className="relative w-full h-full flex items-center justify-center md:p-16">
+        <div className="relative w-full h-full flex items-center justify-center p-0 md:p-16">
           <div 
             className={`relative rounded-lg overflow-hidden transition-all duration-300 cursor-pointer ${
               isZoomed 
