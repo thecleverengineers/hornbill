@@ -130,11 +130,11 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
           </div>
         </div>
 
-        {/* Navigation */}
+        {/* Navigation Buttons - Left and Right */}
         <Button
           variant="ghost"
           size="icon"
-          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/10 w-10 h-10 md:w-12 md:h-12"
+          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/10 w-10 h-10 md:w-12 md:h-12 z-20"
           onClick={goToPrevious}
           disabled={images.length <= 1}
         >
@@ -144,7 +144,7 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
         <Button
           variant="ghost"
           size="icon"
-          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/10 w-10 h-10 md:w-12 md:h-12"
+          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/10 w-10 h-10 md:w-12 md:h-12 z-20"
           onClick={goToNext}
           disabled={images.length <= 1}
         >
