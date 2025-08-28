@@ -93,7 +93,7 @@ const HeroSection = () => {
                 <div className="relative z-10 text-center px-4 max-w-6xl mx-auto w-full">
                   <div className="animate-native-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
                     <h1 className="font-righteous text-3xl sm:text-5xl md:text-6xl lg:text-8xl mb-6 leading-tight no-select">
-                      <span className="block festival-title">{slide.title}</span>
+                      <span className="block festival-title drop-shadow-md">{slide.title}</span>
                       <span className="block text-white drop-shadow-md">{slide.subtitle}</span>
                     </h1>
                     
