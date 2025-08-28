@@ -257,7 +257,7 @@
   }
 
   .haptic-light {
-    @apply active:scale-98 transition-transform duration-100;
+    @apply active:scale-[0.98] transition-transform duration-100;
   }
 
   .haptic-medium {
@@ -341,4 +341,35 @@
   color-scheme: dark;
 }
 
-/* ... keep existing code (keyframes and remaining styles) */
+/* Festival gradient animations */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Festival text glow effect */
+.festival-title {
+  background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
+}
+
+.neon-text {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+}
+
+/* Additional native scroll improvements */
+.native-scroll-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.native-scroll-container::-webkit-scrollbar {
+  display: none;
+}
