@@ -79,7 +79,7 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
         </DialogHeader>
 
         {/* Main Image */}
-        <div className="relative w-full h-full flex items-center justify-center p-2 md:p-16">
+        <div className="relative w-full h-full flex items-center justify-center md:p-16">
           <div 
             className={`relative rounded-lg overflow-hidden transition-all duration-300 cursor-pointer ${
               isZoomed 
