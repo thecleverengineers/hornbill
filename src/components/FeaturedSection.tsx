@@ -108,7 +108,7 @@ const FeaturedSection = () => {
   const scrollGallery = (direction: 'left' | 'right') => {
     const gallery = document.getElementById('festival-gallery');
     if (gallery) {
-      const scrollAmount = 320;
+      const scrollAmount = window.innerWidth < 768 ? 280 : 320;
       gallery.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -235,7 +235,7 @@ const FeaturedSection = () => {
           }`}
         >
           <div className="flex items-center justify-between mb-8">
-            <h3 className={`font-righteous text-3xl transition-all duration-1000 delay-200 ${
+            <h3 className={`font-righteous text-2xl md:text-3xl transition-all duration-1000 delay-200 ${
               galleryVisible 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-8'
@@ -259,16 +259,16 @@ const FeaturedSection = () => {
             </div>
           </div>
           
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden -mx-4 px-4">
             <div 
               id="festival-gallery"
-              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
+              className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {galleryImages.map((image, index) => (
                 <div 
                   key={image.id}
-                  className={`flex-shrink-0 w-80 h-64 relative rounded-2xl overflow-hidden cursor-pointer group transition-all duration-500 hover:scale-105 ${
+                  className={`flex-shrink-0 w-72 sm:w-80 h-64 relative rounded-2xl overflow-hidden cursor-pointer group transition-all duration-500 hover:scale-105 snap-start ${
                     galleryVisible ? 'animate-scale-in' : 'opacity-0 scale-75'
                   }`}
                   style={{
@@ -279,7 +279,7 @@ const FeaturedSection = () => {
                   <div className={`absolute inset-0 bg-gradient-to-br ${image.gradient} opacity-90`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                   
-                  <div className="absolute inset-0 flex flex-col justify-between p-6">
+                  <div className="absolute inset-0 flex flex-col justify-between p-4 md:p-6">
                     <div className="flex justify-between items-start">
                       <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/30">
                         {image.category}
@@ -290,10 +290,10 @@ const FeaturedSection = () => {
                     </div>
                     
                     <div>
-                      <h4 className="font-righteous text-xl text-white mb-2 group-hover:text-pink-200 transition-colors duration-300">
+                      <h4 className="font-righteous text-lg md:text-xl text-white mb-2 group-hover:text-pink-200 transition-colors duration-300">
                         {image.title}
                       </h4>
-                      <p className="text-gray-200 text-sm opacity-90">
+                      <p className="text-gray-200 text-sm opacity-90 line-clamp-2">
                         {image.description}
                       </p>
                     </div>
@@ -305,17 +305,17 @@ const FeaturedSection = () => {
             </div>
           </div>
           
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 mt-8">
             <Button 
               onClick={() => setIsModalOpen(true)}
-              className="btn-festival"
+              className="btn-festival w-full sm:w-auto"
             >
               <Camera className="mr-2" size={20} />
               Quick View Gallery
             </Button>
             
-            <Link to="/gallery">
-              <Button className="btn-festival">
+            <Link to="/gallery" className="w-full sm:w-auto">
+              <Button className="btn-festival w-full">
                 <ExternalLink className="mr-2" size={20} />
                 Full Gallery Page
               </Button>
