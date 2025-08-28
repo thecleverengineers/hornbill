@@ -1,14 +1,18 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Camera, ArrowLeft, Download, Share2 } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
+import GalleryModal from '@/components/GalleryModal';
 
 const Gallery = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: galleryRef, isVisible: galleryVisible } = useScrollAnimation<HTMLDivElement>();
+
+  // Gallery modal state
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
 
   const allGalleryImages = [
     {
@@ -116,6 +120,11 @@ const Gallery = () => {
     ? allGalleryImages 
     : allGalleryImages.filter(image => image.category === selectedCategory);
 
+  const openModal = (index: number) => {
+    setSelectedImageIndex(index);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="min-h-screen pt-20">
       <div className="container mx-auto max-w-7xl px-4 py-12">
@@ -179,6 +188,7 @@ const Gallery = () => {
                 style={{
                   animationDelay: galleryVisible ? `${index * 100}ms` : '0ms'
                 }}
+                onClick={() => openModal(index)}
               >
                 <CardContent className="p-0">
                   <div className="aspect-[4/3] relative rounded-lg overflow-hidden">
@@ -191,10 +201,16 @@ const Gallery = () => {
                           {image.category}
                         </span>
                         <div className="flex gap-2">
-                          <button className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-pink-500/50 transition-all duration-300">
+                          <button 
+                            className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-pink-500/50 transition-all duration-300"
+                            onClick={(e) => e.stopPropagation()}
+                          >
                             <Share2 className="text-white" size={14} />
                           </button>
-                          <button className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-pink-500/50 transition-all duration-300">
+                          <button 
+                            className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-pink-500/50 transition-all duration-300"
+                            onClick={(e) => e.stopPropagation()}
+                          >
                             <Download className="text-white" size={14} />
                           </button>
                         </div>
@@ -233,6 +249,13 @@ const Gallery = () => {
           </Button>
         </div>
       </div>
+
+      <GalleryModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        images={filteredImages}
+        initialIndex={selectedImageIndex}
+      />
     </div>
   );
 };
