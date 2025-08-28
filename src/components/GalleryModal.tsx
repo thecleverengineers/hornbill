@@ -57,28 +57,27 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-0 bg-black/95 border-gray-800">
-        <DialogHeader className="absolute top-4 left-4 right-4 z-10">
-          <div className="flex items-center justify-between text-white">
-            <DialogTitle className="font-righteous text-lg md:text-xl">
+        {/* Header with proper layout */}
+        <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
+          <div className="flex-1">
+            <DialogTitle className="font-righteous text-lg md:text-xl text-white">
               {currentImage.title}
             </DialogTitle>
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-300">
-                {currentIndex + 1} / {images.length}
-              </span>
-            </div>
           </div>
-        </DialogHeader>
-
-        {/* Close button - single instance in top right */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={onClose}
-          className="absolute top-4 right-4 text-white hover:bg-white/10 z-20"
-        >
-          <X size={20} />
-        </Button>
+          <div className="flex items-center gap-4">
+            <span className="text-sm text-gray-300 whitespace-nowrap">
+              {currentIndex + 1} / {images.length}
+            </span>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onClose}
+              className="text-white hover:bg-white/10"
+            >
+              <X size={20} />
+            </Button>
+          </div>
+        </div>
 
         {/* Main Image */}
         <div className="relative w-full h-full flex items-center justify-center p-0 md:p-16">
