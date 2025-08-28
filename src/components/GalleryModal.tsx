@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, X, Download, Share2, ZoomIn, ZoomOut } from 'lucide-react';
 
@@ -56,14 +56,12 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-0 bg-black/95 border-gray-800">
-        {/* Header with proper layout */}
+      <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-0 bg-black/95 border-gray-800 [&>button]:hidden">
+        {/* Custom Header - replaces DialogHeader to avoid duplicate close buttons */}
         <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
-          <div className="flex-1">
-            <DialogTitle className="font-righteous text-lg md:text-xl text-white">
-              {currentImage.title}
-            </DialogTitle>
-          </div>
+          <h2 className="font-righteous text-lg md:text-xl text-white flex-1">
+            {currentImage.title}
+          </h2>
           <div className="flex items-center gap-4">
             <span className="text-sm text-gray-300 whitespace-nowrap">
               {currentIndex + 1} / {images.length}
