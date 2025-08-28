@@ -79,10 +79,12 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
         </DialogHeader>
 
         {/* Main Image */}
-        <div className="relative w-full h-full flex items-center justify-center p-16">
+        <div className="relative w-full h-full flex items-center justify-center p-4 md:p-16">
           <div 
             className={`relative rounded-lg overflow-hidden transition-all duration-300 cursor-pointer ${
-              isZoomed ? 'w-full h-full' : 'w-4/5 h-4/5'
+              isZoomed 
+                ? 'w-full h-full' 
+                : 'w-full h-[70vh] md:w-4/5 md:h-4/5 max-w-4xl'
             }`}
             onClick={() => setIsZoomed(!isZoomed)}
           >
@@ -133,25 +135,25 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
         <Button
           variant="ghost"
           size="icon"
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/10 w-12 h-12"
+          className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/10 w-10 h-10 md:w-12 md:h-12"
           onClick={goToPrevious}
           disabled={images.length <= 1}
         >
-          <ChevronLeft size={24} />
+          <ChevronLeft size={20} className="md:w-6 md:h-6" />
         </Button>
 
         <Button
           variant="ghost"
           size="icon"
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/10 w-12 h-12"
+          className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-white hover:bg-white/10 w-10 h-10 md:w-12 md:h-12"
           onClick={goToNext}
           disabled={images.length <= 1}
         >
-          <ChevronRight size={24} />
+          <ChevronRight size={20} className="md:w-6 md:h-6" />
         </Button>
 
-        {/* Thumbnail Strip */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 max-w-4xl">
+        {/* Thumbnail Strip - Hidden on mobile to save space */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 max-w-4xl hidden md:block">
           <div className="flex gap-2 overflow-x-auto px-4 py-2 bg-black/50 backdrop-blur-sm rounded-lg">
             {images.map((image, index) => (
               <button
