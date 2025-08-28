@@ -1,15 +1,21 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Music, Camera, Users, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Music, Camera, Users, ChevronLeft, ChevronRight, Eye, ExternalLink, Expand } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { Link } from 'react-router-dom';
+import GalleryModal from './GalleryModal';
 
 const FeaturedSection = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: cardsRef, isVisible: cardsVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: documentaryRef, isVisible: documentaryVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: galleryRef, isVisible: galleryVisible } = useScrollAnimation<HTMLDivElement>();
+
+  // Gallery modal state
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
+  const [isExpanded, setIsExpanded] = React.useState(false);
 
   const featuredCards = [
     {
@@ -100,15 +106,55 @@ const FeaturedSection = () => {
     }
   ];
 
+  // Additional images for expanded view
+  const expandedImages = [
+    ...galleryImages,
+    {
+      id: 9,
+      title: 'Workshop Sessions',
+      description: 'Learning traditional music techniques from masters',
+      category: 'Education',
+      gradient: 'from-rose-500/80 to-pink-500/80'
+    },
+    {
+      id: 10,
+      title: 'Sunset Performance',
+      description: 'Golden hour magic with silhouetted performers',
+      category: 'Performance',
+      gradient: 'from-orange-600/80 to-red-500/80'
+    },
+    {
+      id: 11,
+      title: 'Children\'s Corner',
+      description: 'Young talents showcasing their cultural pride',
+      category: 'Youth',
+      gradient: 'from-cyan-500/80 to-blue-500/80'
+    },
+    {
+      id: 12,
+      title: 'Craft Exhibition',
+      description: 'Traditional Naga handicrafts on display',
+      category: 'Crafts',
+      gradient: 'from-violet-500/80 to-purple-500/80'
+    }
+  ];
+
+  const displayImages = isExpanded ? expandedImages : galleryImages;
+
   const scrollGallery = (direction: 'left' | 'right') => {
     const gallery = document.getElementById('festival-gallery');
     if (gallery) {
-      const scrollAmount = 320; // Width of one card plus gap
+      const scrollAmount = 320;
       gallery.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
       });
     }
+  };
+
+  const openModal = (index: number) => {
+    setSelectedImageIndex(index);
+    setIsModalOpen(true);
   };
 
   return (
@@ -170,7 +216,6 @@ const FeaturedSection = () => {
           ))}
         </div>
 
-        {/* Mini Documentary Section */}
         <div 
           ref={documentaryRef}
           className={`festival-card transition-all duration-800 ${
@@ -217,7 +262,6 @@ const FeaturedSection = () => {
           </div>
         </div>
 
-        {/* Festival Highlights Gallery */}
         <div 
           ref={galleryRef}
           className={`mt-16 transition-all duration-800 ${
@@ -254,18 +298,21 @@ const FeaturedSection = () => {
           <div className="relative overflow-hidden">
             <div 
               id="festival-gallery"
-              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
+              className={`grid gap-6 overflow-x-auto scrollbar-hide pb-4 ${
+                isExpanded ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : 'flex'
+              }`}
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {galleryImages.map((image, index) => (
+              {displayImages.map((image, index) => (
                 <div 
                   key={image.id}
-                  className={`flex-shrink-0 w-80 h-64 relative rounded-2xl overflow-hidden cursor-pointer group transition-all duration-500 hover:scale-105 ${
+                  className={`${isExpanded ? '' : 'flex-shrink-0 w-80'} h-64 relative rounded-2xl overflow-hidden cursor-pointer group transition-all duration-500 hover:scale-105 ${
                     galleryVisible ? 'animate-scale-in' : 'opacity-0 scale-75'
                   }`}
                   style={{
                     animationDelay: galleryVisible ? `${index * 100}ms` : '0ms'
                   }}
+                  onClick={() => openModal(index)}
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${image.gradient} opacity-90`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -276,7 +323,7 @@ const FeaturedSection = () => {
                         {image.category}
                       </span>
                       <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-pink-500/50 transition-all duration-300">
-                        <Camera className="text-white" size={16} />
+                        <Eye className="text-white" size={16} />
                       </div>
                     </div>
                     
@@ -296,14 +343,40 @@ const FeaturedSection = () => {
             </div>
           </div>
           
-          <div className="text-center mt-8">
-            <Button className="btn-festival">
-              <Camera className="mr-2" size={20} />
-              View Full Gallery
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+            <Button
+              onClick={() => setIsExpanded(!isExpanded)}
+              variant="outline" 
+              className="border-gray-700 text-gray-300 hover:border-pink-500 hover:text-pink-400"
+            >
+              <Expand className="mr-2" size={20} />
+              {isExpanded ? 'Show Less' : 'Show More'}
             </Button>
+            
+            <Button 
+              onClick={() => setIsModalOpen(true)}
+              className="btn-festival"
+            >
+              <Camera className="mr-2" size={20} />
+              Quick View Gallery
+            </Button>
+            
+            <Link to="/gallery">
+              <Button className="btn-festival">
+                <ExternalLink className="mr-2" size={20} />
+                Full Gallery Page
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
+
+      <GalleryModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        images={displayImages}
+        initialIndex={selectedImageIndex}
+      />
     </section>
   );
 };
