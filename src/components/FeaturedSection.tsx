@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Music, Camera, Users, ChevronLeft, ChevronRight, Eye, ExternalLink, Expand } from 'lucide-react';
+import { ArrowRight, Music, Camera, Users, ChevronLeft, ChevronRight, Eye, ExternalLink } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
 import GalleryModal from './GalleryModal';
@@ -15,7 +15,6 @@ const FeaturedSection = () => {
   // Gallery modal state
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
-  const [isExpanded, setIsExpanded] = React.useState(false);
 
   const featuredCards = [
     {
@@ -105,41 +104,6 @@ const FeaturedSection = () => {
       gradient: 'from-amber-500/80 to-yellow-500/80'
     }
   ];
-
-  // Additional images for expanded view
-  const expandedImages = [
-    ...galleryImages,
-    {
-      id: 9,
-      title: 'Workshop Sessions',
-      description: 'Learning traditional music techniques from masters',
-      category: 'Education',
-      gradient: 'from-rose-500/80 to-pink-500/80'
-    },
-    {
-      id: 10,
-      title: 'Sunset Performance',
-      description: 'Golden hour magic with silhouetted performers',
-      category: 'Performance',
-      gradient: 'from-orange-600/80 to-red-500/80'
-    },
-    {
-      id: 11,
-      title: 'Children\'s Corner',
-      description: 'Young talents showcasing their cultural pride',
-      category: 'Youth',
-      gradient: 'from-cyan-500/80 to-blue-500/80'
-    },
-    {
-      id: 12,
-      title: 'Craft Exhibition',
-      description: 'Traditional Naga handicrafts on display',
-      category: 'Crafts',
-      gradient: 'from-violet-500/80 to-purple-500/80'
-    }
-  ];
-
-  const displayImages = isExpanded ? expandedImages : galleryImages;
 
   const scrollGallery = (direction: 'left' | 'right') => {
     const gallery = document.getElementById('festival-gallery');
@@ -298,15 +262,13 @@ const FeaturedSection = () => {
           <div className="relative overflow-hidden">
             <div 
               id="festival-gallery"
-              className={`grid gap-6 overflow-x-auto scrollbar-hide pb-4 ${
-                isExpanded ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : 'flex'
-              }`}
+              className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              {displayImages.map((image, index) => (
+              {galleryImages.map((image, index) => (
                 <div 
                   key={image.id}
-                  className={`${isExpanded ? '' : 'flex-shrink-0 w-80'} h-64 relative rounded-2xl overflow-hidden cursor-pointer group transition-all duration-500 hover:scale-105 ${
+                  className={`flex-shrink-0 w-80 h-64 relative rounded-2xl overflow-hidden cursor-pointer group transition-all duration-500 hover:scale-105 ${
                     galleryVisible ? 'animate-scale-in' : 'opacity-0 scale-75'
                   }`}
                   style={{
@@ -344,15 +306,6 @@ const FeaturedSection = () => {
           </div>
           
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-            <Button
-              onClick={() => setIsExpanded(!isExpanded)}
-              variant="outline" 
-              className="border-gray-700 text-gray-300 hover:border-pink-500 hover:text-pink-400"
-            >
-              <Expand className="mr-2" size={20} />
-              {isExpanded ? 'Show Less' : 'Show More'}
-            </Button>
-            
             <Button 
               onClick={() => setIsModalOpen(true)}
               className="btn-festival"
@@ -374,7 +327,7 @@ const FeaturedSection = () => {
       <GalleryModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        images={displayImages}
+        images={galleryImages}
         initialIndex={selectedImageIndex}
       />
     </section>
