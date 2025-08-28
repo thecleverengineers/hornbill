@@ -16,6 +16,13 @@ const FeaturedSection = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
 
+  // Touch handling for mobile swipe
+  const [touchStart, setTouchStart] = React.useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = React.useState<number | null>(null);
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
+
   const featuredCards = [
     {
       title: '🎤 Pre-Ticket Auditions',
@@ -113,6 +120,30 @@ const FeaturedSection = () => {
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
       });
+    }
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      scrollGallery('right');
+    }
+    if (isRightSwipe) {
+      scrollGallery('left');
     }
   };
 
@@ -262,13 +293,16 @@ const FeaturedSection = () => {
           <div className="relative overflow-hidden -mx-4 px-4">
             <div 
               id="festival-gallery"
-              className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
+              className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory touch-pan-x"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
             >
               {galleryImages.map((image, index) => (
                 <div 
                   key={image.id}
-                  className={`flex-shrink-0 w-72 sm:w-80 h-64 relative rounded-2xl overflow-hidden cursor-pointer group transition-all duration-500 hover:scale-105 snap-start ${
+                  className={`flex-shrink-0 w-72 sm:w-80 h-64 relative rounded-2xl overflow-hidden cursor-pointer group transition-all duration-500 hover:scale-105 snap-start select-none ${
                     galleryVisible ? 'animate-scale-in' : 'opacity-0 scale-75'
                   }`}
                   style={{
