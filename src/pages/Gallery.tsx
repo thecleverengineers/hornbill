@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -21,7 +22,8 @@ const Gallery = () => {
       description: 'Traditional Naga folk performance at sunset with vibrant costumes',
       category: 'Performance',
       gradient: 'from-orange-500/80 to-pink-500/80',
-      tags: ['Main Stage', 'Traditional', 'Folk Music']
+      tags: ['Main Stage', 'Traditional', 'Folk Music'],
+      imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop'
     },
     {
       id: 2,
@@ -29,7 +31,8 @@ const Gallery = () => {
       description: 'Colorful traditional costumes and rhythmic movements celebrating heritage',
       category: 'Culture',
       gradient: 'from-purple-500/80 to-blue-500/80',
-      tags: ['Dance', 'Traditional', 'Culture']
+      tags: ['Dance', 'Traditional', 'Culture'],
+      imageUrl: 'https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=400&h=300&fit=crop'
     },
     {
       id: 3,
@@ -37,7 +40,8 @@ const Gallery = () => {
       description: 'Thousands gathered to celebrate music and culture under the stars',
       category: 'Atmosphere',
       gradient: 'from-teal-500/80 to-green-500/80',
-      tags: ['Crowd', 'Atmosphere', 'Unity']
+      tags: ['Crowd', 'Atmosphere', 'Unity'],
+      imageUrl: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=300&fit=crop'
     },
     {
       id: 4,
@@ -45,7 +49,8 @@ const Gallery = () => {
       description: 'Electric atmosphere under the stars with spectacular lighting',
       category: 'Performance',
       gradient: 'from-indigo-500/80 to-purple-500/80',
-      tags: ['Night', 'Concert', 'Lighting']
+      tags: ['Night', 'Concert', 'Lighting'],
+      imageUrl: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=400&h=300&fit=crop'
     },
     {
       id: 5,
@@ -53,7 +58,8 @@ const Gallery = () => {
       description: 'Ancient instruments creating modern magic in perfect harmony',
       category: 'Music',
       gradient: 'from-yellow-500/80 to-orange-500/80',
-      tags: ['Instruments', 'Traditional', 'Music']
+      tags: ['Instruments', 'Traditional', 'Music'],
+      imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop'
     },
     {
       id: 6,
@@ -61,7 +67,8 @@ const Gallery = () => {
       description: 'Artists from different tribes collaborating and sharing stories',
       category: 'Culture',
       gradient: 'from-pink-500/80 to-red-500/80',
-      tags: ['Collaboration', 'Tribes', 'Exchange']
+      tags: ['Collaboration', 'Tribes', 'Exchange'],
+      imageUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=300&fit=crop'
     },
     {
       id: 7,
@@ -69,7 +76,8 @@ const Gallery = () => {
       description: 'Behind the scenes with performing artists preparing for shows',
       category: 'Behind Scenes',
       gradient: 'from-emerald-500/80 to-cyan-500/80',
-      tags: ['Backstage', 'Artists', 'Preparation']
+      tags: ['Backstage', 'Artists', 'Preparation'],
+      imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop'
     },
     {
       id: 8,
@@ -77,7 +85,8 @@ const Gallery = () => {
       description: 'Traditional Naga cuisine and festival treats bringing people together',
       category: 'Food',
       gradient: 'from-amber-500/80 to-yellow-500/80',
-      tags: ['Food', 'Traditional', 'Cuisine']
+      tags: ['Food', 'Traditional', 'Cuisine'],
+      imageUrl: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop'
     },
     {
       id: 9,
@@ -85,7 +94,8 @@ const Gallery = () => {
       description: 'Learning traditional music techniques from master artists',
       category: 'Education',
       gradient: 'from-rose-500/80 to-pink-500/80',
-      tags: ['Workshop', 'Learning', 'Masters']
+      tags: ['Workshop', 'Learning', 'Masters'],
+      imageUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop'
     },
     {
       id: 10,
@@ -93,7 +103,8 @@ const Gallery = () => {
       description: 'Golden hour magic with silhouetted performers against the sky',
       category: 'Performance',
       gradient: 'from-orange-600/80 to-red-500/80',
-      tags: ['Sunset', 'Silhouette', 'Golden Hour']
+      tags: ['Sunset', 'Silhouette', 'Golden Hour'],
+      imageUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop'
     },
     {
       id: 11,
@@ -101,7 +112,8 @@ const Gallery = () => {
       description: 'Young talents showcasing their skills and cultural pride',
       category: 'Youth',
       gradient: 'from-cyan-500/80 to-blue-500/80',
-      tags: ['Children', 'Youth', 'Talent']
+      tags: ['Children', 'Youth', 'Talent'],
+      imageUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=300&fit=crop'
     },
     {
       id: 12,
@@ -109,7 +121,8 @@ const Gallery = () => {
       description: 'Traditional Naga handicrafts and artisanal works on display',
       category: 'Crafts',
       gradient: 'from-violet-500/80 to-purple-500/80',
-      tags: ['Crafts', 'Handicrafts', 'Art']
+      tags: ['Crafts', 'Handicrafts', 'Art'],
+      imageUrl: 'https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=400&h=300&fit=crop'
     }
   ];
 
@@ -195,8 +208,13 @@ const Gallery = () => {
               >
                 <CardContent className="p-0">
                   <div className="aspect-[4/3] relative rounded-lg overflow-hidden">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${image.gradient} opacity-90`} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <img 
+                      src={image.imageUrl} 
+                      alt={image.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${image.gradient} opacity-60 group-hover:opacity-40 transition-opacity duration-300`} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                     
                     {/* Minimal overlay with just title */}
                     <div className="absolute inset-0 flex items-end p-4">
