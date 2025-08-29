@@ -16,7 +16,7 @@ const Gallery = () => {
 
   // Pagination state
   const [visibleCount, setVisibleCount] = React.useState(8);
-  const IMAGES_PER_LOAD = 4;
+  const IMAGES_PER_LOAD = 8;
 
   const allGalleryImages = [
     {
