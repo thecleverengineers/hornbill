@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Music, MapPin, Calendar, Users, Utensils, Globe, Ticket, Star, Camera } from 'lucide-react';
+import { ArrowRight, Music, MapPin, Calendar, Users, Utensils, Globe, Ticket, Star, Camera, Play } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import GalleryModal from '@/components/GalleryModal';
 
 const HornbillMusicFestival = () => {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>();
@@ -13,6 +13,59 @@ const HornbillMusicFestival = () => {
   const { elementRef: ticketsRef, isVisible: ticketsVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: experienceRef, isVisible: experienceVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: legacyRef, isVisible: legacyVisible } = useScrollAnimation<HTMLDivElement>();
+
+  const [galleryModalOpen, setGalleryModalOpen] = React.useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
+
+  const galleryImages = [
+    {
+      id: 1,
+      title: 'Main Stage Performance',
+      description: 'International artists performing under the stars at Kisama Heritage Village',
+      category: 'Performances',
+      gradient: 'from-pink-500 via-purple-600 to-pink-500'
+    },
+    {
+      id: 2,
+      title: 'Traditional Dance',
+      description: 'Local Naga tribes showcasing their rich cultural heritage through dance',
+      category: 'Culture',
+      gradient: 'from-orange-500 via-red-600 to-pink-500'
+    },
+    {
+      id: 3,
+      title: 'Festival Crowd',
+      description: 'Thousands of music lovers enjoying the festival atmosphere',
+      category: 'Atmosphere',
+      gradient: 'from-purple-500 via-blue-600 to-cyan-500'
+    },
+    {
+      id: 4,
+      title: 'Acoustic Sessions',
+      description: 'Intimate acoustic performances in the hills of Nagaland',
+      category: 'Performances',
+      gradient: 'from-green-500 via-teal-600 to-blue-500'
+    },
+    {
+      id: 5,
+      title: 'Food Festival',
+      description: 'Traditional Naga cuisine and international food stalls',
+      category: 'Food & Culture',
+      gradient: 'from-yellow-500 via-orange-600 to-red-500'
+    },
+    {
+      id: 6,
+      title: 'Sunset Concert',
+      description: 'Golden hour performances with breathtaking mountain views',
+      category: 'Performances',
+      gradient: 'from-amber-500 via-orange-600 to-pink-500'
+    }
+  ];
+
+  const openGallery = (index: number) => {
+    setSelectedImageIndex(index);
+    setGalleryModalOpen(true);
+  };
 
   const highlights = [
     {
@@ -158,6 +211,64 @@ const HornbillMusicFestival = () => {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Image Gallery */}
+        <section 
+          className={`py-20 px-4 transition-all duration-1000 ${
+            highlightsVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="font-righteous text-4xl md:text-5xl text-center mb-4 text-white">
+              Festival Moments
+            </h2>
+            <p className="text-xl text-gray-400 text-center mb-12">Captured Memories from Previous Years</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {galleryImages.map((image, index) => (
+                <Card 
+                  key={image.id}
+                  className="festival-card group cursor-pointer overflow-hidden hover:scale-105 transition-all duration-500"
+                  onClick={() => openGallery(index)}
+                >
+                  <CardContent className="p-0 relative">
+                    <div className="aspect-[4/3] relative overflow-hidden">
+                      <div className={`w-full h-full bg-gradient-to-br ${image.gradient} opacity-90`} />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                      
+                      {/* Play button overlay */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
+                          <Play className="text-white ml-1" size={24} fill="currentColor" />
+                        </div>
+                      </div>
+                      
+                      <div className="absolute bottom-0 left-0 right-0 p-4">
+                        <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/30 mb-2 inline-block">
+                          {image.category}
+                        </span>
+                        <h3 className="font-righteous text-lg text-white mb-1">
+                          {image.title}
+                        </h3>
+                        <p className="text-gray-200 text-sm line-clamp-2">
+                          {image.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            
+            <div className="text-center">
+              <Button className="btn-festival">
+                View Full Gallery <Camera className="ml-2" size={18} />
+              </Button>
             </div>
           </div>
         </section>
@@ -311,6 +422,14 @@ const HornbillMusicFestival = () => {
           </div>
         </section>
       </main>
+
+      {/* Gallery Modal */}
+      <GalleryModal
+        isOpen={galleryModalOpen}
+        onClose={() => setGalleryModalOpen(false)}
+        images={galleryImages}
+        initialIndex={selectedImageIndex}
+      />
     </div>
   );
 };
