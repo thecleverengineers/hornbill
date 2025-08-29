@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Card, CardContent } from '@/components/ui/card';
-import { Clock, MapPin, Star } from 'lucide-react';
+import { Clock, MapPin, Star, Users } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Schedule = () => {
@@ -50,74 +50,74 @@ const Schedule = () => {
 
   const scheduleData = {
     1: [
-      { id: 1, time: '10:00 AM', title: 'Festival Gates Open', venue: 'Main Entrance', type: 'info', status: 'completed' },
-      { id: 2, time: '2:00 PM', title: 'Traditional Welcome Ceremony', venue: 'Main Stage', type: 'culture', status: 'completed', featured: true },
-      { id: 3, time: '4:00 PM', title: 'Naga Folk Orchestra', venue: 'Folk Stage', type: 'music', status: 'live' },
-      { id: 4, time: '6:00 PM', title: 'Opening Night Gala', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 5, time: '8:30 PM', title: 'Tribal Dance Showcase', venue: 'Cultural Arena', type: 'culture', status: 'upcoming' }
+      { id: 1, time: '12:00 Noon - 01:00 pm', title: 'Traditional Shot Put', venue: 'Amphitheatre, Kisama', agency: 'Youth Resources & Sports', type: 'sports', status: 'completed' },
+      { id: 2, time: '03:00 pm - 08:00 pm', title: 'Hornbill Family Fun Fair', venue: 'Reempa Jotsoma (Science College Junction)', agency: 'Tourism Department', type: 'culture', status: 'completed', featured: true },
+      { id: 3, time: '05:00 pm - 09:00 pm', title: 'Night Market', venue: 'BOC', agency: 'TYO', type: 'food', status: 'live' },
+      { id: 4, time: '05:00 pm - 09:00 pm', title: 'Night Market', venue: 'Kezieke - New Secretariat Junction', agency: 'LYO', type: 'food', status: 'upcoming' },
+      { id: 5, time: '05:00 pm - 09:00 pm', title: 'Night Carnival', venue: 'Kohima Town', agency: 'KCCI', type: 'entertainment', status: 'upcoming', featured: true }
     ],
     2: [
-      { id: 6, time: '11:00 AM', title: 'Morning Meditation with Nature Sounds', venue: 'Zen Garden', type: 'wellness', status: 'upcoming' },
-      { id: 7, time: '1:00 PM', title: 'Rock Fusion Concert', venue: 'Rock Arena', type: 'music', status: 'upcoming', featured: true },
-      { id: 8, time: '3:30 PM', title: 'Traditional Instrument Workshop', venue: 'Workshop Hall', type: 'workshop', status: 'upcoming' },
-      { id: 9, time: '6:00 PM', title: 'International Artist Showcase', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 10, time: '9:00 PM', title: 'Night Market & Food Festival', venue: 'Food Court', type: 'food', status: 'upcoming' }
+      { id: 6, time: '10:00 am - 12:00 pm', title: 'Morning Cultural Parade', venue: 'Main Road, Kisama', agency: 'Cultural Affairs', type: 'culture', status: 'upcoming' },
+      { id: 7, time: '02:00 pm - 04:00 pm', title: 'Rock Fusion Concert', venue: 'Rock Arena', agency: 'Music Association', type: 'music', status: 'upcoming', featured: true },
+      { id: 8, time: '03:30 pm - 05:30 pm', title: 'Traditional Instrument Workshop', venue: 'Workshop Hall', agency: 'Heritage Foundation', type: 'workshop', status: 'upcoming' },
+      { id: 9, time: '06:00 pm - 09:00 pm', title: 'International Artist Showcase', venue: 'Main Stage', agency: 'Festival Committee', type: 'music', status: 'upcoming', featured: true },
+      { id: 10, time: '06:00 pm onwards', title: 'Hornbill Busking', venue: 'Kohima Night Bazaar', agency: 'Street Artists Collective', type: 'music', status: 'upcoming' }
     ],
     3: [
-      { id: 11, time: '10:30 AM', title: 'Youth Band Competition', venue: 'Youth Stage', type: 'competition', status: 'upcoming' },
-      { id: 12, time: '2:00 PM', title: 'Folk Fusion Collaborative Session', venue: 'Folk Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 13, time: '4:30 PM', title: 'Storytelling Circle', venue: 'Cultural Tent', type: 'culture', status: 'upcoming' },
-      { id: 14, time: '7:00 PM', title: 'Headliner Concert Night', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 15, time: '10:00 PM', title: 'Acoustic Campfire Sessions', venue: 'Campfire Area', type: 'music', status: 'upcoming' }
+      { id: 11, time: '10:30 am - 12:30 pm', title: 'Youth Band Competition', venue: 'Youth Stage', agency: 'Youth Development', type: 'competition', status: 'upcoming' },
+      { id: 12, time: '02:00 pm - 04:00 pm', title: 'Folk Fusion Collaborative Session', venue: 'Folk Stage', agency: 'Folk Music Society', type: 'music', status: 'upcoming', featured: true },
+      { id: 13, time: '04:30 pm - 06:00 pm', title: 'Storytelling Circle', venue: 'Cultural Tent', agency: 'Oral Tradition Society', type: 'culture', status: 'upcoming' },
+      { id: 14, time: '07:00 pm - 10:00 pm', title: 'Headliner Concert Night', venue: 'Main Stage', agency: 'Festival Committee', type: 'music', status: 'upcoming', featured: true },
+      { id: 15, time: '10:00 pm onwards', title: 'Acoustic Campfire Sessions', venue: 'Campfire Area', agency: 'Independent Artists', type: 'music', status: 'upcoming' }
     ],
     4: [
-      { id: 16, time: '12:00 PM', title: 'Cultural Documentary Screening', venue: 'Cinema Tent', type: 'film', status: 'upcoming' },
-      { id: 17, time: '2:30 PM', title: 'Battle of the Bands', venue: 'Competition Stage', type: 'competition', status: 'upcoming', featured: true },
-      { id: 18, time: '5:00 PM', title: 'Traditional Cuisine Masterclass', venue: 'Culinary Stage', type: 'workshop', status: 'upcoming' },
-      { id: 19, time: '7:30 PM', title: 'Gospel & Spiritual Music Night', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 20, time: '9:30 PM', title: 'Silent Disco Under the Stars', venue: 'Open Field', type: 'music', status: 'upcoming' }
+      { id: 16, time: '12:00 pm - 02:00 pm', title: 'Cultural Documentary Screening', venue: 'Cinema Tent', agency: 'Film Society', type: 'film', status: 'upcoming' },
+      { id: 17, time: '02:30 pm - 05:00 pm', title: 'Battle of the Bands', venue: 'Competition Stage', agency: 'Music Promoters', type: 'competition', status: 'upcoming', featured: true },
+      { id: 18, time: '05:00 pm - 07:00 pm', title: 'Traditional Cuisine Masterclass', venue: 'Culinary Stage', agency: 'Chef Association', type: 'workshop', status: 'upcoming' },
+      { id: 19, time: '07:30 pm - 10:00 pm', title: 'Gospel & Spiritual Music Night', venue: 'Main Stage', agency: 'Church Music Ministry', type: 'music', status: 'upcoming', featured: true },
+      { id: 20, time: '09:30 pm onwards', title: 'Silent Disco Under the Stars', venue: 'Open Field', agency: 'Event Organizers', type: 'music', status: 'upcoming' }
     ],
     5: [
-      { id: 21, time: '11:00 AM', title: 'Poetry & Spoken Word', venue: 'Literary Stage', type: 'culture', status: 'upcoming' },
-      { id: 22, time: '3:00 PM', title: 'Electronic Music Showcase', venue: 'Electronic Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 23, time: '6:00 PM', title: 'Traditional Craft Workshop', venue: 'Craft Hall', type: 'workshop', status: 'upcoming' },
-      { id: 24, time: '8:00 PM', title: 'Jazz & Blues Night', venue: 'Jazz Lounge', type: 'music', status: 'upcoming', featured: true },
-      { id: 25, time: '10:30 PM', title: 'Midnight Jam Session', venue: 'Open Mic Stage', type: 'music', status: 'upcoming' }
+      { id: 21, time: '11:00 am - 01:00 pm', title: 'Poetry & Spoken Word', venue: 'Literary Stage', agency: 'Writers Guild', type: 'culture', status: 'upcoming' },
+      { id: 22, time: '03:00 pm - 06:00 pm', title: 'Electronic Music Showcase', venue: 'Electronic Stage', agency: 'DJ Collective', type: 'music', status: 'upcoming', featured: true },
+      { id: 23, time: '06:00 pm - 08:00 pm', title: 'Traditional Craft Workshop', venue: 'Craft Hall', agency: 'Artisan Society', type: 'workshop', status: 'upcoming' },
+      { id: 24, time: '08:00 pm - 11:00 pm', title: 'Jazz & Blues Night', venue: 'Jazz Lounge', agency: 'Jazz Association', type: 'music', status: 'upcoming', featured: true },
+      { id: 25, time: '10:30 pm onwards', title: 'Midnight Jam Session', venue: 'Open Mic Stage', agency: 'Independent Musicians', type: 'music', status: 'upcoming' }
     ],
     6: [
-      { id: 26, time: '9:00 AM', title: 'Sunrise Yoga Session', venue: 'Wellness Area', type: 'wellness', status: 'upcoming' },
-      { id: 27, time: '1:00 PM', title: 'Hip Hop & Urban Music', venue: 'Urban Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 28, time: '4:00 PM', title: 'Children\'s Cultural Program', venue: 'Kids Zone', type: 'culture', status: 'upcoming' },
-      { id: 29, time: '7:00 PM', title: 'International Dance Festival', venue: 'Main Stage', type: 'culture', status: 'upcoming', featured: true },
-      { id: 30, time: '9:45 PM', title: 'Late Night Comedy Show', venue: 'Comedy Tent', type: 'entertainment', status: 'upcoming' }
+      { id: 26, time: '09:00 am - 10:30 am', title: 'Sunrise Yoga Session', venue: 'Wellness Area', agency: 'Yoga Alliance', type: 'wellness', status: 'upcoming' },
+      { id: 27, time: '01:00 pm - 04:00 pm', title: 'Hip Hop & Urban Music', venue: 'Urban Stage', agency: 'Hip Hop Collective', type: 'music', status: 'upcoming', featured: true },
+      { id: 28, time: '04:00 pm - 06:00 pm', title: 'Children\'s Cultural Program', venue: 'Kids Zone', agency: 'Child Welfare Committee', type: 'culture', status: 'upcoming' },
+      { id: 29, time: '07:00 pm - 10:00 pm', title: 'International Dance Festival', venue: 'Main Stage', agency: 'Dance Federation', type: 'culture', status: 'upcoming', featured: true },
+      { id: 30, time: '09:45 pm onwards', title: 'Late Night Comedy Show', venue: 'Comedy Tent', agency: 'Comedy Club', type: 'entertainment', status: 'upcoming' }
     ],
     7: [
-      { id: 31, time: '10:00 AM', title: 'Photography Workshop', venue: 'Media Center', type: 'workshop', status: 'upcoming' },
-      { id: 32, time: '2:30 PM', title: 'Classical Music Concert', venue: 'Concert Hall', type: 'music', status: 'upcoming', featured: true },
-      { id: 33, time: '5:30 PM', title: 'Fashion & Cultural Dress Show', venue: 'Fashion Stage', type: 'culture', status: 'upcoming' },
-      { id: 34, time: '8:00 PM', title: 'Rock Legends Tribute Night', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 35, time: '11:00 PM', title: 'Bonfire Stories & Songs', venue: 'Bonfire Area', type: 'culture', status: 'upcoming' }
+      { id: 31, time: '10:00 am - 12:00 pm', title: 'Photography Workshop', venue: 'Media Center', agency: 'Photography Society', type: 'workshop', status: 'upcoming' },
+      { id: 32, time: '02:30 pm - 05:00 pm', title: 'Classical Music Concert', venue: 'Concert Hall', agency: 'Classical Music Society', type: 'music', status: 'upcoming', featured: true },
+      { id: 33, time: '05:30 pm - 07:30 pm', title: 'Fashion & Cultural Dress Show', venue: 'Fashion Stage', agency: 'Fashion Council', type: 'culture', status: 'upcoming' },
+      { id: 34, time: '08:00 pm - 11:00 pm', title: 'Rock Legends Tribute Night', venue: 'Main Stage', agency: 'Rock Music Society', type: 'music', status: 'upcoming', featured: true },
+      { id: 35, time: '11:00 pm onwards', title: 'Bonfire Stories & Songs', venue: 'Bonfire Area', agency: 'Storytellers Guild', type: 'culture', status: 'upcoming' }
     ],
     8: [
-      { id: 36, time: '11:30 AM', title: 'Wellness & Meditation Workshop', venue: 'Zen Garden', type: 'wellness', status: 'upcoming' },
-      { id: 37, time: '3:00 PM', title: 'Folk Music Marathon', venue: 'Folk Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 38, time: '6:30 PM', title: 'Cultural Exchange Program', venue: 'Cultural Center', type: 'culture', status: 'upcoming' },
-      { id: 39, time: '8:30 PM', title: 'World Music Fusion Night', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 40, time: '10:15 PM', title: 'Acoustic Singer-Songwriter Circle', venue: 'Intimate Stage', type: 'music', status: 'upcoming' }
+      { id: 36, time: '11:30 am - 01:00 pm', title: 'Wellness & Meditation Workshop', venue: 'Zen Garden', agency: 'Wellness Foundation', type: 'wellness', status: 'upcoming' },
+      { id: 37, time: '03:00 pm - 06:00 pm', title: 'Folk Music Marathon', venue: 'Folk Stage', agency: 'Folk Heritage Society', type: 'music', status: 'upcoming', featured: true },
+      { id: 38, time: '06:30 pm - 08:30 pm', title: 'Cultural Exchange Program', venue: 'Cultural Center', agency: 'International Relations', type: 'culture', status: 'upcoming' },
+      { id: 39, time: '08:30 pm - 11:30 pm', title: 'World Music Fusion Night', venue: 'Main Stage', agency: 'World Music Council', type: 'music', status: 'upcoming', featured: true },
+      { id: 40, time: '10:15 pm onwards', title: 'Acoustic Singer-Songwriter Circle', venue: 'Intimate Stage', agency: 'Songwriters Association', type: 'music', status: 'upcoming' }
     ],
     9: [
-      { id: 41, time: '12:00 PM', title: 'Art & Craft Exhibition Opening', venue: 'Art Gallery', type: 'culture', status: 'upcoming' },
-      { id: 42, time: '3:30 PM', title: 'Battle of Genres Music Competition', venue: 'Competition Stage', type: 'competition', status: 'upcoming', featured: true },
-      { id: 43, time: '6:00 PM', title: 'Community Feast Preparation', venue: 'Community Kitchen', type: 'food', status: 'upcoming' },
-      { id: 44, time: '8:00 PM', title: 'Grand Musical Collaboration', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 45, time: '10:30 PM', title: 'Night Market Extended Hours', venue: 'Market Area', type: 'food', status: 'upcoming' }
+      { id: 41, time: '12:00 pm - 03:00 pm', title: 'Art & Craft Exhibition Opening', venue: 'Art Gallery', agency: 'Arts Council', type: 'culture', status: 'upcoming' },
+      { id: 42, time: '03:30 pm - 06:00 pm', title: 'Battle of Genres Music Competition', venue: 'Competition Stage', agency: 'Music Battle League', type: 'competition', status: 'upcoming', featured: true },
+      { id: 43, time: '06:00 pm - 08:00 pm', title: 'Community Feast Preparation', venue: 'Community Kitchen', agency: 'Local Community', type: 'food', status: 'upcoming' },
+      { id: 44, time: '08:00 pm - 11:00 pm', title: 'Grand Musical Collaboration', venue: 'Main Stage', agency: 'Festival Orchestra', type: 'music', status: 'upcoming', featured: true },
+      { id: 45, time: '10:30 pm onwards', title: 'Night Market Extended Hours', venue: 'Market Area', agency: 'Vendors Association', type: 'food', status: 'upcoming' }
     ],
     10: [
-      { id: 46, time: '11:00 AM', title: 'Final Rehearsals', venue: 'All Stages', type: 'info', status: 'upcoming' },
-      { id: 47, time: '3:00 PM', title: 'Unity Concert - All Tribes Together', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 48, time: '6:00 PM', title: 'Award Ceremony', venue: 'Main Stage', type: 'ceremony', status: 'upcoming' },
-      { id: 49, time: '8:00 PM', title: 'Grand Finale Celebration', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
-      { id: 50, time: '10:30 PM', title: 'Closing Ceremony & Fireworks', venue: 'Main Stage', type: 'ceremony', status: 'upcoming', featured: true }
+      { id: 46, time: '11:00 am - 02:00 pm', title: 'Final Rehearsals', venue: 'All Stages', agency: 'Festival Coordination', type: 'info', status: 'upcoming' },
+      { id: 47, time: '03:00 pm - 05:00 pm', title: 'Unity Concert - All Tribes Together', venue: 'Main Stage', agency: 'Tribal Unity Council', type: 'music', status: 'upcoming', featured: true },
+      { id: 48, time: '06:00 pm - 07:00 pm', title: 'Award Ceremony', venue: 'Main Stage', agency: 'Festival Committee', type: 'ceremony', status: 'upcoming' },
+      { id: 49, time: '08:00 pm - 10:00 pm', title: 'Grand Finale Celebration', venue: 'Main Stage', agency: 'Festival Organizers', type: 'music', status: 'upcoming', featured: true },
+      { id: 50, time: '10:30 pm onwards', title: 'Closing Ceremony & Fireworks', venue: 'Main Stage', agency: 'Festival Committee', type: 'ceremony', status: 'upcoming', featured: true }
     ]
   };
 
@@ -251,7 +251,7 @@ const Schedule = () => {
                       <div className="flex flex-col sm:flex-row sm:items-start gap-2 mb-3">
                         <div className="flex items-center text-gray-400">
                           <Clock size={16} className="mr-2 text-pink-400" />
-                          <span className="font-medium text-lg">{event.time}</span>
+                          <span className="font-medium text-base">{event.time}</span>
                         </div>
                         <div className="flex flex-wrap items-center gap-2">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(event.status)} flex-shrink-0`}>
@@ -267,16 +267,20 @@ const Schedule = () => {
                         </div>
                       </div>
                       
-                      <h3 className="font-righteous text-lg md:text-2xl mb-2 text-white group-hover:text-pink-400 transition-colors">
+                      <h3 className="font-righteous text-lg md:text-2xl mb-3 text-white group-hover:text-pink-400 transition-colors">
                         {event.title}
                       </h3>
                       
-                      <div className="flex flex-wrap items-center gap-2 md:gap-4 text-sm text-gray-400">
+                      <div className="flex flex-col gap-2 text-sm text-gray-400">
                         <div className="flex items-center min-w-0">
-                          <MapPin size={14} className="mr-1 text-pink-400 flex-shrink-0" />
-                          <span className="truncate">{event.venue}</span>
+                          <MapPin size={14} className="mr-2 text-pink-400 flex-shrink-0" />
+                          <span className="truncate font-medium">{event.venue}</span>
                         </div>
-                        <span className={`px-2 py-1 rounded-full text-xs flex-shrink-0 ${getTypeColor(event.type)}`}>
+                        <div className="flex items-center min-w-0">
+                          <Users size={14} className="mr-2 text-purple-400 flex-shrink-0" />
+                          <span className="truncate">{event.agency}</span>
+                        </div>
+                        <span className={`px-2 py-1 rounded-full text-xs flex-shrink-0 w-fit ${getTypeColor(event.type)}`}>
                           {event.type}
                         </span>
                       </div>
