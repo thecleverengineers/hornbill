@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Navigation } from '@/components/Navigation';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Calendar, MapPin, Clock, Users, Bell, Star } from 'lucide-react';
+import { Clock, MapPin, Star } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Schedule = () => {
   const [selectedDay, setSelectedDay] = useState(1);
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [notifications, setNotifications] = useState<number[]>([]);
   
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: filtersRef, isVisible: filtersVisible } = useScrollAnimation<HTMLDivElement>();
@@ -106,14 +104,6 @@ const Schedule = () => {
       { id: 49, time: '8:00 PM', title: 'Grand Finale Celebration', venue: 'Main Stage', type: 'music', status: 'upcoming', featured: true },
       { id: 50, time: '10:30 PM', title: 'Closing Ceremony & Fireworks', venue: 'Main Stage', type: 'ceremony', status: 'upcoming', featured: true }
     ]
-  };
-
-  const toggleNotification = (eventId: number) => {
-    setNotifications(prev => 
-      prev.includes(eventId) 
-        ? prev.filter(id => id !== eventId)
-        : [...prev, eventId]
-    );
   };
 
   const getStatusColor = (status: string) => {
@@ -217,18 +207,18 @@ const Schedule = () => {
                 <CardContent className="p-4 md:p-6">
                   <div className="flex flex-col gap-4">
                     <div className="flex-1">
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3">
+                      <div className="flex flex-col sm:flex-row sm:items-start gap-2 mb-3">
                         <div className="flex items-center text-gray-400">
                           <Clock size={16} className="mr-2 text-pink-400" />
                           <span className="font-medium text-lg">{event.time}</span>
                         </div>
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(event.status)}`}>
-                            {event.status === 'live' && <span className="animate-pulse">🔴 </span>}
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(event.status)} flex-shrink-0`}>
+                            {event.status === 'live' && <span className="animate-pulse mr-1">🔴</span>}
                             {event.status.toUpperCase()}
                           </span>
                           {event.featured && (
-                            <span className="flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
+                            <span className="flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 flex-shrink-0">
                               <Star size={10} className="mr-1 fill-current" />
                               Featured
                             </span>
@@ -240,55 +230,21 @@ const Schedule = () => {
                         {event.title}
                       </h3>
                       
-                      <div className="flex flex-wrap items-center gap-2 md:gap-4 text-sm text-gray-400 mb-4 md:mb-0">
-                        <div className="flex items-center">
-                          <MapPin size={14} className="mr-1 text-pink-400" />
+                      <div className="flex flex-wrap items-center gap-2 md:gap-4 text-sm text-gray-400">
+                        <div className="flex items-center min-w-0">
+                          <MapPin size={14} className="mr-1 text-pink-400 flex-shrink-0" />
                           <span className="truncate">{event.venue}</span>
                         </div>
-                        <span className={`px-2 py-1 rounded-full text-xs ${getTypeColor(event.type)}`}>
+                        <span className={`px-2 py-1 rounded-full text-xs flex-shrink-0 ${getTypeColor(event.type)}`}>
                           {event.type}
                         </span>
                       </div>
-                    </div>
-                    
-                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => toggleNotification(event.id)}
-                        className={`flex-1 sm:flex-none ${notifications.includes(event.id) ? 'bg-pink-500/20 border-pink-500/50 text-pink-400' : ''}`}
-                      >
-                        <Bell size={16} className={`mr-2 ${notifications.includes(event.id) ? 'fill-current' : ''}`} />
-                        <span className="text-xs sm:text-sm">Notify</span>
-                      </Button>
-                      
-                      <Button variant="outline" size="sm" className="flex-1 sm:flex-none">
-                        <Calendar size={16} className="mr-2" />
-                        <span className="text-xs sm:text-sm">Add to Calendar</span>
-                      </Button>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
-
-          {/* Notification Settings */}
-          {notifications.length > 0 && (
-            <div className="mt-12 festival-card">
-              <div className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-righteous text-xl text-white mb-2">Notifications Enabled</h3>
-                    <p className="text-gray-400">You'll receive alerts for {notifications.length} events</p>
-                  </div>
-                  <Button className="btn-festival">
-                    Manage Notifications
-                  </Button>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </main>
     </div>
