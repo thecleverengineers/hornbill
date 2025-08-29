@@ -14,6 +14,10 @@ const Gallery = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
 
+  // Pagination state
+  const [visibleCount, setVisibleCount] = React.useState(8);
+  const IMAGES_PER_LOAD = 4;
+
   const allGalleryImages = [
     {
       id: 1,
@@ -132,9 +136,22 @@ const Gallery = () => {
     ? allGalleryImages 
     : allGalleryImages.filter(image => image.category === selectedCategory);
 
-  const openModal = (filteredIndex: number) => {
+  // Get visible images based on current count
+  const visibleImages = filteredImages.slice(0, visibleCount);
+  const hasMoreImages = visibleCount < filteredImages.length;
+
+  // Reset visible count when category changes
+  React.useEffect(() => {
+    setVisibleCount(8);
+  }, [selectedCategory]);
+
+  const loadMoreImages = () => {
+    setVisibleCount(prev => Math.min(prev + IMAGES_PER_LOAD, filteredImages.length));
+  };
+
+  const openModal = (visibleIndex: number) => {
     // Find the actual index in the full array
-    const clickedImage = filteredImages[filteredIndex];
+    const clickedImage = visibleImages[visibleIndex];
     const actualIndex = allGalleryImages.findIndex(img => img.id === clickedImage.id);
     setSelectedImageIndex(actualIndex);
     setIsModalOpen(true);
@@ -186,7 +203,7 @@ const Gallery = () => {
           ))}
         </div>
 
-        {/* Gallery Grid - Simplified Cards */}
+        {/* Gallery Grid */}
         <div 
           ref={galleryRef}
           className={`transition-all duration-800 ${
@@ -194,7 +211,7 @@ const Gallery = () => {
           }`}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredImages.map((image, index) => (
+            {visibleImages.map((image, index) => (
               <Card 
                 key={image.id}
                 className={`festival-card group cursor-pointer transition-all duration-500 hover:scale-105 overflow-hidden ${
@@ -230,13 +247,18 @@ const Gallery = () => {
           </div>
         </div>
 
-        {/* Load More */}
-        <div className="text-center mt-12">
-          <Button className="btn-festival">
-            <Camera className="mr-2" size={20} />
-            Load More Images
-          </Button>
-        </div>
+        {/* Load More Button - Only show if there are more images to load */}
+        {hasMoreImages && (
+          <div className="text-center mt-12">
+            <Button 
+              className="btn-festival"
+              onClick={loadMoreImages}
+            >
+              <Camera className="mr-2" size={20} />
+              Load More Images ({filteredImages.length - visibleCount} remaining)
+            </Button>
+          </div>
+        )}
       </div>
 
       <GalleryModal
