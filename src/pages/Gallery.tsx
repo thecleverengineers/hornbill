@@ -255,7 +255,7 @@ const Gallery = () => {
               onClick={loadMoreImages}
             >
               <Camera className="mr-2" size={20} />
-              Load More Images ({filteredImages.length - visibleCount} remaining)
+              Load More Images
             </Button>
           </div>
         )}
