@@ -102,8 +102,8 @@ export function Navigation() {
             isOpen ? 'translate-y-0' : '-translate-y-full'
           }`}>
             <div className="px-6 py-6">
-              {/* Navigation items grid */}
-              <div className="grid grid-cols-2 gap-3 mb-6">
+              {/* Navigation items in rows */}
+              <div className="space-y-2 mb-6">
                 {navigation.map((item) => {
                   const Icon = item.icon;
                   return (
@@ -111,14 +111,14 @@ export function Navigation() {
                       key={item.name}
                       to={item.href}
                       onClick={() => setIsOpen(false)}
-                      className={`flex flex-col items-center justify-center p-4 rounded-xl transition-all duration-200 active:scale-95 ${
+                      className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 active:scale-95 ${
                         location.pathname === item.href
                           ? 'bg-primary/20 text-primary border border-primary/30'
                           : 'bg-gray-800/50 text-gray-300 hover:text-white hover:bg-gray-800/80 border border-gray-700/50'
                       }`}
                     >
-                      <Icon className="w-5 h-5 mb-2" />
-                      <span className="text-xs font-medium text-center leading-tight">
+                      <Icon className="w-4 h-4" />
+                      <span className="text-sm font-medium">
                         {item.name}
                       </span>
                     </Link>
