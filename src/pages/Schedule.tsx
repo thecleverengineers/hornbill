@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Card, CardContent } from '@/components/ui/card';
 import { Clock, MapPin, Star } from 'lucide-react';
@@ -7,6 +7,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 const Schedule = () => {
   const [selectedDay, setSelectedDay] = useState(1);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: filtersRef, isVisible: filtersVisible } = useScrollAnimation<HTMLDivElement>();
@@ -19,6 +20,20 @@ const Schedule = () => {
     }, 60000);
     return () => clearInterval(timer);
   }, []);
+
+  // Scroll to active tab when selectedDay changes
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      const activeButton = scrollContainerRef.current.querySelector(`[data-day="${selectedDay}"]`) as HTMLElement;
+      if (activeButton) {
+        activeButton.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'start'
+        });
+      }
+    }
+  }, [selectedDay]);
 
   const days = [
     { id: 1, date: 'Dec 1, 2024', day: 'Day 1' },
@@ -166,10 +181,11 @@ const Schedule = () => {
           >
             {/* Mobile: Horizontal scroll with simplified buttons */}
             <div className="md:hidden">
-              <div className="flex gap-2 overflow-x-auto pb-4 px-1 hide-scrollbar">
+              <div ref={scrollContainerRef} className="flex gap-2 overflow-x-auto pb-4 px-1 hide-scrollbar">
                 {days.map((day, index) => (
                   <button
                     key={day.id}
+                    data-day={day.id}
                     onClick={() => setSelectedDay(day.id)}
                     className={`flex-shrink-0 px-4 py-2 rounded-lg font-medium transition-all duration-300 min-w-[70px] touch-target text-sm ${
                       selectedDay === day.id
