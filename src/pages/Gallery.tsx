@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Camera, ArrowLeft, Download, Share2 } from 'lucide-react';
+import { Camera, ArrowLeft } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
 import GalleryModal from '@/components/GalleryModal';
@@ -175,7 +174,7 @@ const Gallery = () => {
           ))}
         </div>
 
-        {/* Gallery Grid */}
+        {/* Gallery Grid - Simplified Cards */}
         <div 
           ref={galleryRef}
           className={`transition-all duration-800 ${
@@ -186,7 +185,7 @@ const Gallery = () => {
             {filteredImages.map((image, index) => (
               <Card 
                 key={image.id}
-                className={`festival-card group cursor-pointer transition-all duration-500 hover:scale-105 ${
+                className={`festival-card group cursor-pointer transition-all duration-500 hover:scale-105 overflow-hidden ${
                   galleryVisible ? 'animate-scale-in' : 'opacity-0 scale-75'
                 }`}
                 style={{
@@ -197,44 +196,13 @@ const Gallery = () => {
                 <CardContent className="p-0">
                   <div className="aspect-[4/3] relative rounded-lg overflow-hidden">
                     <div className={`absolute inset-0 bg-gradient-to-br ${image.gradient} opacity-90`} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     
-                    <div className="absolute inset-0 flex flex-col justify-between p-4">
-                      <div className="flex justify-between items-start">
-                        <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-white border border-white/30">
-                          {image.category}
-                        </span>
-                        <div className="flex gap-2">
-                          <button 
-                            className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-pink-500/50 transition-all duration-300"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <Share2 className="text-white" size={14} />
-                          </button>
-                          <button 
-                            className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-pink-500/50 transition-all duration-300"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <Download className="text-white" size={14} />
-                          </button>
-                        </div>
-                      </div>
-                      
-                      <div>
-                        <h3 className="font-righteous text-lg text-white mb-2 group-hover:text-pink-200 transition-colors duration-300">
-                          {image.title}
-                        </h3>
-                        <p className="text-gray-200 text-sm opacity-90 mb-3 line-clamp-2">
-                          {image.description}
-                        </p>
-                        <div className="flex flex-wrap gap-1">
-                          {image.tags.map((tag) => (
-                            <span key={tag} className="px-2 py-1 bg-black/30 backdrop-blur-sm rounded text-xs text-gray-300">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+                    {/* Minimal overlay with just title */}
+                    <div className="absolute inset-0 flex items-end p-4">
+                      <h3 className="font-righteous text-lg text-white group-hover:text-pink-200 transition-colors duration-300">
+                        {image.title}
+                      </h3>
                     </div>
                     
                     <div className="absolute inset-0 border-2 border-transparent group-hover:border-pink-400/50 rounded-lg transition-all duration-300" />
