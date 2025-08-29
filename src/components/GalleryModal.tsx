@@ -10,6 +10,8 @@ interface GalleryImage {
   description: string;
   category: string;
   gradient: string;
+  tags?: string[];
+  imageUrl: string;
 }
 
 interface GalleryModalProps {
@@ -145,7 +147,14 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
             }`}
             onClick={() => setIsZoomed(!isZoomed)}
           >
-            <div className={`w-full h-full bg-gradient-to-br ${currentImage.gradient} opacity-90`} />
+            {/* Actual Image */}
+            <img 
+              src={currentImage.imageUrl} 
+              alt={currentImage.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            
+            <div className={`absolute inset-0 bg-gradient-to-br ${currentImage.gradient} opacity-20`} />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             
             <div className="absolute bottom-2 md:bottom-4 left-2 md:left-4 right-2 md:right-4 text-white">
@@ -202,7 +211,11 @@ const GalleryModal = ({ isOpen, onClose, images, initialIndex = 0 }: GalleryModa
                       : 'opacity-60 hover:opacity-80'
                   }`}
                 >
-                  <div className={`w-full h-full bg-gradient-to-br ${image.gradient} opacity-90`} />
+                  <img 
+                    src={image.imageUrl} 
+                    alt={image.title}
+                    className="w-full h-full object-cover"
+                  />
                 </button>
               ))}
             </div>
