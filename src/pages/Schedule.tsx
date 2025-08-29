@@ -214,34 +214,36 @@ const Schedule = () => {
                   animationDelay: scheduleVisible ? `${index * 100}ms` : '0ms'
                 }}
               >
-                <CardContent className="p-6">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <CardContent className="p-4 md:p-6">
+                  <div className="flex flex-col gap-4">
                     <div className="flex-1">
-                      <div className="flex items-center gap-4 mb-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3">
                         <div className="flex items-center text-gray-400">
                           <Clock size={16} className="mr-2 text-pink-400" />
                           <span className="font-medium text-lg">{event.time}</span>
                         </div>
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(event.status)}`}>
-                          {event.status === 'live' && <span className="animate-pulse">🔴 </span>}
-                          {event.status.toUpperCase()}
-                        </span>
-                        {event.featured && (
-                          <span className="flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
-                            <Star size={12} className="mr-1 fill-current" />
-                            Featured
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(event.status)}`}>
+                            {event.status === 'live' && <span className="animate-pulse">🔴 </span>}
+                            {event.status.toUpperCase()}
                           </span>
-                        )}
+                          {event.featured && (
+                            <span className="flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
+                              <Star size={10} className="mr-1 fill-current" />
+                              Featured
+                            </span>
+                          )}
+                        </div>
                       </div>
                       
-                      <h3 className="font-righteous text-xl md:text-2xl mb-2 text-white group-hover:text-pink-400 transition-colors">
+                      <h3 className="font-righteous text-lg md:text-2xl mb-2 text-white group-hover:text-pink-400 transition-colors">
                         {event.title}
                       </h3>
                       
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
+                      <div className="flex flex-wrap items-center gap-2 md:gap-4 text-sm text-gray-400 mb-4 md:mb-0">
                         <div className="flex items-center">
                           <MapPin size={14} className="mr-1 text-pink-400" />
-                          {event.venue}
+                          <span className="truncate">{event.venue}</span>
                         </div>
                         <span className={`px-2 py-1 rounded-full text-xs ${getTypeColor(event.type)}`}>
                           {event.type}
@@ -249,18 +251,20 @@ const Schedule = () => {
                       </div>
                     </div>
                     
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => toggleNotification(event.id)}
-                        className={`${notifications.includes(event.id) ? 'bg-pink-500/20 border-pink-500/50 text-pink-400' : ''}`}
+                        className={`flex-1 sm:flex-none ${notifications.includes(event.id) ? 'bg-pink-500/20 border-pink-500/50 text-pink-400' : ''}`}
                       >
-                        <Bell size={16} className={notifications.includes(event.id) ? 'fill-current' : ''} />
+                        <Bell size={16} className={`mr-2 ${notifications.includes(event.id) ? 'fill-current' : ''}`} />
+                        <span className="text-xs sm:text-sm">Notify</span>
                       </Button>
                       
-                      <Button variant="outline">
-                        Add to Calendar
+                      <Button variant="outline" size="sm" className="flex-1 sm:flex-none">
+                        <Calendar size={16} className="mr-2" />
+                        <span className="text-xs sm:text-sm">Add to Calendar</span>
                       </Button>
                     </div>
                   </div>
