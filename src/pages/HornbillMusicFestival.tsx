@@ -106,19 +106,16 @@ const HornbillMusicFestival = () => {
   const ticketOptions = [
     {
       name: 'Day Pass',
-      price: '₹2,500',
       features: ['Single day entry', 'Access to all stages', 'Food court access'],
       popular: false
     },
     {
       name: 'Season Pass',
-      price: '₹15,000',
       features: ['10-day festival access', 'Priority entry', 'Special merchandise', 'Cultural events'],
       popular: true
     },
     {
       name: 'VIP Experience',
-      price: '₹35,000',
       features: ['Premium viewing areas', 'Backstage access', 'Artist meet & greet', 'Luxury amenities', 'Exclusive merchandise'],
       popular: false
     }
@@ -349,8 +346,7 @@ const HornbillMusicFestival = () => {
                     </div>
                   )}
                   <CardContent className="p-8 text-center">
-                    <h3 className="font-righteous text-2xl mb-2 text-white">{ticket.name}</h3>
-                    <div className="text-4xl font-bold text-pink-400 mb-6">{ticket.price}</div>
+                    <h3 className="font-righteous text-2xl mb-6 text-white">{ticket.name}</h3>
                     <ul className="space-y-3 mb-8">
                       {ticket.features.map((feature, idx) => (
                         <li key={idx} className="text-gray-300 flex items-center justify-center">
