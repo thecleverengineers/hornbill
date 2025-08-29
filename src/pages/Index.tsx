@@ -4,16 +4,12 @@ import { Navigation } from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import FeaturedSection from '@/components/FeaturedSection';
 import AboutTaFMA from '@/components/AboutTaFMA';
-import SoundsOfNagaland from '@/components/SoundsOfNagaland';
-import SponsoredSection from '@/components/SponsoredSection';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Index = () => {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: featuredRef, isVisible: featuredVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: aboutRef, isVisible: aboutVisible } = useScrollAnimation<HTMLElement>();
-  const { elementRef: soundsRef, isVisible: soundsVisible } = useScrollAnimation<HTMLElement>();
-  const { elementRef: sponsoredRef, isVisible: sponsoredVisible } = useScrollAnimation<HTMLElement>();
 
   return (
     <div className="min-h-screen bg-background">
@@ -50,28 +46,6 @@ const Index = () => {
           }`}
         >
           <AboutTaFMA />
-        </section>
-
-        <section 
-          ref={soundsRef}
-          className={`transition-all duration-1000 ${
-            soundsVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-12'
-          }`}
-        >
-          <SoundsOfNagaland />
-        </section>
-
-        <section 
-          ref={sponsoredRef}
-          className={`transition-all duration-1000 ${
-            sponsoredVisible 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-12'
-          }`}
-        >
-          <SponsoredSection />
         </section>
       </main>
     </div>
