@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Music, Mic, Info, Mountain } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -15,6 +15,25 @@ export function Navigation() {
     { name: 'About', href: '/about', icon: Info, shortName: 'About' },
   ];
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   return (
     <>
       {/* Desktop and Mobile Top Navigation */}
@@ -22,7 +41,7 @@ export function Navigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2 z-50 relative">
               <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <Music className="w-5 h-5 text-white" />
               </div>
@@ -54,10 +73,11 @@ export function Navigation() {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="md:hidden z-50 relative">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="text-gray-300 hover:text-white p-2 rounded-lg active:bg-gray-800/50 transition-colors"
+                className="text-gray-300 hover:text-white p-2 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                aria-label="Toggle mobile menu"
               >
                 {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>
@@ -66,8 +86,12 @@ export function Navigation() {
         </div>
 
         {/* Mobile Slide-out Menu */}
-        {isOpen && (
-          <div className="md:hidden fixed inset-0 top-16 bg-black/98 backdrop-blur-md z-40 animate-fade-in">
+        <div className={`md:hidden fixed inset-0 top-16 z-40 transition-all duration-300 ease-in-out ${
+          isOpen 
+            ? 'opacity-100 visible' 
+            : 'opacity-0 invisible pointer-events-none'
+        }`}>
+          <div className="absolute inset-0 bg-black/95 backdrop-blur-md">
             <div className="px-4 pt-6 pb-20 space-y-2 h-full overflow-y-auto">
               {navigation.map((item) => {
                 const Icon = item.icon;
@@ -76,10 +100,10 @@ export function Navigation() {
                     key={item.name}
                     to={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center space-x-4 px-4 py-4 rounded-xl text-lg font-medium transition-all duration-200 active:scale-95 ${
+                    className={`flex items-center space-x-4 px-4 py-4 rounded-xl text-lg font-medium transition-all duration-200 ${
                       location.pathname === item.href
                         ? 'bg-primary/20 text-primary shadow-lg'
-                        : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
+                        : 'text-gray-300 hover:text-white hover:bg-gray-800/50 active:bg-gray-800/70'
                     }`}
                   >
                     <Icon className="w-6 h-6" />
@@ -88,18 +112,21 @@ export function Navigation() {
                 );
               })}
               <div className="px-4 py-4">
-                <Button className="btn-festival w-full py-4 text-lg font-semibold">
+                <Button 
+                  className="btn-festival w-full py-4 text-lg font-semibold"
+                  onClick={() => setIsOpen(false)}
+                >
                   Book Tickets
                 </Button>
               </div>
             </div>
           </div>
-        )}
+        </div>
       </nav>
 
       {/* Bottom Mobile Navigation */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-md border-t border-gray-700/50 z-50 safe-area-inset-bottom">
-        <div className="flex justify-around items-center py-2 px-1">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-md border-t border-gray-700/50 z-50">
+        <div className="flex justify-around items-center py-2 px-1 safe-area-inset-bottom">
           {navigation.map((item) => {
             const Icon = item.icon;
             const isActive = location.pathname === item.href;
