@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -136,7 +135,11 @@ const HornbillMusicFestival = () => {
         >
           {/* Background Image */}
           <div className="absolute inset-0">
-            <div className="w-full h-full bg-gradient-to-br from-purple-900 via-pink-900 to-orange-900 opacity-90" />
+            <img 
+              src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Music Festival Stage"
+              className="w-full h-full object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
           </div>
           
