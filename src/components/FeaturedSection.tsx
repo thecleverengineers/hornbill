@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -10,7 +9,6 @@ import GalleryModal from './GalleryModal';
 const FeaturedSection = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: cardsRef, isVisible: cardsVisible } = useScrollAnimation<HTMLDivElement>();
-  const { elementRef: documentaryRef, isVisible: documentaryVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: galleryRef, isVisible: galleryVisible } = useScrollAnimation<HTMLDivElement>();
 
   // Gallery modal state
@@ -213,54 +211,8 @@ const FeaturedSection = () => {
         </div>
 
         <div 
-          ref={documentaryRef}
-          className={`festival-card transition-all duration-800 ${
-            documentaryVisible 
-              ? 'opacity-100 translate-y-0 scale-100' 
-              : 'opacity-0 translate-y-12 scale-95'
-          }`}
-        >
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className={`transition-all duration-1000 delay-200 ${
-              documentaryVisible 
-                ? 'opacity-100 translate-x-0' 
-                : 'opacity-0 -translate-x-8'
-            }`}>
-              <h3 className="font-righteous text-3xl mb-4">
-                <span className="festival-title">"Sounds of Nagaland"</span>
-              </h3>
-              <p className="text-gray-400 text-lg mb-6 leading-relaxed">
-                Dive deep into the musical heritage of the 16 tribes of Nagaland. 
-                Watch our exclusive documentary showcasing the traditional instruments, 
-                songs, and stories that make this festival unique.
-              </p>
-              <Button className="btn-festival">
-                <Camera className="mr-2" size={20} />
-                Watch Documentary
-              </Button>
-            </div>
-            
-            <div className={`relative transition-all duration-1000 delay-400 ${
-              documentaryVisible 
-                ? 'opacity-100 translate-x-0 scale-100' 
-                : 'opacity-0 translate-x-8 scale-95'
-            }`}>
-              <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl flex items-center justify-center neon-glow-purple">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center mb-4 mx-auto neon-glow-pink">
-                    <Camera className="text-white" size={32} />
-                  </div>
-                  <p className="text-gray-300 font-medium">Mini Documentary</p>
-                  <p className="text-gray-500 text-sm">Coming Soon</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div 
           ref={galleryRef}
-          className={`mt-16 transition-all duration-800 ${
+          className={`transition-all duration-800 ${
             galleryVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-16'
