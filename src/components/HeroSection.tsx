@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Calendar, Mic } from 'lucide-react';
@@ -19,36 +18,27 @@ const HeroSection = () => {
   const carouselSlides = [
     {
       id: 1,
-      title: "HORNBILL",
-      subtitle: "MUSIC FESTIVAL",
-      description: "India's Biggest Music Festival",
-      tagline: "🎵 Where the Hills Sing • Nagaland's Cultural Soul",
+      title: "YOUR BIGGEST STAGE",
+      subtitle: "AWAITS",
+      description: "Audition now for Hornbill Music Festival 2025.",
       backgroundImage: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      primaryAction: { text: "Register Band", icon: Mic, link: "/auditions" },
-      secondaryAction: { text: "🎟️ Book Tickets", link: "/events" },
-      tertiaryAction: { text: "Festival Schedule", icon: Calendar, link: "/schedule" }
+      primaryAction: { text: "Submit Audition", icon: Mic, link: "/auditions" }
     },
     {
       id: 2,
-      title: "16 TRIBES",
-      subtitle: "ONE CELEBRATION",
-      description: "Experience Nagaland's Rich Heritage",
-      tagline: "🏔️ Tribal Beats • Ancient Rhythms • Modern Sounds",
+      title: "INDIA'S BIGGEST",
+      subtitle: "MUSIC FESTIVAL",
+      description: "10 Days. Endless Music in the Hills of Nagaland.",
       backgroundImage: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      primaryAction: { text: "Explore Culture", link: "/about" },
-      secondaryAction: { text: "Meet Artists", link: "/artists" },
-      tertiaryAction: { text: "🎶 Listen Now", link: "/events" }
+      primaryAction: { text: "Book Tickets", link: "/events" }
     },
     {
       id: 3,
-      title: "5 DAYS",
-      subtitle: "ENDLESS MUSIC",
-      description: "December 3-8, 2024",
-      tagline: "🎸 Rock • Folk • Electronic • Traditional",
+      title: "WHERE CULTURE",
+      subtitle: "MEETS SOUND",
+      description: "Discover the spirit of Nagaland — one celebration, countless memories.",
       backgroundImage: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      primaryAction: { text: "View Schedule", icon: Calendar, link: "/schedule" },
-      secondaryAction: { text: "Book Now", link: "/events" },
-      tertiaryAction: { text: "Join Festival", icon: Mic, link: "/auditions" }
+      primaryAction: { text: "Learn More", link: "/about" }
     }
   ];
 
@@ -99,30 +89,15 @@ const HeroSection = () => {
                       <span className="block text-white">{slide.subtitle}</span>
                     </h1>
                     
-                    <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-2 font-light">
+                    <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 font-light">
                       {slide.description}
                     </p>
                     
-                    <p className="text-base sm:text-lg md:text-xl text-neon-purple mb-6 md:mb-8 font-medium px-2">
-                      {slide.tagline}
-                    </p>
-                    
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 md:mb-12 px-2">
+                    <div className="flex justify-center items-center mb-8 md:mb-12">
                       <Link to={slide.primaryAction.link} className="w-full sm:w-auto">
-                        <Button className="btn-festival text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
+                        <Button className="btn-festival text-base sm:text-lg px-8 py-4 w-full sm:w-auto">
                           {slide.primaryAction.icon && <slide.primaryAction.icon className="mr-2" size={18} />}
                           {slide.primaryAction.text}
-                        </Button>
-                      </Link>
-                      <Link to={slide.secondaryAction.link} className="w-full sm:w-auto">
-                        <Button className="btn-stage text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
-                          {slide.secondaryAction.text}
-                        </Button>
-                      </Link>
-                      <Link to={slide.tertiaryAction.link} className="w-full sm:w-auto">
-                        <Button className="btn-tribal text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
-                          {slide.tertiaryAction.icon && <slide.tertiaryAction.icon className="mr-2" size={18} />}
-                          {slide.tertiaryAction.text}
                         </Button>
                       </Link>
                     </div>
