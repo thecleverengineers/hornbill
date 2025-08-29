@@ -165,14 +165,14 @@ const Schedule = () => {
                 : 'opacity-0 translate-y-8'
             }`}
           >
-            {/* Mobile: Horizontal scroll, Desktop: Flex wrap */}
+            {/* Mobile: Horizontal scroll with compact buttons */}
             <div className="md:hidden">
-              <div className="flex gap-3 overflow-x-auto pb-4 px-1 hide-scrollbar">
+              <div className="flex gap-2 overflow-x-auto pb-4 px-1 hide-scrollbar">
                 {days.map((day, index) => (
                   <button
                     key={day.id}
                     onClick={() => setSelectedDay(day.id)}
-                    className={`flex-shrink-0 px-4 py-3 rounded-xl font-medium transition-all duration-300 min-w-[100px] touch-target ${
+                    className={`flex-shrink-0 px-3 py-2 rounded-lg font-medium transition-all duration-300 min-w-[70px] touch-target text-sm ${
                       selectedDay === day.id
                         ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white neon-glow-pink'
                         : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
@@ -181,8 +181,8 @@ const Schedule = () => {
                       animationDelay: filtersVisible ? `${index * 50}ms` : '0ms'
                     }}
                   >
-                    <div className="text-sm font-semibold">{day.day}</div>
-                    <div className="text-xs opacity-75 whitespace-nowrap">{day.date}</div>
+                    <div className="text-xs font-semibold">{day.day}</div>
+                    <div className="text-[10px] opacity-75 whitespace-nowrap">{day.date.replace(', 2024', '')}</div>
                   </button>
                 ))}
               </div>
