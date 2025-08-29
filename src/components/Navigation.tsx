@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Music, Calendar, Users, Mic, Info, Mountain } from 'lucide-react';
+import { Menu, X, Music, Mic, Info, Mountain } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function Navigation() {
@@ -9,8 +9,6 @@ export function Navigation() {
 
   const navigation = [
     { name: 'Home', href: '/', icon: Music },
-    { name: 'Events', href: '/events', icon: Calendar },
-    { name: 'Artists', href: '/artists', icon: Users },
     { name: 'Hornbill Festival', href: '/hornbill-music-festival', icon: Mountain },
     { name: 'Pre-Ticket to Hornbill', href: '/auditions', icon: Mic },
     { name: 'About', href: '/about', icon: Info },

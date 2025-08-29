@@ -7,9 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navigation } from "./components/Navigation";
 import Footer from "./components/Footer";
 import Index from "./pages/Index";
-import Events from "./pages/Events";
-import Artists from "./pages/Artists";
-import ArtistDetail from "./pages/ArtistDetail";
 import Auditions from "./pages/Auditions";
 import About from "./pages/About";
 import Schedule from "./pages/Schedule";
@@ -30,9 +27,6 @@ const App = () => (
           <main className="mobile-page-content flex-1">
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/artists" element={<Artists />} />
-              <Route path="/artists/:id" element={<ArtistDetail />} />
               <Route path="/auditions" element={<Auditions />} />
               <Route path="/about" element={<About />} />
               <Route path="/schedule" element={<Schedule />} />
