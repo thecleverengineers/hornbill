@@ -1,17 +1,27 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Music, Mic, Info, Mountain } from 'lucide-react';
+import { Menu, X, Music, Mic, Info, Mountain, Calendar, Image } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
+  // Desktop navigation items (original)
   const navigation = [
     { name: 'Home', href: '/', icon: Music, shortName: 'Home' },
     { name: 'Hornbill Festival', href: '/hornbill-music-festival', icon: Mountain, shortName: 'Festival' },
     { name: 'Pre-Ticket to Hornbill', href: '/auditions', icon: Mic, shortName: 'Auditions' },
+    { name: 'About', href: '/about', icon: Info, shortName: 'About' },
+  ];
+
+  // Mobile navigation items (includes additional items)
+  const mobileNavigation = [
+    { name: 'Home', href: '/', icon: Music, shortName: 'Home' },
+    { name: 'Hornbill Festival', href: '/hornbill-music-festival', icon: Mountain, shortName: 'Festival' },
+    { name: 'Pre-Ticket to Hornbill', href: '/auditions', icon: Mic, shortName: 'Auditions' },
+    { name: 'Schedule', href: '/schedule', icon: Calendar, shortName: 'Schedule' },
+    { name: 'Gallery', href: '/gallery', icon: Image, shortName: 'Gallery' },
     { name: 'About', href: '/about', icon: Info, shortName: 'About' },
   ];
 
@@ -104,7 +114,7 @@ export function Navigation() {
             <div className="px-6 py-6">
               {/* Navigation items in rows */}
               <div className="space-y-2 mb-6">
-                {navigation.map((item) => {
+                {mobileNavigation.map((item) => {
                   const Icon = item.icon;
                   return (
                     <Link
