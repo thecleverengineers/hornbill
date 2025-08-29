@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -126,7 +125,7 @@ const Gallery = () => {
     }
   ];
 
-  const categories = ['All', 'Performance', 'Culture', 'Atmosphere', 'Music', 'Behind Scenes', 'Food', 'Education', 'Youth', 'Crafts'];
+  const categories = ['All', 'Performance', 'Culture', 'Music'];
   const [selectedCategory, setSelectedCategory] = React.useState('All');
 
   const filteredImages = selectedCategory === 'All' 
