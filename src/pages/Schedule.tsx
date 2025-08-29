@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Calendar, MapPin, Clock, Users, Bell, Star, Play } from 'lucide-react';
+import { Calendar, MapPin, Clock, Users, Bell, Star } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Schedule = () => {
@@ -13,7 +13,6 @@ const Schedule = () => {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: filtersRef, isVisible: filtersVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: scheduleRef, isVisible: scheduleVisible } = useScrollAnimation<HTMLDivElement>();
-  const { elementRef: liveRef, isVisible: liveVisible } = useScrollAnimation<HTMLDivElement>();
 
   // Update current time every minute
   useEffect(() => {
@@ -156,31 +155,13 @@ const Schedule = () => {
             }`}
           >
             <h1 className="font-righteous text-4xl md:text-6xl mb-4">
-              <span className="festival-title neon-text">Live Schedule</span>
+              <span className="festival-title neon-text">Festival Schedule</span>
             </h1>
             <p className="text-xl text-gray-300 mb-4">
-              Real-time festival updates and notifications
+              Complete festival program and event timeline
             </p>
             <div className="text-lg text-neon-purple font-medium">
-              🕐 Current Time: {currentTime.toLocaleTimeString()}
-            </div>
-          </div>
-
-          {/* Live Status Banner */}
-          <div 
-            ref={liveRef}
-            className={`festival-card mb-8 transition-all duration-700 ${
-              liveVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-8'
-            }`}
-          >
-            <div className="flex items-center p-6">
-              <div className="w-4 h-4 bg-red-500 rounded-full animate-pulse mr-4"></div>
-              <div>
-                <h3 className="font-righteous text-xl text-white">Currently Live</h3>
-                <p className="text-gray-400">Naga Folk Orchestra - Folk Stage</p>
-              </div>
+              📅 10 Days of Music, Culture & Celebration
             </div>
           </div>
 
@@ -278,18 +259,9 @@ const Schedule = () => {
                         <Bell size={16} className={notifications.includes(event.id) ? 'fill-current' : ''} />
                       </Button>
                       
-                      {event.status === 'live' && (
-                        <Button className="btn-festival">
-                          <Play className="mr-2" size={16} />
-                          Join Live
-                        </Button>
-                      )}
-                      
-                      {event.status === 'upcoming' && (
-                        <Button variant="outline">
-                          Add to Calendar
-                        </Button>
-                      )}
+                      <Button variant="outline">
+                        Add to Calendar
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
