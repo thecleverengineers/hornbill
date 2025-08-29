@@ -175,18 +175,12 @@ const Schedule = () => {
                 : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className="flex items-center justify-between p-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
-                <div>
-                  <h3 className="font-righteous text-xl text-white">Currently Live</h3>
-                  <p className="text-gray-400">Naga Folk Orchestra - Folk Stage</p>
-                </div>
+            <div className="flex items-center p-6">
+              <div className="w-4 h-4 bg-red-500 rounded-full animate-pulse mr-4"></div>
+              <div>
+                <h3 className="font-righteous text-xl text-white">Currently Live</h3>
+                <p className="text-gray-400">Naga Folk Orchestra - Folk Stage</p>
               </div>
-              <Button className="btn-festival">
-                <Play className="mr-2" size={16} />
-                Watch Live Stream
-              </Button>
             </div>
           </div>
 
