@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -127,13 +128,21 @@ const HornbillMusicFestival = () => {
         {/* Hero Section */}
         <div 
           ref={heroRef}
-          className={`relative festival-bg rounded-none py-20 md:py-32 overflow-hidden transition-all duration-1000 ${
+          className={`relative py-20 md:py-32 overflow-hidden transition-all duration-1000 ${
             heroVisible 
               ? 'opacity-100 translate-y-0 scale-100' 
               : 'opacity-0 translate-y-12 scale-95'
           }`}
         >
-          <div className="absolute inset-0 tribal-pattern opacity-30"></div>
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <div className="w-full h-full bg-gradient-to-br from-purple-900 via-pink-900 to-orange-900 opacity-90" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+          </div>
+          
+          {/* Tribal Pattern Overlay */}
+          <div className="absolute inset-0 tribal-pattern opacity-20"></div>
+          
           <div className="container mx-auto px-4 text-center relative z-10">
             <h1 className="font-righteous text-5xl md:text-7xl mb-6">
               <span className="festival-title neon-text">Hornbill Music Festival</span>
