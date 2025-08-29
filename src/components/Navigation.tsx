@@ -101,9 +101,9 @@ export function Navigation() {
           <div className={`absolute top-0 left-0 right-0 bg-black/95 backdrop-blur-md border-b border-gray-700/50 transition-transform duration-300 ease-out ${
             isOpen ? 'translate-y-0' : '-translate-y-full'
           }`}>
-            <div className="px-6 py-8">
+            <div className="px-6 py-6">
               {/* Navigation items grid */}
-              <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="grid grid-cols-2 gap-3 mb-6">
                 {navigation.map((item) => {
                   const Icon = item.icon;
                   return (
@@ -111,14 +111,14 @@ export function Navigation() {
                       key={item.name}
                       to={item.href}
                       onClick={() => setIsOpen(false)}
-                      className={`flex flex-col items-center justify-center p-6 rounded-2xl transition-all duration-200 active:scale-95 ${
+                      className={`flex flex-col items-center justify-center p-4 rounded-xl transition-all duration-200 active:scale-95 ${
                         location.pathname === item.href
                           ? 'bg-primary/20 text-primary border border-primary/30'
                           : 'bg-gray-800/50 text-gray-300 hover:text-white hover:bg-gray-800/80 border border-gray-700/50'
                       }`}
                     >
-                      <Icon className="w-8 h-8 mb-3" />
-                      <span className="text-sm font-medium text-center leading-tight">
+                      <Icon className="w-5 h-5 mb-2" />
+                      <span className="text-xs font-medium text-center leading-tight">
                         {item.name}
                       </span>
                     </Link>
@@ -128,7 +128,7 @@ export function Navigation() {
               
               {/* Call to action button */}
               <Button 
-                className="btn-festival w-full py-4 text-lg font-semibold rounded-2xl"
+                className="btn-festival w-full py-3 text-base font-semibold rounded-xl"
                 onClick={() => setIsOpen(false)}
               >
                 Book Tickets
