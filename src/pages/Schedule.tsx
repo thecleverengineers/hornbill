@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Card, CardContent } from '@/components/ui/card';
@@ -155,32 +156,58 @@ const Schedule = () => {
             </div>
           </div>
 
-          {/* Day Filter */}
+          {/* Mobile-Optimized Day Filter */}
           <div 
             ref={filtersRef}
-            className={`flex flex-wrap gap-4 justify-center mb-12 transition-all duration-700 ${
+            className={`mb-12 transition-all duration-700 ${
               filtersVisible 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 translate-y-8'
             }`}
           >
-            {days.map((day, index) => (
-              <button
-                key={day.id}
-                onClick={() => setSelectedDay(day.id)}
-                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
-                  selectedDay === day.id
-                    ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white neon-glow-pink'
-                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
-                } ${filtersVisible ? 'animate-fade-in' : ''}`}
-                style={{
-                  animationDelay: filtersVisible ? `${index * 100}ms` : '0ms'
-                }}
-              >
-                <div className="text-sm">{day.day}</div>
-                <div className="text-xs opacity-75">{day.date}</div>
-              </button>
-            ))}
+            {/* Mobile: Horizontal scroll, Desktop: Flex wrap */}
+            <div className="md:hidden">
+              <div className="flex gap-3 overflow-x-auto pb-4 px-1 hide-scrollbar">
+                {days.map((day, index) => (
+                  <button
+                    key={day.id}
+                    onClick={() => setSelectedDay(day.id)}
+                    className={`flex-shrink-0 px-4 py-3 rounded-xl font-medium transition-all duration-300 min-w-[100px] touch-target ${
+                      selectedDay === day.id
+                        ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white neon-glow-pink'
+                        : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
+                    } ${filtersVisible ? 'animate-fade-in' : ''}`}
+                    style={{
+                      animationDelay: filtersVisible ? `${index * 50}ms` : '0ms'
+                    }}
+                  >
+                    <div className="text-sm font-semibold">{day.day}</div>
+                    <div className="text-xs opacity-75 whitespace-nowrap">{day.date}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop: Grid layout */}
+            <div className="hidden md:grid md:grid-cols-5 lg:grid-cols-10 gap-4">
+              {days.map((day, index) => (
+                <button
+                  key={day.id}
+                  onClick={() => setSelectedDay(day.id)}
+                  className={`px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
+                    selectedDay === day.id
+                      ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white neon-glow-pink'
+                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
+                  } ${filtersVisible ? 'animate-fade-in' : ''}`}
+                  style={{
+                    animationDelay: filtersVisible ? `${index * 100}ms` : '0ms'
+                  }}
+                >
+                  <div className="text-sm font-semibold">{day.day}</div>
+                  <div className="text-xs opacity-75">{day.date}</div>
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Schedule Grid */}
