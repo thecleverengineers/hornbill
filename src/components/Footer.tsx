@@ -9,8 +9,8 @@ const Footer = () => {
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           {/* Festival Info */}
-          <div className="text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
+          <div className="text-left">
+            <div className="flex items-center gap-2 mb-4">
               <Music className="h-6 w-6 text-neon-pink" />
               <h3 className="text-lg font-semibold">Hornbill Music Festival</h3>
             </div>
@@ -20,7 +20,7 @@ const Footer = () => {
             
             {/* Festival Dates */}
             <div className="mb-6">
-              <h4 className="font-semibold mb-2 flex items-center justify-center lg:justify-start gap-2">
+              <h4 className="font-semibold mb-2 flex items-center gap-2">
                 <Calendar className="h-4 w-4 text-neon-pink" />
                 Festival Dates
               </h4>
@@ -44,7 +44,7 @@ const Footer = () => {
           </div>
 
           {/* Contact Information */}
-          <div className="text-center lg:text-left">
+          <div className="text-left">
             <h3 className="text-lg font-semibold mb-4">Get in Touch</h3>
             <p className="text-muted-foreground text-sm mb-6">
               Have questions about the festival or want to collaborate with TaFMA? We'd love to hear from you.
@@ -52,7 +52,7 @@ const Footer = () => {
 
             {/* Email */}
             <div className="mb-4">
-              <h4 className="font-semibold mb-2 flex items-center justify-center lg:justify-start gap-2">
+              <h4 className="font-semibold mb-2 flex items-center gap-2">
                 <Mail className="h-4 w-4 text-neon-pink" />
                 Email
               </h4>
@@ -64,7 +64,7 @@ const Footer = () => {
 
             {/* Phone */}
             <div className="mb-4">
-              <h4 className="font-semibold mb-2 flex items-center justify-center lg:justify-start gap-2">
+              <h4 className="font-semibold mb-2 flex items-center gap-2">
                 <Phone className="h-4 w-4 text-neon-pink" />
                 Phone
               </h4>
@@ -76,7 +76,7 @@ const Footer = () => {
 
             {/* Location */}
             <div>
-              <h4 className="font-semibold mb-2 flex items-center justify-center lg:justify-start gap-2">
+              <h4 className="font-semibold mb-2 flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-neon-pink" />
                 Location
               </h4>
@@ -89,7 +89,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="text-start">
+          <div className="text-left">
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <div className="space-y-2">
               <a href="/events" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
@@ -113,7 +113,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-border/30 pt-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <span>Made with</span>
               <Heart className="h-4 w-4 text-neon-pink" />
