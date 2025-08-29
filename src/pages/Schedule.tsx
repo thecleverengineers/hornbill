@@ -188,13 +188,13 @@ const Schedule = () => {
               </div>
             </div>
 
-            {/* Desktop: Grid layout */}
-            <div className="hidden md:grid md:grid-cols-5 lg:grid-cols-10 gap-4">
+            {/* Desktop: Single row with flex wrap */}
+            <div className="hidden md:flex md:flex-wrap md:gap-4 md:justify-center">
               {days.map((day, index) => (
                 <button
                   key={day.id}
                   onClick={() => setSelectedDay(day.id)}
-                  className={`px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
+                  className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                     selectedDay === day.id
                       ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white neon-glow-pink'
                       : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
