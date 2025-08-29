@@ -152,7 +152,11 @@ const HornbillMusicFestival = () => {
               <Button className="btn-festival text-lg px-8 py-4">
                 Book Tickets <ArrowRight className="ml-2" size={20} />
               </Button>
-              <Button variant="outline" className="text-lg px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-black">
+              <Button 
+                variant="outline" 
+                className="text-lg px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-black"
+                onClick={() => navigate('/schedule')}
+              >
                 View Schedule <ArrowRight className="ml-2" size={20} />
               </Button>
             </div>
@@ -303,7 +307,10 @@ const HornbillMusicFestival = () => {
                 <span className="px-4 py-2 bg-cyan-500/20 text-cyan-400 rounded-full border border-cyan-500/30">Gospel</span>
               </div>
             </div>
-            <Button className="btn-festival">
+            <Button 
+              className="btn-festival"
+              onClick={() => navigate('/schedule')}
+            >
               View Full Schedule <ArrowRight className="ml-2" size={18} />
             </Button>
           </div>
