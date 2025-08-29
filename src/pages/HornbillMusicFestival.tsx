@@ -1,12 +1,13 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Music, MapPin, Calendar, Users, Utensils, Globe, Ticket, Star, Camera, Play } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useNavigate } from 'react-router-dom';
 import GalleryModal from '@/components/GalleryModal';
 
 const HornbillMusicFestival = () => {
+  const navigate = useNavigate();
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: aboutRef, isVisible: aboutVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: highlightsRef, isVisible: highlightsVisible } = useScrollAnimation<HTMLDivElement>();
@@ -269,7 +270,10 @@ const HornbillMusicFestival = () => {
             </div>
             
             <div className="text-center">
-              <Button className="btn-festival">
+              <Button 
+                className="btn-festival"
+                onClick={() => navigate('/gallery')}
+              >
                 View Full Gallery <Camera className="ml-2" size={18} />
               </Button>
             </div>
