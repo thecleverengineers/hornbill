@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -27,42 +26,48 @@ const HornbillMusicFestival = () => {
       title: 'Main Stage Performance',
       description: 'International artists performing under the stars at Kisama Heritage Village',
       category: 'Performances',
-      gradient: 'from-pink-500 via-purple-600 to-pink-500'
+      gradient: 'from-pink-500 via-purple-600 to-pink-500',
+      imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop'
     },
     {
       id: 2,
       title: 'Traditional Dance',
       description: 'Local Naga tribes showcasing their rich cultural heritage through dance',
       category: 'Culture',
-      gradient: 'from-orange-500 via-red-600 to-pink-500'
+      gradient: 'from-orange-500 via-red-600 to-pink-500',
+      imageUrl: 'https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=400&h=300&fit=crop'
     },
     {
       id: 3,
       title: 'Festival Crowd',
       description: 'Thousands of music lovers enjoying the festival atmosphere',
       category: 'Atmosphere',
-      gradient: 'from-purple-500 via-blue-600 to-cyan-500'
+      gradient: 'from-purple-500 via-blue-600 to-cyan-500',
+      imageUrl: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=300&fit=crop'
     },
     {
       id: 4,
       title: 'Acoustic Sessions',
       description: 'Intimate acoustic performances in the hills of Nagaland',
       category: 'Performances',
-      gradient: 'from-green-500 via-teal-600 to-blue-500'
+      gradient: 'from-green-500 via-teal-600 to-blue-500',
+      imageUrl: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=400&h=300&fit=crop'
     },
     {
       id: 5,
       title: 'Food Festival',
       description: 'Traditional Naga cuisine and international food stalls',
       category: 'Food & Culture',
-      gradient: 'from-yellow-500 via-orange-600 to-red-500'
+      gradient: 'from-yellow-500 via-orange-600 to-red-500',
+      imageUrl: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop'
     },
     {
       id: 6,
       title: 'Sunset Concert',
       description: 'Golden hour performances with breathtaking mountain views',
       category: 'Performances',
-      gradient: 'from-amber-500 via-orange-600 to-pink-500'
+      gradient: 'from-amber-500 via-orange-600 to-pink-500',
+      imageUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop'
     }
   ];
 

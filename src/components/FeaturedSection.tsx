@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -60,56 +59,64 @@ const FeaturedSection = () => {
       title: 'Main Stage Performance',
       description: 'Traditional Naga folk performance at sunset',
       category: 'Performance',
-      gradient: 'from-orange-500/80 to-pink-500/80'
+      gradient: 'from-orange-500/80 to-pink-500/80',
+      imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop'
     },
     {
       id: 2,
       title: 'Tribal Dance',
       description: 'Colorful traditional costumes and rhythmic movements',
       category: 'Culture',
-      gradient: 'from-purple-500/80 to-blue-500/80'
+      gradient: 'from-purple-500/80 to-blue-500/80',
+      imageUrl: 'https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=400&h=300&fit=crop'
     },
     {
       id: 3,
       title: 'Festival Crowd',
       description: 'Thousands gathered to celebrate music and culture',
       category: 'Atmosphere',
-      gradient: 'from-teal-500/80 to-green-500/80'
+      gradient: 'from-teal-500/80 to-green-500/80',
+      imageUrl: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=300&fit=crop'
     },
     {
       id: 4,
       title: 'Night Concert',
       description: 'Electric atmosphere under the stars',
       category: 'Performance',
-      gradient: 'from-indigo-500/80 to-purple-500/80'
+      gradient: 'from-indigo-500/80 to-purple-500/80',
+      imageUrl: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=400&h=300&fit=crop'
     },
     {
       id: 5,
       title: 'Traditional Instruments',
       description: 'Ancient instruments creating modern magic',
       category: 'Music',
-      gradient: 'from-yellow-500/80 to-orange-500/80'
+      gradient: 'from-yellow-500/80 to-orange-500/80',
+      imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop'
     },
     {
       id: 6,
       title: 'Cultural Exchange',
       description: 'Artists from different tribes collaborating',
       category: 'Culture',
-      gradient: 'from-pink-500/80 to-red-500/80'
+      gradient: 'from-pink-500/80 to-red-500/80',
+      imageUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=300&fit=crop'
     },
     {
       id: 7,
       title: 'Backstage Moments',
       description: 'Behind the scenes with performing artists',
       category: 'Behind Scenes',
-      gradient: 'from-emerald-500/80 to-cyan-500/80'
+      gradient: 'from-emerald-500/80 to-cyan-500/80',
+      imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop'
     },
     {
       id: 8,
       title: 'Festival Food',
       description: 'Traditional Naga cuisine and festival treats',
       category: 'Food',
-      gradient: 'from-amber-500/80 to-yellow-500/80'
+      gradient: 'from-amber-500/80 to-yellow-500/80',
+      imageUrl: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop'
     }
   ];
 
