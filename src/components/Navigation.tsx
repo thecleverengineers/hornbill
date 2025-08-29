@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Music, Mic, Info, Mountain } from 'lucide-react';
@@ -8,10 +9,10 @@ export function Navigation() {
   const location = useLocation();
 
   const navigation = [
-    { name: 'Home', href: '/', icon: Music },
-    { name: 'Hornbill Festival', href: '/hornbill-music-festival', icon: Mountain },
-    { name: 'Pre-Ticket to Hornbill', href: '/auditions', icon: Mic },
-    { name: 'About', href: '/about', icon: Info },
+    { name: 'Home', href: '/', icon: Music, shortName: 'Home' },
+    { name: 'Hornbill Festival', href: '/hornbill-music-festival', icon: Mountain, shortName: 'Festival' },
+    { name: 'Pre-Ticket to Hornbill', href: '/auditions', icon: Mic, shortName: 'Auditions' },
+    { name: 'About', href: '/about', icon: Info, shortName: 'About' },
   ];
 
   return (
@@ -106,7 +107,7 @@ export function Navigation() {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`flex flex-col items-center justify-center py-2 px-3 rounded-lg min-w-[60px] transition-all duration-200 active:scale-95 ${
+                className={`flex flex-col items-center justify-center py-2 px-2 rounded-lg min-w-[60px] transition-all duration-200 active:scale-95 ${
                   isActive
                     ? 'text-primary bg-primary/10'
                     : 'text-gray-400 hover:text-white active:bg-gray-800/50'
@@ -114,7 +115,7 @@ export function Navigation() {
               >
                 <Icon className={`w-5 h-5 mb-1 ${isActive ? 'text-primary' : ''}`} />
                 <span className={`text-xs font-medium ${isActive ? 'text-primary' : ''}`}>
-                  {item.name}
+                  {item.shortName}
                 </span>
               </Link>
             );
