@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -123,7 +124,7 @@ const HornbillMusicFestival = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <main className="pt-16">
+      <main>
         {/* Hero Section */}
         <div 
           ref={heroRef}
