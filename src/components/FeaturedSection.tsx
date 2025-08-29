@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -34,9 +35,9 @@ const FeaturedSection = () => {
       border: 'border-pink-500/30'
     },
     {
-      title: '🌟 Featured Artists',
-      description: 'Discover incredible musicians from all 16 tribes of Nagaland',
-      cta: 'Explore Artists',
+      title: '🦅 Hornbill Music Festival',
+      description: 'Explore event highlights, stages, and experiences waiting for you this December.',
+      cta: 'Explore Festival →',
       variant: 'stage',
       icon: Users,
       gradient: 'from-orange-500/20 to-teal-500/20',
