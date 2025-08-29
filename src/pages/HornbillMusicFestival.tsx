@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -9,6 +10,7 @@ const HornbillMusicFestival = () => {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: aboutRef, isVisible: aboutVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: highlightsRef, isVisible: highlightsVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: galleryRef, isVisible: galleryVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: scheduleRef, isVisible: scheduleVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: ticketsRef, isVisible: ticketsVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: experienceRef, isVisible: experienceVisible } = useScrollAnimation<HTMLDivElement>();
@@ -217,8 +219,9 @@ const HornbillMusicFestival = () => {
 
         {/* Image Gallery */}
         <section 
+          ref={galleryRef}
           className={`py-20 px-4 transition-all duration-1000 ${
-            highlightsVisible 
+            galleryVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-12'
           }`}
