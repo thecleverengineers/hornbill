@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -107,6 +106,12 @@ const HornbillMusicFestival = () => {
       title: 'Tourism Meets Music',
       description: 'Discover Nagaland while you festival',
       color: 'text-cyan-400'
+    },
+    {
+      icon: Users,
+      title: 'Community & Connections',
+      description: 'Meet fellow music lovers, artists, and creators from across the world',
+      color: 'text-blue-400'
     }
   ];
 
