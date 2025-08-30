@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -261,7 +262,14 @@ const HornbillMusicFestival = () => {
                 >
                   <CardContent className="p-0 relative">
                     <div className="aspect-[4/3] relative overflow-hidden">
-                      <div className={`w-full h-full bg-gradient-to-br ${image.gradient} opacity-90`} />
+                      {/* Background Image */}
+                      <img 
+                        src={image.imageUrl} 
+                        alt={image.title}
+                        className="w-full h-full object-cover"
+                      />
+                      
+                      {/* Dark overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                       
                       {/* Play button overlay */}
