@@ -92,7 +92,7 @@ const FeaturedSection = () => {
       description: 'Ancient instruments creating modern magic',
       category: 'Music',
       gradient: 'from-yellow-500/80 to-orange-500/80',
-      imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop'
+      imageUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=300&fit=crop'
     },
     {
       id: 6,
@@ -100,7 +100,7 @@ const FeaturedSection = () => {
       description: 'Artists from different tribes collaborating',
       category: 'Culture',
       gradient: 'from-pink-500/80 to-red-500/80',
-      imageUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=300&fit=crop'
+      imageUrl: 'https://images.unsplash.com/photo-1471478331149-c72f17e33c73?w=400&h=300&fit=crop'
     },
     {
       id: 7,
@@ -108,7 +108,7 @@ const FeaturedSection = () => {
       description: 'Behind the scenes with performing artists',
       category: 'Behind Scenes',
       gradient: 'from-emerald-500/80 to-cyan-500/80',
-      imageUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop'
+      imageUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop'
     },
     {
       id: 8,
@@ -318,7 +318,14 @@ const FeaturedSection = () => {
                   }}
                   onClick={() => openModal(index)}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${image.gradient} opacity-90`} />
+                  {/* Background Image */}
+                  <img 
+                    src={image.imageUrl} 
+                    alt={image.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  
+                  {/* Dark overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                   
                   <div className="absolute inset-0 flex flex-col justify-between p-4 md:p-6">
