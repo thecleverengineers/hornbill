@@ -330,9 +330,11 @@ const ArtistDetail = () => {
                       </div>
                     ))}
                   </div>
-                  <Button className="btn-festival w-full mt-6">
-                    Book Tickets
-                  </Button>
+                  <a href="https://ahibi.in/" target="_blank" rel="noopener noreferrer">
+                    <Button className="btn-festival w-full mt-6">
+                      Book Tickets
+                    </Button>
+                  </a>
                 </CardContent>
               </Card>
 

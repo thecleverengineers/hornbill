@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Calendar, Mic } from 'lucide-react';
@@ -30,7 +31,7 @@ const HeroSection = () => {
       subtitle: "MUSIC FESTIVAL",
       description: "10 Days. Endless Music in the Hills of Nagaland.",
       backgroundImage: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      primaryAction: { text: "Book Tickets", link: "/events" }
+      primaryAction: { text: "Book Tickets", link: "https://ahibi.in/" }
     },
     {
       id: 3,
@@ -94,12 +95,21 @@ const HeroSection = () => {
                     </p>
                     
                     <div className="flex justify-center items-center mb-8 md:mb-12">
-                      <Link to={slide.primaryAction.link} className="w-full sm:w-auto">
-                        <Button className="btn-festival text-base sm:text-lg px-8 py-4 w-full sm:w-auto">
-                          {slide.primaryAction.icon && <slide.primaryAction.icon className="mr-2" size={18} />}
-                          {slide.primaryAction.text}
-                        </Button>
-                      </Link>
+                      {slide.primaryAction.link.startsWith('http') ? (
+                        <a href={slide.primaryAction.link} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                          <Button className="btn-festival text-base sm:text-lg px-8 py-4 w-full sm:w-auto">
+                            {slide.primaryAction.icon && <slide.primaryAction.icon className="mr-2" size={18} />}
+                            {slide.primaryAction.text}
+                          </Button>
+                        </a>
+                      ) : (
+                        <Link to={slide.primaryAction.link} className="w-full sm:w-auto">
+                          <Button className="btn-festival text-base sm:text-lg px-8 py-4 w-full sm:w-auto">
+                            {slide.primaryAction.icon && <slide.primaryAction.icon className="mr-2" size={18} />}
+                            {slide.primaryAction.text}
+                          </Button>
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>

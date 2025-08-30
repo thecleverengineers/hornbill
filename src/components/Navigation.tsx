@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Music, Mic, Info, Mountain, Calendar, Image } from 'lucide-react';
@@ -77,9 +78,11 @@ export function Navigation() {
                   </Link>
                 );
               })}
-              <Button className="btn-festival ml-4">
-                Book Tickets
-              </Button>
+              <a href="https://ahibi.in/" target="_blank" rel="noopener noreferrer">
+                <Button className="btn-festival ml-4">
+                  Book Tickets
+                </Button>
+              </a>
             </div>
 
             {/* Mobile menu button */}
@@ -137,12 +140,14 @@ export function Navigation() {
               </div>
               
               {/* Call to action button */}
-              <Button 
-                className="btn-festival w-full py-3 text-base font-semibold rounded-xl"
-                onClick={() => setIsOpen(false)}
-              >
-                Book Tickets
-              </Button>
+              <a href="https://ahibi.in/" target="_blank" rel="noopener noreferrer">
+                <Button 
+                  className="btn-festival w-full py-3 text-base font-semibold rounded-xl"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Book Tickets
+                </Button>
+              </a>
             </div>
           </div>
         </div>
