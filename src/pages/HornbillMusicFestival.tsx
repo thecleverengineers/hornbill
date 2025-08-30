@@ -76,6 +76,13 @@ const HornbillMusicFestival = () => {
     setGalleryModalOpen(true);
   };
 
+  const scrollToLegacy = () => {
+    legacyRef.current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+
   const highlights = [
     {
       icon: Music,
@@ -198,7 +205,7 @@ const HornbillMusicFestival = () => {
             <p className="text-xl text-gray-300 leading-relaxed mb-8">
               Born in the heart of Nagaland, the Hornbill Music Festival is more than a stage — it's a celebration of culture, community, and creativity. From global headliners to emerging local talent, the festival is where tradition meets modern sound, creating memories that last a lifetime.
             </p>
-            <Button className="btn-festival">
+            <Button className="btn-festival" onClick={scrollToLegacy}>
               Explore the Festival Story <ArrowRight className="ml-2" size={18} />
             </Button>
           </div>
