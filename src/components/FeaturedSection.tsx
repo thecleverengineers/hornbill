@@ -3,10 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Music, Camera, Users, ChevronLeft, ChevronRight, Eye, ExternalLink } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import GalleryModal from './GalleryModal';
 
 const FeaturedSection = () => {
+  const navigate = useNavigate();
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: cardsRef, isVisible: cardsVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: documentaryRef, isVisible: documentaryVisible } = useScrollAnimation<HTMLDivElement>();
@@ -31,7 +32,8 @@ const FeaturedSection = () => {
       variant: 'festival',
       icon: Music,
       gradient: 'from-pink-500/20 to-purple-600/20',
-      border: 'border-pink-500/30'
+      border: 'border-pink-500/30',
+      link: '/auditions'
     },
     {
       title: '🦅 Hornbill Music Festival',
@@ -40,7 +42,8 @@ const FeaturedSection = () => {
       variant: 'stage',
       icon: Users,
       gradient: 'from-orange-500/20 to-teal-500/20',
-      border: 'border-orange-500/30'
+      border: 'border-orange-500/30',
+      link: '/hornbill-music-festival'
     },
     {
       title: '📅 Live Schedule',
@@ -49,7 +52,8 @@ const FeaturedSection = () => {
       variant: 'tribal',
       icon: Camera,
       gradient: 'from-purple-600/20 to-yellow-500/20',
-      border: 'border-purple-500/30'
+      border: 'border-purple-500/30',
+      link: '/schedule'
     }
   ];
 
@@ -196,6 +200,7 @@ const FeaturedSection = () => {
               style={{
                 animationDelay: cardsVisible ? `${index * 200}ms` : '0ms'
               }}
+              onClick={() => navigate(card.link)}
             >
               <CardContent className="p-8">
                 <div className="flex items-center justify-between mb-6">
