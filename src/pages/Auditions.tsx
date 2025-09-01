@@ -11,6 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, Upload, Music, Users, Phone, Mail, MapPin, Link, Clock } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from '@/components/ui/use-toast';
 
 const auditionSchema = z.object({
   bandName: z.string().min(1, 'Band name is required').max(100, 'Band name must be under 100 characters'),
@@ -58,12 +60,20 @@ export default function Auditions() {
     if (file) {
       // Validate file size (5MB max)
       if (file.size > 5 * 1024 * 1024) {
-        alert('File size must be under 5MB');
+        toast({
+          title: "File too large",
+          description: "File size must be under 5MB",
+          variant: "destructive",
+        });
         return;
       }
       // Validate file type
       if (!['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)) {
-        alert('Please upload a JPG or PNG file');
+        toast({
+          title: "Invalid file type",
+          description: "Please upload a JPG or PNG file",
+          variant: "destructive",
+        });
         return;
       }
       setBandPhotoFile(file);
@@ -72,24 +82,81 @@ export default function Auditions() {
 
   const onSubmit = async (data: AuditionFormData) => {
     if (!bandPhotoFile) {
-      alert('Please upload a band photo');
+      toast({
+        title: "Missing Photo",
+        description: "Please upload a band photo",
+        variant: "destructive",
+      });
       return;
     }
 
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    console.log('Form submitted:', { ...data, bandPhoto: bandPhotoFile });
-    
-    // Show success message
-    alert('🎉 Audition submitted successfully! You\'ll hear from us soon. Rock on!');
-    
-    // Reset form
-    form.reset();
-    setBandPhotoFile(null);
-    setIsSubmitting(false);
+    try {
+      // Upload photo to Supabase Storage
+      const fileExt = bandPhotoFile.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('band-photos')
+        .upload(fileName, bandPhotoFile);
+
+      if (uploadError) {
+        throw new Error(`Failed to upload photo: ${uploadError.message}`);
+      }
+
+      // Get public URL for the uploaded photo
+      const { data: { publicUrl } } = supabase.storage
+        .from('band-photos')
+        .getPublicUrl(fileName);
+
+      // Parse social links into separate fields
+      const socialLinksArray = data.socialLinks?.split('\n').filter(link => link.trim()) || [];
+      const instagramUrl = socialLinksArray.find(link => link.includes('instagram.com')) || null;
+      const facebookUrl = socialLinksArray.find(link => link.includes('facebook.com')) || null;
+      const youtubeUrl = socialLinksArray.find(link => link.includes('youtube.com') && !link.includes('watch')) || null;
+
+      // Insert registration data into database
+      const { error: insertError } = await supabase
+        .from('band_registrations')
+        .insert({
+          band_name: data.bandName,
+          genre: data.genre,
+          members_count: data.bandMembers.split(',').length,
+          bio: data.bandBio,
+          contact_name: data.contactPerson,
+          contact_email: data.contactEmail,
+          contact_phone: data.contactPhone,
+          instagram_url: instagramUrl,
+          facebook_url: facebookUrl,
+          youtube_url: youtubeUrl,
+          video_url: data.auditionVideoUrl,
+          band_photo_url: publicUrl,
+          terms_accepted: data.termsAccepted,
+        });
+
+      if (insertError) {
+        throw new Error(`Failed to submit registration: ${insertError.message}`);
+      }
+
+      // Show success message
+      toast({
+        title: "🎉 Success!",
+        description: "Your audition has been submitted successfully! You'll hear from us soon. Rock on!",
+      });
+      
+      // Reset form
+      form.reset();
+      setBandPhotoFile(null);
+    } catch (error) {
+      console.error('Submission error:', error);
+      toast({
+        title: "Submission Failed",
+        description: error instanceof Error ? error.message : "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const bandBioLength = form.watch('bandBio')?.length || 0;
