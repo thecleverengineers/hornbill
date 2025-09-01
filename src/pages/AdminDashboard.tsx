@@ -46,16 +46,7 @@ export default function AdminDashboard() {
       return;
     }
 
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('role')
-      .eq('id', session.user.id)
-      .maybeSingle();
-
-    if (!profile || (profile.role !== 'admin' && profile.role !== 'superadmin')) {
-      toast.error("Access denied. Admin only.");
-      navigate('/');
-    }
+    // Any authenticated user can access the dashboard
   };
 
   const fetchRegistrations = async () => {
