@@ -14,7 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      band_registrations: {
+        Row: {
+          band_name: string
+          band_photo_url: string | null
+          bio: string
+          contact_email: string
+          contact_name: string
+          contact_phone: string
+          created_at: string
+          facebook_url: string | null
+          genre: string
+          id: string
+          instagram_url: string | null
+          members_count: number
+          status: string
+          terms_accepted: boolean
+          updated_at: string
+          video_url: string
+          youtube_url: string | null
+        }
+        Insert: {
+          band_name: string
+          band_photo_url?: string | null
+          bio: string
+          contact_email: string
+          contact_name: string
+          contact_phone: string
+          created_at?: string
+          facebook_url?: string | null
+          genre: string
+          id?: string
+          instagram_url?: string | null
+          members_count: number
+          status?: string
+          terms_accepted?: boolean
+          updated_at?: string
+          video_url: string
+          youtube_url?: string | null
+        }
+        Update: {
+          band_name?: string
+          band_photo_url?: string | null
+          bio?: string
+          contact_email?: string
+          contact_name?: string
+          contact_phone?: string
+          created_at?: string
+          facebook_url?: string | null
+          genre?: string
+          id?: string
+          instagram_url?: string | null
+          members_count?: number
+          status?: string
+          terms_accepted?: boolean
+          updated_at?: string
+          video_url?: string
+          youtube_url?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
