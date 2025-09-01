@@ -39,13 +39,16 @@ export default function Login() {
       .maybeSingle();
 
     if (!error && profile) {
-      if (profile.role === 'superadmin') {
-        navigate('/superadmin');
-      } else if (profile.role === 'admin') {
+      // Always redirect to admin dashboard after successful login
+      if (profile.role === 'superadmin' || profile.role === 'admin') {
         navigate('/admin');
       } else {
-        navigate('/');
+        // Non-admin users also go to admin dashboard (they'll be redirected if not authorized)
+        navigate('/admin');
       }
+    } else {
+      // Default redirect to admin dashboard
+      navigate('/admin');
     }
   };
 
