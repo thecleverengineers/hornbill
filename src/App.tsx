@@ -12,6 +12,9 @@ import About from "./pages/About";
 import Schedule from "./pages/Schedule";
 import Gallery from "./pages/Gallery";
 import HornbillMusicFestival from "./pages/HornbillMusicFestival";
+import Login from "./pages/Login";
+import SuperadminDashboard from "./pages/SuperadminDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +35,9 @@ const App = () => (
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/hornbill-music-festival" element={<HornbillMusicFestival />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/superadmin" element={<SuperadminDashboard />} />
+              <Route path="/admin" element={<AdminDashboard />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
