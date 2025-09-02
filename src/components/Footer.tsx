@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Heart, Music, Mail, Phone, MapPin, Calendar, ExternalLink } from 'lucide-react';
-
+import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="bg-background/95 backdrop-blur-md border-t border-border/50 mt-auto">
@@ -92,24 +92,24 @@ const Footer = () => {
           <div className="text-left">
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <div className="space-y-2">
-              <a href="/events" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
+              <Link to="/events" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 Events
-              </a>
-              <a href="/artists" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
+              </Link>
+              <Link to="/artists" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 Artists
-              </a>
-              <a href="/auditions" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
+              </Link>
+              <Link to="/auditions" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 Auditions
-              </a>
-              <a href="/about" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
+              </Link>
+              <Link to="/about" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 About
-              </a>
-              <a href="/schedule" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
+              </Link>
+              <Link to="/schedule" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 Schedule
-              </a>
-              <a href="/login" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
+              </Link>
+              <Link to="/login" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 Admin Access
-              </a>
+              </Link>
             </div>
           </div>
         </div>
