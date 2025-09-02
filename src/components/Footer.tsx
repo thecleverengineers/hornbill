@@ -107,6 +107,9 @@ const Footer = () => {
               <a href="/schedule" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
                 Schedule
               </a>
+              <a href="/login" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
+                Login
+              </a>
             </div>
           </div>
         </div>
