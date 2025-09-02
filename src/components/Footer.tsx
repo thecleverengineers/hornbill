@@ -108,7 +108,7 @@ const Footer = () => {
                 Schedule
               </a>
               <a href="/login" className="block text-muted-foreground hover:text-foreground transition-colors text-sm">
-                Login
+                Admin Access
               </a>
             </div>
           </div>
