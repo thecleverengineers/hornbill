@@ -143,6 +143,42 @@ export type Database = {
         }
         Relationships: []
       }
+      visibility_settings: {
+        Row: {
+          component_id: string
+          component_name: string
+          component_type: string
+          created_at: string
+          id: string
+          is_visible: boolean
+          page: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          component_id: string
+          component_name: string
+          component_type: string
+          created_at?: string
+          id?: string
+          is_visible?: boolean
+          page: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          component_id?: string
+          component_name?: string
+          component_type?: string
+          created_at?: string
+          id?: string
+          is_visible?: boolean
+          page?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

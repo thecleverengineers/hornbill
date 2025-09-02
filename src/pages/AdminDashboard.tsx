@@ -10,6 +10,8 @@ import { LogOut, Music, Eye, Check, X, Clock, Upload, ImageIcon } from "lucide-r
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { VisibilityManager } from "@/components/admin/VisibilityManager";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface BandRegistration {
   id: string;
@@ -179,119 +181,124 @@ export default function AdminDashboard() {
           </Button>
         </div>
 
-        {/* Logo Management Section */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>Site Logo Management</CardTitle>
-            <CardDescription>
-              Upload and manage the site logo
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {currentLogo && (
-              <div className="space-y-2">
-                <Label>Current Logo</Label>
-                <div className="p-4 border rounded-lg bg-background">
-                  <img 
-                    src={currentLogo} 
-                    alt="Current site logo" 
-                    className="h-20 w-auto object-contain"
-                  />
-                </div>
-              </div>
-            )}
-            
-            <div className="space-y-2">
-              <Label htmlFor="logo-upload">Upload New Logo</Label>
-              <div className="flex items-center gap-4">
-                <Input
-                  id="logo-upload"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleLogoUpload}
-                  disabled={uploadingLogo}
-                  className="flex-1"
-                />
-                {uploadingLogo && (
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Upload className="h-4 w-4 animate-pulse" />
-                    Uploading...
-                  </div>
-                )}
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Recommended: PNG or SVG format with transparent background. Maximum height: 80px.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+        <Tabs defaultValue="registrations" className="space-y-4">
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="registrations">Band Registrations</TabsTrigger>
+            <TabsTrigger value="visibility">Content Visibility</TabsTrigger>
+            <TabsTrigger value="logo">Site Logo</TabsTrigger>
+          </TabsList>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Band Registration Submissions</CardTitle>
-            <CardDescription>
-              Review and manage band registration applications
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="rounded-lg border">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Band Name</TableHead>
-                    <TableHead>Contact</TableHead>
-                    <TableHead>Genre</TableHead>
-                    <TableHead>Members</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Submitted</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {registrations.length === 0 ? (
-                    <TableRow>
-                      <TableCell colSpan={7} className="text-center text-muted-foreground">
-                        No registrations found
-                      </TableCell>
-                    </TableRow>
-                  ) : (
-                    registrations.map((registration) => (
-                      <TableRow key={registration.id}>
-                        <TableCell className="font-medium">
-                          {registration.band_name}
-                        </TableCell>
-                        <TableCell>
-                          <div>
-                            <div className="text-sm">{registration.contact_name}</div>
-                            <div className="text-xs text-muted-foreground">
-                              {registration.contact_email}
-                            </div>
-                          </div>
-                        </TableCell>
-                        <TableCell>{registration.genre}</TableCell>
-                        <TableCell>{registration.members_count}</TableCell>
-                        <TableCell>{getStatusBadge(registration.status)}</TableCell>
-                        <TableCell>
-                          {new Date(registration.created_at).toLocaleDateString()}
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => setSelectedRegistration(registration)}
-                          >
-                            <Eye className="mr-1 h-4 w-4" />
-                            View
-                          </Button>
-                        </TableCell>
+          <TabsContent value="registrations">
+            <Card>
+              <CardHeader>
+                <CardTitle>Band Registration Submissions</CardTitle>
+                <CardDescription>
+                  Review and manage band registration applications
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="rounded-lg border">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Band Name</TableHead>
+                        <TableHead>Contact</TableHead>
+                        <TableHead>Genre</TableHead>
+                        <TableHead>Members</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Submitted</TableHead>
+                        <TableHead className="text-right">Actions</TableHead>
                       </TableRow>
-                    ))
+                    </TableHeader>
+                    <TableBody>
+                      {registrations.length === 0 ? (
+                        <TableRow>
+                          <TableCell colSpan={7} className="text-center text-muted-foreground">
+                            No registrations found
+                          </TableCell>
+                        </TableRow>
+                      ) : (
+                        registrations.map((registration) => (
+                          <TableRow key={registration.id}>
+                            <TableCell className="font-medium">
+                              {registration.band_name}
+                            </TableCell>
+                            <TableCell>
+                              <div>
+                                <div className="text-sm">{registration.contact_name}</div>
+                                <div className="text-xs text-muted-foreground">
+                                  {registration.contact_email}
+                                </div>
+                              </div>
+                            </TableCell>
+                            <TableCell>{registration.genre}</TableCell>
+                            <TableCell>{registration.members_count}</TableCell>
+                            <TableCell>{getStatusBadge(registration.status)}</TableCell>
+                            <TableCell>
+                              {new Date(registration.created_at).toLocaleDateString()}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setSelectedRegistration(registration)}
+                              >
+                                <Eye className="mr-1 h-4 w-4" />
+                                View
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      )}
+                    </TableBody>
+                  </Table>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="visibility">
+            <VisibilityManager />
+          </TabsContent>
+
+          <TabsContent value="logo">
+            <Card>
+              <CardHeader>
+                <CardTitle>Site Logo Management</CardTitle>
+                <CardDescription>
+                  Upload and manage the site logo
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {currentLogo && (
+                    <div>
+                      <Label>Current Logo</Label>
+                      <img 
+                        src={currentLogo} 
+                        alt="Site Logo" 
+                        className="h-16 object-contain mt-2"
+                      />
+                    </div>
                   )}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
-        </Card>
+                  <div className="space-y-2">
+                    <Label htmlFor="logo-upload">Upload New Logo</Label>
+                    <Input
+                      id="logo-upload"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleLogoUpload}
+                      disabled={uploadingLogo}
+                    />
+                    {uploadingLogo && (
+                      <p className="text-sm text-muted-foreground">Uploading...</p>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
 
         <Dialog
           open={!!selectedRegistration}
