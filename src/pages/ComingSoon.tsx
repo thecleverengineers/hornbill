@@ -1,41 +1,14 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { Clock, Mail, Calendar, Music } from 'lucide-react';
+import { Mail, Calendar, Music } from 'lucide-react';
 
 const ComingSoon = () => {
   const [email, setEmail] = useState('');
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
   const { toast } = useToast();
-
-  // Set target date (you can modify this)
-  const targetDate = new Date('2024-12-31T23:59:59').getTime();
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((difference % (1000 * 60)) / 1000)
-        });
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [targetDate]);
 
   const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,27 +47,6 @@ const ComingSoon = () => {
           </p>
         </div>
 
-        {/* Countdown Timer */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-          {[
-            { label: 'Days', value: timeLeft.days },
-            { label: 'Hours', value: timeLeft.hours },
-            { label: 'Minutes', value: timeLeft.minutes },
-            { label: 'Seconds', value: timeLeft.seconds }
-          ].map((item, index) => (
-            <Card key={index} className="bg-card/50 backdrop-blur-sm border-primary/20">
-              <CardContent className="p-6 text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
-                  {item.value.toString().padStart(2, '0')}
-                </div>
-                <div className="text-sm text-muted-foreground uppercase tracking-wide">
-                  {item.label}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
         {/* Email Subscription */}
         <div className="max-w-md mx-auto space-y-4">
           <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
@@ -130,9 +82,9 @@ const ComingSoon = () => {
               description: 'Comprehensive tools for organizing unforgettable events'
             },
             {
-              icon: <Clock className="w-8 h-8" />,
-              title: 'Real-time Updates',
-              description: 'Stay connected with live updates and notifications'
+              icon: <Mail className="w-8 h-8" />,
+              title: 'Stay Connected',
+              description: 'Get updates and notifications about our launch'
             }
           ].map((feature, index) => (
             <Card key={index} className="bg-card/30 backdrop-blur-sm border-primary/10">
