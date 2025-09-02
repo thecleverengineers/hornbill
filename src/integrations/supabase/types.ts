@@ -95,6 +95,63 @@ export type Database = {
         }
         Relationships: []
       }
+      global_seo_settings: {
+        Row: {
+          created_at: string
+          default_keywords: string | null
+          default_meta_description: string | null
+          default_og_image: string | null
+          facebook_app_id: string | null
+          facebook_pixel_id: string | null
+          google_analytics_id: string | null
+          google_tag_manager_id: string | null
+          id: string
+          robots_txt: string | null
+          site_name: string | null
+          site_tagline: string | null
+          twitter_handle: string | null
+          updated_at: string
+          verification_bing: string | null
+          verification_google: string | null
+        }
+        Insert: {
+          created_at?: string
+          default_keywords?: string | null
+          default_meta_description?: string | null
+          default_og_image?: string | null
+          facebook_app_id?: string | null
+          facebook_pixel_id?: string | null
+          google_analytics_id?: string | null
+          google_tag_manager_id?: string | null
+          id?: string
+          robots_txt?: string | null
+          site_name?: string | null
+          site_tagline?: string | null
+          twitter_handle?: string | null
+          updated_at?: string
+          verification_bing?: string | null
+          verification_google?: string | null
+        }
+        Update: {
+          created_at?: string
+          default_keywords?: string | null
+          default_meta_description?: string | null
+          default_og_image?: string | null
+          facebook_app_id?: string | null
+          facebook_pixel_id?: string | null
+          google_analytics_id?: string | null
+          google_tag_manager_id?: string | null
+          id?: string
+          robots_txt?: string | null
+          site_name?: string | null
+          site_tagline?: string | null
+          twitter_handle?: string | null
+          updated_at?: string
+          verification_bing?: string | null
+          verification_google?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -115,6 +172,63 @@ export type Database = {
           email?: string
           id?: string
           role?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      seo_settings: {
+        Row: {
+          canonical_url: string | null
+          created_at: string
+          custom_meta: Json | null
+          id: string
+          keywords: string | null
+          meta_description: string | null
+          og_description: string | null
+          og_image: string | null
+          og_title: string | null
+          page_name: string
+          page_route: string
+          robots: string | null
+          structured_data: Json | null
+          title: string | null
+          twitter_card: string | null
+          updated_at: string
+        }
+        Insert: {
+          canonical_url?: string | null
+          created_at?: string
+          custom_meta?: Json | null
+          id?: string
+          keywords?: string | null
+          meta_description?: string | null
+          og_description?: string | null
+          og_image?: string | null
+          og_title?: string | null
+          page_name: string
+          page_route: string
+          robots?: string | null
+          structured_data?: Json | null
+          title?: string | null
+          twitter_card?: string | null
+          updated_at?: string
+        }
+        Update: {
+          canonical_url?: string | null
+          created_at?: string
+          custom_meta?: Json | null
+          id?: string
+          keywords?: string | null
+          meta_description?: string | null
+          og_description?: string | null
+          og_image?: string | null
+          og_title?: string | null
+          page_name?: string
+          page_route?: string
+          robots?: string | null
+          structured_data?: Json | null
+          title?: string | null
+          twitter_card?: string | null
           updated_at?: string
         }
         Relationships: []

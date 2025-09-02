@@ -11,6 +11,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { VisibilityManager } from "@/components/admin/VisibilityManager";
+import { SEOManager } from "@/components/admin/SEOManager";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface BandRegistration {
@@ -182,9 +183,10 @@ export default function AdminDashboard() {
         </div>
 
         <Tabs defaultValue="registrations" className="space-y-4">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="registrations">Band Registrations</TabsTrigger>
             <TabsTrigger value="visibility">Content Visibility</TabsTrigger>
+            <TabsTrigger value="seo">SEO</TabsTrigger>
             <TabsTrigger value="logo">Site Logo</TabsTrigger>
           </TabsList>
 
@@ -259,6 +261,10 @@ export default function AdminDashboard() {
 
           <TabsContent value="visibility">
             <VisibilityManager />
+          </TabsContent>
+
+          <TabsContent value="seo">
+            <SEOManager />
           </TabsContent>
 
           <TabsContent value="logo">
