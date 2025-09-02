@@ -93,7 +93,7 @@ export default function AdminDashboard() {
       .eq('setting_key', 'site_logo')
       .single();
     
-    if (data) {
+    if (data && data.setting_value) {
       setCurrentLogo(data.setting_value);
     }
   };

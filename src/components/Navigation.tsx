@@ -39,7 +39,7 @@ export function Navigation() {
         .eq('setting_key', 'site_logo')
         .single();
       
-      if (data) {
+      if (data && data.setting_value) {
         setLogoUrl(data.setting_value);
       }
     };
