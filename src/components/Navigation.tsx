@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Music, Mic, Info, Mountain, Calendar, Image, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { supabase } from '@/integrations/supabase/client';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const location = useLocation();
 
   // Desktop navigation items (original)
@@ -27,6 +29,40 @@ export function Navigation() {
     { name: 'About', href: '/about', icon: Info, shortName: 'About' },
     { name: 'Login', href: '/login', icon: User, shortName: 'Login' },
   ];
+
+  // Fetch logo from database
+  useEffect(() => {
+    const fetchLogo = async () => {
+      const { data } = await supabase
+        .from('site_settings')
+        .select('setting_value')
+        .eq('setting_key', 'site_logo')
+        .single();
+      
+      if (data) {
+        setLogoUrl(data.setting_value);
+      }
+    };
+
+    fetchLogo();
+
+    // Subscribe to changes
+    const channel = supabase
+      .channel('site_settings_changes')
+      .on('postgres_changes', {
+        event: '*',
+        schema: 'public',
+        table: 'site_settings',
+        filter: 'setting_key=eq.site_logo'
+      }, () => {
+        fetchLogo();
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
 
   // Close mobile menu when route changes
   useEffect(() => {
@@ -55,10 +91,20 @@ export function Navigation() {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2 z-50 relative">
-              <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <Music className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-righteous text-white">TaFMA</span>
+              {logoUrl ? (
+                <img 
+                  src={logoUrl} 
+                  alt="Hornbill Music Festival" 
+                  className="h-12 w-auto object-contain"
+                />
+              ) : (
+                <>
+                  <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <Music className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-xl font-righteous text-white">TaFMA</span>
+                </>
+              )}
             </Link>
 
             {/* Desktop Navigation */}

@@ -6,8 +6,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { LogOut, Music, Eye, Check, X, Clock } from "lucide-react";
+import { LogOut, Music, Eye, Check, X, Clock, Upload, ImageIcon } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface BandRegistration {
   id: string;
@@ -32,10 +34,13 @@ export default function AdminDashboard() {
   const [registrations, setRegistrations] = useState<BandRegistration[]>([]);
   const [selectedRegistration, setSelectedRegistration] = useState<BandRegistration | null>(null);
   const [loading, setLoading] = useState(false);
+  const [currentLogo, setCurrentLogo] = useState<string | null>(null);
+  const [uploadingLogo, setUploadingLogo] = useState(false);
 
   useEffect(() => {
     checkAuth();
     fetchRegistrations();
+    fetchCurrentLogo();
   }, []);
 
   const checkAuth = async () => {
@@ -79,6 +84,61 @@ export default function AdminDashboard() {
     setLoading(false);
   };
 
+  const fetchCurrentLogo = async () => {
+    const { data } = await supabase
+      .from('site_settings')
+      .select('setting_value')
+      .eq('setting_key', 'site_logo')
+      .single();
+    
+    if (data) {
+      setCurrentLogo(data.setting_value);
+    }
+  };
+
+  const handleLogoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setUploadingLogo(true);
+
+    try {
+      // Upload to Supabase Storage
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random()}.${fileExt}`;
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('band-photos')
+        .upload(`logos/${fileName}`, file);
+
+      if (uploadError) throw uploadError;
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('band-photos')
+        .getPublicUrl(`logos/${fileName}`);
+
+      // Update or insert site_settings
+      const { error: settingsError } = await supabase
+        .from('site_settings')
+        .upsert({
+          setting_key: 'site_logo',
+          setting_value: publicUrl
+        }, {
+          onConflict: 'setting_key'
+        });
+
+      if (settingsError) throw settingsError;
+
+      setCurrentLogo(publicUrl);
+      toast.success("Logo updated successfully");
+    } catch (error) {
+      console.error('Error uploading logo:', error);
+      toast.error("Failed to upload logo");
+    } finally {
+      setUploadingLogo(false);
+    }
+  };
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate('/');
@@ -118,6 +178,53 @@ export default function AdminDashboard() {
             Logout
           </Button>
         </div>
+
+        {/* Logo Management Section */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Site Logo Management</CardTitle>
+            <CardDescription>
+              Upload and manage the site logo
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {currentLogo && (
+              <div className="space-y-2">
+                <Label>Current Logo</Label>
+                <div className="p-4 border rounded-lg bg-background">
+                  <img 
+                    src={currentLogo} 
+                    alt="Current site logo" 
+                    className="h-20 w-auto object-contain"
+                  />
+                </div>
+              </div>
+            )}
+            
+            <div className="space-y-2">
+              <Label htmlFor="logo-upload">Upload New Logo</Label>
+              <div className="flex items-center gap-4">
+                <Input
+                  id="logo-upload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleLogoUpload}
+                  disabled={uploadingLogo}
+                  className="flex-1"
+                />
+                {uploadingLogo && (
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Upload className="h-4 w-4 animate-pulse" />
+                    Uploading...
+                  </div>
+                )}
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Recommended: PNG or SVG format with transparent background. Maximum height: 80px.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
 
         <Card>
           <CardHeader>
