@@ -16,29 +16,16 @@ import HornbillMusicFestival from "./pages/HornbillMusicFestival";
 import Login from "./pages/Login";
 import SuperadminDashboard from "./pages/SuperadminDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
-import AdminLogin from "./pages/AdminLogin";
-import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
-
-// Get base URL from environment or detect from current location
-const getBasename = () => {
-  // For production deployment, use the full domain
-  if (window.location.hostname === 'www.hornbillmusicfestival.com' || 
-      window.location.hostname === 'hornbillmusicfestival.com') {
-    return '';
-  }
-  // For development or other environments
-  return '';
-};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter basename={getBasename()}>
+      <BrowserRouter>
         <div className="min-h-screen bg-background flex flex-col">
           <SEOHead />
           <Navigation />
@@ -50,9 +37,7 @@ const App = () => (
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/hornbill-music-festival" element={<HornbillMusicFestival />} />
-              <Route path="/coming-soon" element={<ComingSoon />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/admin-login" element={<AdminLogin />} />
               <Route path="/superadmin" element={<SuperadminDashboard />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="*" element={<NotFound />} />
