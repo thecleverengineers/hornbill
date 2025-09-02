@@ -16,7 +16,6 @@ export function Navigation() {
     { name: 'Hornbill Festival', href: '/hornbill-music-festival', icon: Mountain, shortName: 'Festival' },
     { name: 'Pre-Ticket to Hornbill', href: '/auditions', icon: Mic, shortName: 'Auditions' },
     { name: 'About', href: '/about', icon: Info, shortName: 'About' },
-    { name: 'Login', href: '/login', icon: User, shortName: 'Login' },
   ];
 
   // Mobile navigation items (includes additional items)
@@ -27,7 +26,6 @@ export function Navigation() {
     { name: 'Schedule', href: '/schedule', icon: Calendar, shortName: 'Schedule' },
     { name: 'Gallery', href: '/gallery', icon: Image, shortName: 'Gallery' },
     { name: 'About', href: '/about', icon: Info, shortName: 'About' },
-    { name: 'Login', href: '/login', icon: User, shortName: 'Login' },
   ];
 
   // Fetch logo from database
